@@ -31,6 +31,11 @@ const config: Config = {
       },
       "hot-orange": "#FB4B00",
     },
+    extend: {
+      flex: {
+        full: "0 0 100%",
+      },
+    },
   },
   plugins: [],
 };

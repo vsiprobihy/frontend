@@ -1,3 +1,4 @@
+"use client";
 import ButtonLarge from "@/app/components/buttons/ButtonLarge";
 import Image from "next/image";
 import PlaceholderImage from "@/public/images/placeholder.webp";

@@ -1,19 +1,23 @@
 import clsx from "clsx";
+import { ComponentPropsWithRef } from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ComponentPropsWithRef<"button"> {
   children: React.ReactNode;
   fullWidth?: boolean;
 }
 
 const ButtonLarge: React.FC<ButtonProps> = (props) => {
+  const { children, fullWidth, ...buttonProps } = props;
+
   return (
     <button
       className={clsx(
-        `text-4.5 bg-hot-orange active:text-yellow disabled: block rounded-full p-6 text-center font-semibold uppercase text-white hover:bg-dark disabled:bg-grey-light disabled:text-grey`,
-        props.fullWidth && "w-full"
+        `text-4.5 disabled: block rounded-full bg-hot-orange p-6 text-center font-semibold uppercase text-white hover:bg-dark active:text-yellow disabled:bg-grey-light disabled:text-grey`,
+        fullWidth && "w-full"
       )}
+      {...buttonProps}
     >
-      {props.children}
+      {children}
     </button>
   );
 };
