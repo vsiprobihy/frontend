@@ -3,8 +3,10 @@
 import React, { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image, { ImageProps } from "next/image";
-import CarouselButton from "@/app/components/carousel/CarouselButton";
-import DotButton, { useDotButton } from "@/app/components/carousel/CarouselDot";
+import CarouselButton from "@/app/components/CarouselButton";
+import DotButton, {
+  useDotButton,
+} from "@/app/components/hero-section/carousel/HeroSectionCarouselDot"; // The aspect ratio of component is always 14:17
 
 // The aspect ratio of component is always 14:17
 
@@ -16,7 +18,7 @@ interface CarouselProps {
   elements: SlideType[];
 }
 
-const Carousel: React.FC<CarouselProps> = (props) => {
+const HeroSectionCarousel: React.FC<CarouselProps> = (props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -75,4 +77,4 @@ const Carousel: React.FC<CarouselProps> = (props) => {
   );
 };
 
-export default Carousel;
+export default HeroSectionCarousel;

@@ -40,6 +40,7 @@ const config: Config = {
       },
       maxWidth: {
         "content-limit": "2000px",
+        "content-limit-1/2": "1000px",
       },
     },
   },

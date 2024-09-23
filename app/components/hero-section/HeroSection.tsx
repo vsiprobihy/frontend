@@ -1,6 +1,6 @@
 import HeroSectionTitle from "@/app/components/hero-section/HeroSectionTitle";
 import HeroSectionSubtitle from "@/app/components/hero-section/HeroSectionSubtitle";
-import Carousel from "@/app/components/carousel/Carousel";
+import HeroSectionCarousel from "@/app/components/hero-section/carousel/HeroSectionCarousel";
 import PlaceholderImage from "@/public/images/placeholder.webp";
 
 const HeroSection: React.FC = () => {
@@ -16,7 +16,7 @@ const HeroSection: React.FC = () => {
           <HeroSectionTitle />
         </div>
         <div className={`w-full max-w-[660px]`}>
-          <Carousel
+          <HeroSectionCarousel
             elements={[
               { image: { src: PlaceholderImage, alt: "Running" } },
               { image: { src: PlaceholderImage, alt: "Running" } },
