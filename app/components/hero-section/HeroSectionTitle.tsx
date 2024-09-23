@@ -1,5 +1,5 @@
 "use client";
-import ButtonLarge from "@/app/components/buttons/ButtonLarge";
+import Button from "@/app/components/buttons/Button";
 import Image from "next/image";
 import PlaceholderImage from "@/public/images/placeholder.webp";
 
@@ -42,9 +42,9 @@ const HeroSectionTitle: React.FC = () => {
         >
           <span className={`h1`}>{titleTextArray[2]}</span>
           <span className={`md:flex-1`}>
-            <ButtonLarge fullWidth onClick={onCalendarButtonClick}>
+            <Button size={"large"} fullWidth onClick={onCalendarButtonClick}>
               {buttonText}
-            </ButtonLarge>
+            </Button>
           </span>
         </span>
       </h1>

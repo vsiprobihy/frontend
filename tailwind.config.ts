@@ -14,7 +14,7 @@ const config: Config = {
       grey: {
         dark: "#3D3F4F",
         DEFAULT: "#5E617D",
-        "light-middle": "#DEDEDE",
+        "light-middle": "#989DB6",
         light: "#F1F2F8",
       },
       green: {
@@ -29,14 +29,21 @@ const config: Config = {
       yellow: {
         DEFAULT: "#FBB500",
       },
-      "hot-orange": "#FB4B00",
+      orange: {
+        interactive: "#CF3E00",
+        hot: "#FB4B00",
+      },
     },
     extend: {
       flex: {
         full: "0 0 100%",
       },
+      maxWidth: {
+        "content-limit": "2000px",
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

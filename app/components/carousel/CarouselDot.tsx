@@ -61,7 +61,7 @@ const DotButton: React.FC<DotButtonProps> = (props) => {
     <button
       className={clsx(
         `h-3 w-full rounded-full`,
-        selected ? "bg-hot-orange" : "bg-grey"
+        selected ? "bg-orange-hot" : "bg-grey"
       )}
       {...buttonProps}
     />
