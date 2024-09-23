@@ -3,17 +3,22 @@ import localFont from "next/font/local";
 import "./globals.css";
 import clsx from "clsx";
 
-// TODO Adjust Fonts
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const manropeVariable = localFont({
+  src: "./fonts/Manrope-VariableFont_wght.ttf",
+  variable: "--font-manrope-variable",
+  weight: "100 700",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const manropeRegular = localFont({
+  src: "./fonts/Manrope-Regular.ttf",
+  variable: "--font-manrope-regular",
+  weight: "400",
+});
+
+const manropeBold = localFont({
+  src: "./fonts/Manrope-Bold.ttf",
+  variable: "--font-manrope-bold",
+  weight: "700",
 });
 
 // TODO Adjust Metadata
@@ -33,8 +38,9 @@ export default function RootLayout({
       <body
         className={clsx(
           "bg-grey-light antialiased",
-          geistSans.variable,
-          geistMono.variable
+            manropeVariable.variable,
+            manropeRegular.variable,
+            manropeBold.variable
         )}
       >
         {children}
