@@ -5,8 +5,8 @@ type IconProps = {
     className?: string;
 };
 
-const Icon: React.FC<IconProps> = ({ name, className = '' }) => {
-    return <i className={`${name} ${className}`}></i>;
-};
+const Icon: React.FC<IconProps> = ({name, className = ""}) => (
+    <i className={`${name} ${className}`}></i>
+);
 
 export default Icon;
