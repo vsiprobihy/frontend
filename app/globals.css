@@ -6,6 +6,9 @@
   img {
     @apply object-cover
   }
+.center-body {
+  @apply flex justify-center items-center h-screen m-0;
+}
 }
 
 @layer components {

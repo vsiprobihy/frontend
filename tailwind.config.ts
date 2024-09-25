@@ -13,6 +13,7 @@ const config: Config = {
       dark: "#25262E",
       grey: {
         dark: "#3D3F4F",
+        "grey-light": "#D8DAE6",
         DEFAULT: "#5E617D",
         "light-middle": "#989DB6",
         light: "#F1F2F8",

@@ -46,9 +46,13 @@ const HeroSectionCarousel: React.FC<CarouselProps> = (props) => {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex h-full">
             {props.elements.map(({ image }, index) => (
-              <div key={index} className="flex-full mx-1 h-full">
+              <div key={index} className="mx-1 h-full flex-full">
                 <Image
-                  {...{ ...image, className: "h-full w-full rounded-2xl" }}
+                  {...{
+                    ...image,
+                    className: "h-full w-full rounded-2xl",
+                    alt: image.alt || "",
+                  }}
                 />
               </div>
             ))}
