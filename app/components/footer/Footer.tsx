@@ -1,5 +1,7 @@
+import Icon from "@/app/components/icon/Icon";
+import { IconType } from "@/app/enums/enums";
 import Image from "next/image";
-import PlaceholderImage from "@/public/images/placeholder.webp";
+import DesignerImage from "@/public/images/designer.webp";
 import FooterContacts from "@/app/components/footer/FooterContacts";
 import FooterSocialMediaButton from "@/app/components/footer/FooterSocialMediaButton";
 
@@ -13,20 +15,20 @@ const footerText = `місце зустрічі всіх бігунів.`;
 
 const socialMediaLinks = [
   {
-    icon: `Fb`,
+    icon: IconType.FACEBOOK,
     url: `/`,
   },
   {
-    icon: `In`,
+    icon: IconType.LINKEDIN,
     url: `/`,
   },
   {
-    icon: `Wh`,
+    icon: IconType.VIBER,
     url: `/`,
   },
   {
-    icon: "Te",
-    url: "/",
+    icon: IconType.TELEGRAM,
+    url: `/`,
   },
 ];
 
@@ -43,7 +45,7 @@ const Footer: React.FC = () => {
         >
           <div className={`flex flex-col gap-2`}>
             <Image
-              src={PlaceholderImage}
+              src={DesignerImage}
               alt={"Vsi Probihy Logo"}
               className={`h-[38px] w-[237px]`}
             />
@@ -82,18 +84,14 @@ const Footer: React.FC = () => {
             <div
               className={`w-f2ll flex h-full items-center justify-center rounded-full border border-white bg-dark`}
             >
-              <Image
-                src={PlaceholderImage}
-                alt={"Vsi Probihy Logo"}
-                className={`h-[2rem] w-[2rem] rounded-full`}
-              />
+              <Icon name={IconType.CACTUS} className="text-4xl text-white" />
             </div>
           </div>
         </div>
         <div className={`relative w-full flex-1 pb-[66%] md:h-full md:pb-0`}>
           <Image
             className={`absolute inset-0 z-0 h-full w-full`}
-            src={PlaceholderImage}
+            src={DesignerImage}
             alt={"Running"}
           />
         </div>
