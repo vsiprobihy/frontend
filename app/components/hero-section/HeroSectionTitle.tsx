@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/app/components/buttons/Button";
 import Image from "next/image";
-import PlaceholderImage from "@/public/images/placeholder.webp";
+import RunningStepImage from "@/public/images/running-step.webp";
 
 const titleTextArray: [string, string, string] = [
   `Всеукраїнський`,
@@ -29,7 +29,7 @@ const HeroSectionTitle: React.FC = () => {
               height={113}
               className="h-[2.875rem] w-full rounded-full md:h-[4.5rem] xl:h-[7.125rem]"
               alt={`Running`}
-              src={PlaceholderImage}
+              src={RunningStepImage}
             />
           </span>
           <span className={`h1 w-min whitespace-nowrap`}>
