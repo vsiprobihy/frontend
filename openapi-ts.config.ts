@@ -1,7 +1,6 @@
 import { defineConfig } from "@hey-api/openapi-ts";
 
-const API_URL = process.env.API_URL || "http://185.65.244.112:8000/";
-// const API_URL = process.env.API_URL || "http://localhost:8000/";
+const API_URL = process.env.BASE_URL;
 
 export default defineConfig({
   client: "@hey-api/client-fetch",

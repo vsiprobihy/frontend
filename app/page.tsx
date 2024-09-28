@@ -6,10 +6,14 @@ import HeroSection from "@/app/components/hero-section/HeroSection";
 import Footer from "@/app/components/footer/Footer";
 import UpcomingEventsSection from "@/app/components/upcoming-events-section/UpcomingEventsSection";
 import { client } from "./api-client";
+import { BASE_URL } from "./utils/constants";
 
 client.setConfig({
-  baseUrl: "http://185.65.244.112:8000/",
+  baseUrl: BASE_URL,
 });
+
+// TODO: add auth token to every request
+//client.interceptors.request(() => { })
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -8,19 +8,17 @@ interface CloseButtonProps extends ComponentPropsWithRef<"button"> {
   onClick?: () => void;
 }
 
-const CloseButton: React.FC<CloseButtonProps> = (props) => {
+const CloseButton: React.FC<CloseButtonProps> = ({ className, ...props }) => {
   return (
     <button
       className={clsx(
-        "hover:bg-grey-grey-light w-25px h-25px md:w-38px md:h-38px rounded-full bg-grey-light p-2 text-grey-dark hover:text-dark focus:bg-grey-light focus:text-grey-dark md:px-[14px] md:py-[14px]",
-        props.className
+        "hover:bg-grey-grey-light flex h-[25px] w-[25px] items-center justify-center rounded-full bg-grey-light text-grey-dark hover:text-dark focus:bg-grey-light focus:outline-none md:h-[38px] md:w-[38px]",
+        className
       )}
       type="button"
-      disabled={props.disabled}
-      style={props.style}
-      onClick={props.onClick}
+      {...props}
     >
-      <Cross2Icon className="h-[10px] w-[10px] text-grey-dark md:h-[15px] md:w-[15px]" />
+      <Cross2Icon className="h-[12px] w-[12px] text-grey-dark md:h-[20px] md:w-[20px]" />
     </button>
   );
 };

@@ -5,8 +5,9 @@ import clsx from "clsx";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CheckIcon } from "@radix-ui/react-icons";
-import AuthSubmitButton from "../../AuthSubmitButton";
-import AuthGoogleButton from "../../AuthGoogleButton";
+import AuthSubmitButton from "../AuthSubmitButton";
+import AuthGoogleButton from "../AuthGoogleButton";
+import CustomLabel from "../../Label";
 
 interface ILoginFormFields {
   email: string;
@@ -35,33 +36,32 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-full">
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-normal text-black">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          {...register("email", { required: true })}
-          placeholder="Електронна адреса"
-          className="border-grey-grey-light mt-1 block h-[64px] w-full rounded-xl border px-4 py-[22px] placeholder:text-grey-light-middle hover:border-grey-light-middle focus:border-grey-light-middle focus:outline-none"
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="password"
-          className="block text-sm font-normal text-black"
-        >
-          Пароль
-        </label>
-        <input
-          id="password"
-          type="password"
-          {...register("password", { required: true })}
-          placeholder="Пароль"
-          className="border-grey-grey-light mt-1 block h-[64px] w-full rounded-xl border px-4 py-[22px] placeholder:text-grey-light-middle hover:border-grey-light-middle focus:border-grey-light-middle focus:outline-none"
-        />
-      </div>
+      <CustomLabel
+        inputProps={{
+          id: "email",
+          type: "email",
+          placeholder: "Електронна адреса",
+          ...register("email", { required: true }),
+        }}
+        labelProps={{
+          htmlFor: "email",
+        }}
+      >
+        Email
+      </CustomLabel>
+      <CustomLabel
+        inputProps={{
+          id: "password",
+          type: "password",
+          placeholder: "Пароль",
+          ...register("password", { required: true }),
+        }}
+        labelProps={{
+          htmlFor: "password",
+        }}
+      >
+        Пароль
+      </CustomLabel>
       <div className="mb-6 flex items-center">
         <Checkbox.Root
           className={clsx(
@@ -86,9 +86,9 @@ const LoginForm: React.FC<LoginFormProps> = ({
         </div>
       </div>
       <div className="flex w-full flex-col items-center">
-        <AuthSubmitButton text="Увійти" />
+        <AuthSubmitButton>Увійти</AuthSubmitButton>
         <p className="mb-4 mt-4 text-center text-sm text-black">Або</p>
-        <AuthGoogleButton text="Google" />
+        <AuthGoogleButton>Google</AuthGoogleButton>
       </div>
       {/* {isLoading && <p className="text-blue-500 mb-4">Logging in...</p>}
       {error && <p className="text-red-500 mt-4">Error: {error.message}</p>}
