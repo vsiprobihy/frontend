@@ -15,7 +15,7 @@ const AuthGoogleButton: React.FC<AuthGoogleButtonProps> = ({
   return (
     <button
       className={clsx(
-        "hover:bg-grey-grey-light h-[62px] w-full items-center rounded-full bg-grey-light text-dark focus:outline-none",
+        "h-[62px] w-full items-center rounded-full bg-grey-light text-dark hover:bg-grey-light-dark focus:outline-none",
         className
       )}
       type="submit"

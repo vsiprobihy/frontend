@@ -5,9 +5,11 @@ import Header from "@/app/components/Header";
 import HeroSection from "@/app/components/hero-section/HeroSection";
 import Footer from "@/app/components/footer/Footer";
 import UpcomingEventsSection from "@/app/components/upcoming-events-section/UpcomingEventsSection";
+
 import { client } from "./api-client";
 import { BASE_URL } from "./utils/constants";
-
+import AuthModal from "./components/auth-modal/AuthModal";
+import SuccessModal from "./components/success-modal/SuccessModal";
 client.setConfig({
   baseUrl: BASE_URL,
 });
@@ -28,6 +30,8 @@ export default function Home() {
       <HeroSection />
       <UpcomingEventsSection />
       <Footer />
+      <AuthModal />
+      <SuccessModal />
     </QueryClientProvider>
   );
 }

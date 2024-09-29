@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import clsx from "clsx";
 import * as Tabs from "@radix-ui/react-tabs";
 import {
@@ -18,25 +18,26 @@ import {
   authRegisterCreate,
 } from "../../api-client/services.gen";
 import { TokenObtainPair, Register } from "../../api-client/types.gen";
+import { useRouter, useSearchParams } from "next/navigation";
 import LoginForm from "./form/LoginForm";
 import RegisterForm from "./form/RegisterForm";
 import CloseButton from "../CloseButton";
 
-interface AuthModalProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-}
-
-const AuthModal: React.FC<AuthModalProps> = ({ open, setOpen }) => {
+const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const showAuthModal = !!searchParams.get("showAuthModal");
 
   const handleTabChange = (newValue: "register" | "login") => {
     setValue(newValue);
   };
 
   const handleClose = useCallback(() => {
-    setOpen(false);
-  }, [setOpen]);
+    const params = new URLSearchParams(searchParams);
+    params.delete("showAuthModal");
+    router.push(`?${params.toString()}`);
+  }, [searchParams]);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -74,7 +75,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, setOpen }) => {
       }
     },
     onSuccess: (data: { data?: { access: string } }) => {
-      console.log(data);
       const token = data.data?.access;
       if (token) {
         Cookies.set("authToken", token, {
@@ -83,6 +83,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, setOpen }) => {
           sameSite: "Strict",
         });
       }
+      handleClose();
+    },
+    onError: (error) => {
+      alert(`Login failed: ${error.message}`);
     },
   });
 
@@ -98,14 +102,22 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, setOpen }) => {
   } = useMutation<unknown, Error, Register>({
     mutationFn: async (data: Register) => {
       const response = await authRegisterCreate({ body: data });
-      if (response.response.status === 200) {
-        console.log(response);
+
+      if (response.response.status === 201) {
         return response;
       } else {
         throw new Error(response.response.statusText);
       }
     },
-    // onSuccess,
+    onSuccess: () => {
+      const params = new URLSearchParams(searchParams);
+      params.delete("showAuthModal");
+      params.set("showSuccessModal", "true");
+      router.push(`?${params.toString()}`);
+    },
+    onError: (error) => {
+      alert(`Registration failed: ${error.message}`);
+    },
   });
 
   // const token = Cookies.get("authToken");
@@ -114,15 +126,15 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, setOpen }) => {
     mutateRegister(data);
   };
 
-  if (!open) return null;
-  const isLoginLoading = loginStatus === "pending";
-  const isRegisterLoading = registerStatus === "pending";
-
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={showAuthModal} onOpenChange={handleClose}>
       <DialogPortal>
-        <DialogOverlay className="fixed inset-0 bg-black bg-opacity-50" />
+        <DialogOverlay
+          className="fixed inset-0 bg-black bg-opacity-50"
+          onClick={handleClose}
+        />
         <DialogContent
+          aria-describedby={undefined}
           className={clsx(
             "fixed inset-0 mx-auto mt-5 flex items-center justify-center rounded-lg bg-white p-6 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:transform",
             value === "register"
@@ -132,7 +144,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, setOpen }) => {
         >
           <DialogClose asChild>
             <CloseButton
-              onClick={() => setOpen(false)}
+              onClick={() => handleClose()}
               className={clsx(
                 "absolute right-[24px] top-[35px] md:right-[32px] md:top-[40px]"
               )}
@@ -167,23 +179,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, setOpen }) => {
               value="login"
               className="flex flex-grow items-center justify-center"
             >
-              <LoginForm
-                onSubmit={onSubmitLogin}
-                isLoading={isLoginLoading}
-                error={loginError}
-                data={loginData ?? {}}
-              />
+              <LoginForm onSubmit={onSubmitLogin} />
             </Tabs.Content>
             <Tabs.Content
               value="register"
               className="flex flex-grow items-center justify-center"
             >
-              <RegisterForm
-                onSubmit={onSubmitRegister}
-                isLoading={isRegisterLoading}
-                error={registerError}
-                data={registerData ?? {}}
-              />
+              <RegisterForm onSubmit={onSubmitRegister} />
             </Tabs.Content>
           </Tabs.Root>
         </DialogContent>

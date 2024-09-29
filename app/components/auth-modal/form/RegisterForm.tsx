@@ -14,17 +14,9 @@ interface IRegisterFormFields {
 
 interface RegisterFormProps {
   onSubmit: SubmitHandler<IRegisterFormFields>;
-  isLoading: boolean;
-  error: Error | null;
-  data: { email?: string; password?: string; password2?: string } | null;
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = ({
-  onSubmit,
-  // isLoading,
-  // error,
-  // data,
-}) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm<IRegisterFormFields>();
 
   return (
@@ -79,9 +71,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <p className="mb-4 mt-4 text-center text-sm text-black">Або</p>
         <AuthGoogleButton>Google</AuthGoogleButton>
       </div>
-      {/* {isLoading && <p className="text-blue-500 mt-4">Registering...</p>}
-      {error && <p className="text-red-500 mt-4">Error: {error.message}</p>}
-      {data && <p className="text-green-500 mt-4">Registration successful!</p>} */}
     </form>
   );
 };

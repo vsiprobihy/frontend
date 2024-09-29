@@ -16,17 +16,9 @@ interface ILoginFormFields {
 
 interface LoginFormProps {
   onSubmit: SubmitHandler<ILoginFormFields>;
-  isLoading: boolean;
-  error: Error | null;
-  data: Record<string, unknown>;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({
-  onSubmit,
-  // isLoading,
-  // error,
-  // data,
-}) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm<ILoginFormFields>();
   const [isChecked, setIsChecked] = useState(false);
 
@@ -65,8 +57,8 @@ const LoginForm: React.FC<LoginFormProps> = ({
       <div className="mb-6 flex items-center">
         <Checkbox.Root
           className={clsx(
-            "bg-grey-grey-light flex h-5 w-5 items-center justify-center rounded hover:bg-grey-light-middle focus:outline-none active:bg-dark",
-            isChecked ? "bg-dark" : "bg-grey-grey-light"
+            "flex h-5 w-5 items-center justify-center rounded bg-grey-light-dark hover:bg-grey-light-middle focus:outline-none active:bg-dark",
+            isChecked ? "bg-dark" : "bg-grey-light-dark"
           )}
           id="c1"
           checked={isChecked}
@@ -90,9 +82,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
         <p className="mb-4 mt-4 text-center text-sm text-black">Або</p>
         <AuthGoogleButton>Google</AuthGoogleButton>
       </div>
-      {/* {isLoading && <p className="text-blue-500 mb-4">Logging in...</p>}
-      {error && <p className="text-red-500 mt-4">Error: {error.message}</p>}
-      {data && <p className="text-green-500 mt-4">Login successful!</p>} */}
     </form>
   );
 };

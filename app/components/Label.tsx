@@ -21,7 +21,7 @@ const CustomLabel: React.FC<LabelProps> = ({
         {children}
       </Label.Root>
       <input
-        className={`border-grey-grey-light mt-1 block h-[64px] w-full rounded-xl border px-4 py-[22px] placeholder:text-grey-light-middle hover:border-grey-light-middle focus:border-grey-light-middle focus:outline-none ${inputProps?.className}`}
+        className={`mt-1 block h-[64px] w-full rounded-xl border border-grey-light-dark px-4 py-[22px] placeholder:text-grey-light-middle hover:border-grey-light-middle focus:border-grey-light-middle focus:outline-none ${inputProps?.className}`}
         {...inputProps}
       />
     </div>
