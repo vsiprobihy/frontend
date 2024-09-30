@@ -2,6 +2,7 @@
 import Button from "@/app/components/buttons/Button";
 import Image from "next/image";
 import RunningStepImage from "@/public/images/running-step.webp";
+import Link from "next/link";
 
 const titleTextArray: [string, string, string] = [
   `Всеукраїнський`,
@@ -12,10 +13,6 @@ const titleTextArray: [string, string, string] = [
 const buttonText = `Календар`;
 
 const HeroSectionTitle: React.FC = () => {
-  const onCalendarButtonClick = () => {
-    // TODO link to Calendar
-  };
-
   return (
     <div>
       <h1 className={`flex flex-col text-white`}>
@@ -42,9 +39,11 @@ const HeroSectionTitle: React.FC = () => {
         >
           <span className={`h1`}>{titleTextArray[2]}</span>
           <span className={`md:flex-1`}>
-            <Button size={"large"} fullWidth onClick={onCalendarButtonClick}>
-              {buttonText}
-            </Button>
+            <Link href={`/calendar`}>
+              <Button size={"large"} fullWidth>
+                {buttonText}
+              </Button>
+            </Link>
           </span>
         </span>
       </h1>

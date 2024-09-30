@@ -5,11 +5,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import CarouselButton from "@/app/components/CarouselButton";
 import EventCard, {
   EventCardProps,
-} from "@/app/components/upcoming-events-section/carousel/EventCard"; // The aspect ratio of component is always 14:17
+} from "@/app/components/sections/upcoming-events-section/carousel/EventCard"; // The aspect ratio of component is always 14:17
 
 // The aspect ratio of component is always 14:17
 
-type SlideType = {
+export type SlideType = {
   event: EventCardProps;
 };
 

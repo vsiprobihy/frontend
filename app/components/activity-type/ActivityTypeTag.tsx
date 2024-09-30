@@ -1,8 +1,9 @@
 import clsx from "clsx";
 
-interface ActivityTypeTagProps {
+export interface ActivityTypeTagProps {
   children: React.ReactNode;
   size?: "default" | "large";
+  id: string;
 }
 
 const ActivityTypeTag: React.FC<ActivityTypeTagProps> = (props) => {

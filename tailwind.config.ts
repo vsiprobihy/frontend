@@ -33,6 +33,7 @@ const config: Config = {
         interactive: "#CF3E00",
         hot: "#FB4B00",
       },
+      transparent: "transparent",
     },
     extend: {
       flex: {

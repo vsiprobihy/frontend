@@ -38,9 +38,9 @@ export default function RootLayout({
       <body
         className={clsx(
           "bg-grey-light antialiased",
-            manropeVariable.variable,
-            manropeRegular.variable,
-            manropeBold.variable
+          manropeVariable.variable,
+          manropeRegular.variable,
+          manropeBold.variable
         )}
       >
         {children}

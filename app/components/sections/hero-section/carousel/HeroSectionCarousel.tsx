@@ -6,7 +6,7 @@ import Image, { ImageProps } from "next/image";
 import CarouselButton from "@/app/components/CarouselButton";
 import DotButton, {
   useDotButton,
-} from "@/app/components/hero-section/carousel/HeroSectionCarouselDot"; // The aspect ratio of component is always 14:17
+} from "@/app/components/sections/hero-section/carousel/HeroSectionCarouselDot"; // The aspect ratio of component is always 14:17
 
 // The aspect ratio of component is always 14:17
 
@@ -46,7 +46,7 @@ const HeroSectionCarousel: React.FC<CarouselProps> = (props) => {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex h-full">
             {props.elements.map(({ image }, index) => (
-              <div key={index} className="flex-full mx-1 h-full">
+              <div key={index} className="mx-1 h-full flex-full">
                 <Image
                   {...{ ...image, className: "h-full w-full rounded-2xl" }}
                 />
