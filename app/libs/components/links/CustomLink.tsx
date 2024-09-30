@@ -1,6 +1,6 @@
 import Link, { LinkProps } from "next/link";
 import { IconType } from "~/enums/enums";
-import { Icon } from "~/components/icon/Icon";
+import { Icon } from "~/components/components";
 
 interface CustomLinkProps extends LinkProps {
   children: React.ReactNode;
