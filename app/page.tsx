@@ -1,15 +1,10 @@
-import Header from "@/app/components/Header";
-import HeroSection from "@/app/components/hero-section/HeroSection";
-import Footer from "@/app/components/footer/Footer";
-import UpcomingEventsSection from "@/app/components/upcoming-events-section/UpcomingEventsSection";
+import { HeroSection, UpcomingEventsSection } from "~/components/components";
 
 export default function Home() {
   return (
-    <div>
-      <Header />
+    <main>
       <HeroSection />
       <UpcomingEventsSection />
-      <Footer />
-    </div>
+    </main>
   );
 }
