@@ -18,6 +18,10 @@ export const Header: React.FC = () => {
           name={IconType.SEARCH}
           className="flex h-8 w-8 items-center justify-center rounded bg-white text-xl text-dark"
         />
+        <Icon
+          name={IconType.CLOSE}
+          className="flex h-8 w-8 items-center justify-center rounded bg-white text-sm text-dark"
+        />
       </div>
 
       <div className="relative mt-6">
