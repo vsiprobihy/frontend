@@ -1,8 +1,12 @@
-import { ActivityTypeTag, Button, DistanceTag } from "~/components/components";
+import {
+  ActivityTypeTag,
+  Button,
+  DistanceTag,
+  Icon,
+} from "~/components/components";
 import { IconType } from "~/enums/enums";
 import dayjs from "dayjs";
 import Image, { ImageProps } from "next/image";
-import { Icon } from "~/components/icon/Icon";
 
 const buttonText = `Детальніше`;
 
@@ -31,7 +35,6 @@ const EventCard: React.FC<EventCardProps> = (props) => {
   return (
     <div className={`flex flex-col overflow-hidden rounded-2xl bg-white`}>
       <div className={`relative h-0 w-full pb-[50%]`}>
-        {/*<Image {...props.image} className={`absolute inset-0 h-full w-full`} />*/}
         <Image
           {...props.image}
           alt={props.title}
