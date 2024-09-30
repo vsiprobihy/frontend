@@ -1,8 +1,8 @@
 export { Icon } from "./icon/Icon";
 export { Button } from "./buttons/Button";
 export { Footer } from "./footer/Footer";
-export { HeroSection } from "./hero-section/HeroSection";
-export { UpcomingEventsSection } from "./upcoming-events-section/UpcomingEventsSection";
+export { HeroSection } from "./sections/hero-section/HeroSection";
+export { UpcomingEventsSection } from "./sections/upcoming-events-section/UpcomingEventsSection";
 export { Header } from "./header/Header";
 export { CarouselButton } from "./buttons/CarouselButton";
 export { CustomLink } from "./links/CustomLink";
