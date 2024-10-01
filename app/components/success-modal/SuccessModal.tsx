@@ -14,9 +14,10 @@ import Image from "next/image";
 import CloseButton from "../CloseButton";
 import SuccessImage from "../../../public/images/sucsses-registration.webp";
 import SuccessImageMobile from "../../../public/images/sucsess-registration-MOBILE.webp";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const SuccessModal: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const router = useRouter();
   const searchParams = useSearchParams();
   const showSuccessModal = !!searchParams.get("showSuccessModal");
@@ -26,15 +27,6 @@ const SuccessModal: React.FC = () => {
     params.delete("showSuccessModal");
     router.push(`?${params.toString()}`);
   }, [searchParams]);
-
-  const handleResize = () => {
-    setIsMobile(window.innerWidth < 768);
-  };
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
     <Dialog open={showSuccessModal} onOpenChange={handleClose}>

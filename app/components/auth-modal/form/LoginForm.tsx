@@ -8,6 +8,19 @@ import { CheckIcon } from "@radix-ui/react-icons";
 import AuthSubmitButton from "../AuthSubmitButton";
 import AuthGoogleButton from "../AuthGoogleButton";
 import CustomLabel from "../../Label";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const loginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Невірний формат email")
+    .required("Електронна адреса обов'язкова"),
+  password: yup
+    .string()
+    .min(6, "Пароль повинен містити принаймні 6 символів")
+    .required("Пароль обов'язковий"),
+});
 
 interface ILoginFormFields {
   email: string;
@@ -15,11 +28,19 @@ interface ILoginFormFields {
 }
 
 interface LoginFormProps {
-  onSubmit: SubmitHandler<ILoginFormFields>;
+  onSubmit: (data: ILoginFormFields) => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
-  const { register, handleSubmit } = useForm<ILoginFormFields>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    clearErrors,
+  } = useForm<ILoginFormFields>({
+    resolver: yupResolver(loginSchema),
+    mode: "onBlur",
+  });
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -27,13 +48,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-full">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="mx-auto w-full"
+      noValidate
+    >
       <CustomLabel
+        className={clsx(errors.email ? "mb-1" : "")}
         inputProps={{
           id: "email",
           type: "email",
           placeholder: "Електронна адреса",
           ...register("email", { required: true }),
+          className: errors.email ? "border-red" : "",
+          onChange: () => {
+            clearErrors("email");
+          },
         }}
         labelProps={{
           htmlFor: "email",
@@ -41,12 +71,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
       >
         Email
       </CustomLabel>
+      {errors.email && (
+        <p className="mb-4 block text-sm font-medium text-red">
+          {errors.email.message}
+        </p>
+      )}
       <CustomLabel
+        className={clsx(errors.password ? "mb-1" : "")}
         inputProps={{
           id: "password",
           type: "password",
           placeholder: "Пароль",
           ...register("password", { required: true }),
+          className: errors.email ? "border-red" : "",
+          onChange: () => {
+            clearErrors("password");
+          },
         }}
         labelProps={{
           htmlFor: "password",
@@ -54,6 +94,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
       >
         Пароль
       </CustomLabel>
+      {errors.password && (
+        <p className="mb-4 text-sm font-medium text-red">
+          {errors.password.message}
+        </p>
+      )}
+
       <div className="mb-6 flex items-center">
         <Checkbox.Root
           className={clsx(

@@ -12,7 +12,7 @@ const CloseButton: React.FC<CloseButtonProps> = ({ className, ...props }) => {
   return (
     <button
       className={clsx(
-        "flex h-[25px] w-[25px] items-center justify-center rounded-full bg-grey-light text-grey-dark hover:bg-grey-light-dark hover:text-dark focus:bg-grey-light focus:outline-none md:h-[38px] md:w-[38px]",
+        "flex h-[25px] w-[25px] cursor-pointer items-center justify-center rounded-full bg-grey-light text-grey-dark hover:bg-grey-light-dark hover:text-dark focus:bg-grey-light focus:outline-none md:h-[38px] md:w-[38px]",
         className
       )}
       type="button"
