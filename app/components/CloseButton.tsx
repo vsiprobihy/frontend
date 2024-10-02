@@ -1,7 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import { ComponentPropsWithRef } from "react";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import Icon from "@/app/components/icon/Icon";
+import { IconType } from "@/app/enums/icon/icon.type";
 
 interface CloseButtonProps extends ComponentPropsWithRef<"button"> {
   className?: string;
@@ -18,7 +19,10 @@ const CloseButton: React.FC<CloseButtonProps> = ({ className, ...props }) => {
       type="button"
       {...props}
     >
-      <Cross2Icon className="h-[12px] w-[12px] text-grey-dark md:h-[20px] md:w-[20px]" />
+      <Icon
+        name={IconType.CLOSE}
+        className="text-sm text-grey-dark md:text-xl"
+      />
     </button>
   );
 };

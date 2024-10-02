@@ -2,6 +2,8 @@ import React from "react";
 import clsx from "clsx";
 import { ComponentPropsWithRef } from "react";
 import { FaGoogle } from "react-icons/fa";
+import Icon from "../icon/Icon";
+import { IconType } from "@/app/enums/enums";
 
 interface AuthGoogleButtonProps extends ComponentPropsWithRef<"button"> {
   className?: string;
@@ -23,7 +25,7 @@ const AuthGoogleButton: React.FC<AuthGoogleButtonProps> = ({
     >
       <div className="flex items-center justify-center">
         <div className="flex h-[30px] w-[30px] items-center justify-center rounded bg-orange-hot">
-          <FaGoogle className="h-[17px] w-[17px] fill-white" />
+          <Icon name={IconType.GOOGLE} className="text-lg text-white" />
         </div>
         <span className="ml-[10px] text-base font-medium text-dark">
           {children}

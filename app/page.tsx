@@ -13,6 +13,7 @@ import SuccessModal from "./components/success-modal/SuccessModal";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Cookies from "js-cookie";
+import { Suspense } from "react";
 client.setConfig({
   baseUrl: BASE_URL,
 });
@@ -38,12 +39,16 @@ export default function Home() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
+      <Suspense>
+        <Header />
+      </Suspense>
       <HeroSection />
       <UpcomingEventsSection />
       <Footer />
-      <AuthModal />
-      <SuccessModal />
+      <Suspense>
+        <AuthModal />
+        <SuccessModal />
+      </Suspense>
     </QueryClientProvider>
   );
 }
