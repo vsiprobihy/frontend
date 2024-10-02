@@ -10,6 +10,9 @@ import { client } from "./api-client";
 import { BASE_URL } from "./utils/constants";
 import AuthModal from "./components/auth-modal/AuthModal";
 import SuccessModal from "./components/success-modal/SuccessModal";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 client.setConfig({
   baseUrl: BASE_URL,
 });
@@ -24,6 +27,15 @@ const queryClient = new QueryClient({
 });
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    const token = Cookies.get("authToken");
+    if (!token) {
+      // TODO: redirect to login page
+      // router.push("/");
+    }
+  }, [router]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Header />

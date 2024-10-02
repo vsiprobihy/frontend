@@ -29,9 +29,10 @@ interface ILoginFormFields {
 
 interface LoginFormProps {
   onSubmit: (data: ILoginFormFields) => void;
+  setRememberMe: (value: boolean) => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, setRememberMe }) => {
   const {
     register,
     handleSubmit,
@@ -44,7 +45,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    const newValue = !isChecked;
+    setIsChecked(newValue);
+    setRememberMe(newValue);
   };
 
   return (
@@ -106,7 +109,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
             "flex h-5 w-5 items-center justify-center rounded bg-grey-light-dark hover:bg-grey-light-middle focus:outline-none active:bg-dark",
             isChecked ? "bg-dark" : "bg-grey-light-dark"
           )}
-          id="c1"
+          id="rememberMe"
           checked={isChecked}
           onCheckedChange={handleCheckboxChange}
         >
@@ -115,7 +118,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
           </Checkbox.Indicator>
         </Checkbox.Root>
         <div className="flex w-full items-center justify-between">
-          <label className="pl-2 text-sm font-normal text-black" htmlFor="c1">
+          <label
+            className="pl-2 text-sm font-normal text-black"
+            htmlFor="rememberMe"
+          >
             Запам&apos;ятати мене
           </label>
           <a href="#" className="text-sm font-normal text-orange-hot">

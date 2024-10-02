@@ -30,10 +30,11 @@ import CloseButton from "../CloseButton";
 import useIsMobile from "../../hooks/useIsMobile";
 import LoginImage from "../../../public/images/login.webp";
 import RegisterImage from "../../../public/images/registration.webp";
-import { Trigger } from "@radix-ui/themes/src/components/alert-dialog.jsx";
 
 const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
+  const [rememberMe, setRememberMe] = useState(false);
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMobile = useIsMobile();
@@ -87,7 +88,7 @@ const AuthModal: React.FC = () => {
       const token = data.data?.access;
       if (token) {
         Cookies.set("authToken", token, {
-          expires: 7,
+          expires: rememberMe ? 7 : 1,
           secure: process.env.NODE_ENV === "production",
           sameSite: "Strict",
         });
@@ -200,7 +201,10 @@ const AuthModal: React.FC = () => {
                 value="login"
                 className="flex flex-grow items-center justify-center"
               >
-                <LoginForm onSubmit={onSubmitLogin} />
+                <LoginForm
+                  onSubmit={onSubmitLogin}
+                  setRememberMe={setRememberMe}
+                />
               </Tabs.Content>
               <Tabs.Content
                 value="register"
