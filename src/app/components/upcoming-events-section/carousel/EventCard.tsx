@@ -16,7 +16,7 @@ export const IconText: React.FC<{ icon: IconType; text: string }> = ({
 }) => {
   return (
     <div className={`grid grid-cols-[auto,1fr] items-center gap-3`}>
-      <Icon name={icon} className="text-2xl text-dark" />
+      <Icon name={icon} className="text-dark" />
       <p>{text}</p>
     </div>
   );
@@ -31,7 +31,7 @@ export interface EventCardProps {
   distanceTitles: string[];
 }
 
-const EventCard: React.FC<EventCardProps> = (props) => {
+export const EventCard: React.FC<EventCardProps> = (props) => {
   return (
     <div className={`flex flex-col overflow-hidden rounded-2xl bg-white`}>
       <div className={`relative h-0 w-full pb-[50%]`}>
@@ -73,5 +73,3 @@ const EventCard: React.FC<EventCardProps> = (props) => {
     </div>
   );
 };
-
-export default EventCard;
