@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./styles/globals.css";
 import clsx from "clsx";
-import { Footer, Header } from "~/components/components";
+import { Footer, Header, MobileMenu } from "~/components/components";
 
 const manropeVariable = localFont({
   src: "./fonts/Manrope-VariableFont_wght.ttf",
@@ -45,6 +45,7 @@ export default function RootLayout({
         )}
       >
         <Header />
+        <MobileMenu />
         {children}
         <Footer />
       </body>

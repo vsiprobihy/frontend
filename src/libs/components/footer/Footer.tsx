@@ -5,7 +5,7 @@ import Image from "next/image";
 import DesignedByImage from "~/images/designed-by.webp";
 import { FooterContacts } from "./FooterContacts";
 import { FooterSocialMediaButton } from "./FooterSocialMediaButton";
-import { Icon } from "~/components/components";
+import { Icon, Logo } from "~/components/components";
 import { usePathname } from "next/navigation";
 
 const copyRightText = `© 2015-2022 ВсеПробеги | Угода користувача і політика конфіденційності`;
@@ -52,15 +52,9 @@ export const Footer: React.FC = () => {
         <div
           className={`flex flex-col justify-center gap-[2.5rem] px-4 py-12 pb-[4.5rem] md:pl-0 md:pr-8`}
         >
-          <div className={`flex flex-col gap-2`}>
-            <Image
-              src={DesignedByImage}
-              alt={"Vsi Probihy Logo"}
-              className={`h-[38px] w-[237px]`}
-            />
-            <p className={`text-base font-medium text-white md:text-2xl`}>
-              {footerText}
-            </p>
+          <div className={`flex flex-col gap-2 text-white`}>
+            <Logo />
+            <p className={`text-base font-medium md:text-2xl`}>{footerText}</p>
           </div>
           <div className={`flex flex-row flex-wrap gap-2`}>
             {socialMediaLinks.map(({ icon, url }, index) => (

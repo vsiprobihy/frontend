@@ -55,60 +55,62 @@ more details.
 
 ## src:
 
-- ### ***app***
+- ### **_app_**
 
-    - **/404**
-      Contains template 404 error page for handling "page not found" errors.
+  - **/404**
+    Contains template 404 error page for handling "page not found" errors.
 
-    - **/fonts**
-      Directory for storing fonts used in the project.
+  - **/fonts**
+    Directory for storing fonts used in the project.
 
-    - **/components**
-      Contains components for main page:
-        - `HeroSection.tsx` — Components for the hero section.
-        - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
+  - **/components**
+    Contains components for main page:
 
-    - **/styles**
-      Contains global styles and icon styles:
+    - `HeroSection.tsx` — Components for the hero section.
+    - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
 
-        - `globals.css` — Global styles for the application.
-        - `icomoon.css` — Styles for Icomoon icons.
+  - **/styles**
+    Contains global styles and icon styles:
 
-    - **layout.tsx**
-      The main layout file of the application, defining shared structure across pages (header, footer, etc.).
+    - `globals.css` — Global styles for the application.
+    - `icomoon.css` — Styles for Icomoon icons.
 
-    - **not-found.tsx**
-      This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
-      handling.
+  - **layout.tsx**
+    The main layout file of the application, defining shared structure across pages (header, footer, etc.).
 
-    - **page.tsx**
-      The main or root page of the application.
+  - **not-found.tsx**
+    This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
+    handling.
 
+  - **page.tsx**
+    The main or root page of the application.
 
-- ### ***libs***
+- ### **_libs_**
 
-    - **/components**
-      Contains reusable components organized into subdirectories:
+  - **/components**
+    Contains reusable components organized into subdirectories:
 
-        - **/buttons**
+    - **/buttons**
 
-        - **/footer**
+    - **/footer**
 
-        - **/header**
+    - **/header**
 
-        - **/icon**
-          Contains components for handling icons (`Icon.tsx`).
+    - **/icon**
+      Contains components for handling icons (`Icon.tsx`).
 
-        - **/links**
-          Contains link-related components, such as:
-            - `CustomLink.tsx` — Component for custom links.
+    - **/links**
+      Contains link-related components, such as:
 
-        - **/tags**
-          Contains components for activity and distance tags:
-            - `ActivityTypeTag.tsx` — For activity type tags.
-            - `DistanceTag.tsx` — For distance tags.
+      - `CustomLink.tsx` — Component for custom links.
 
-        - `components.ts` — Re-exports common components used in this section.
+    - **/tags**
+      Contains components for activity and distance tags:
 
-    - **/enums**
-      Directory for enum types used throughout the project.
+      - `ActivityTypeTag.tsx` — For activity type tags.
+      - `DistanceTag.tsx` — For distance tags.
+
+    - `components.ts` — Re-exports common components used in this section.
+
+  - **/enums**
+    Directory for enum types used throughout the project.
