@@ -5,5 +5,5 @@ export enum AppRoute {
   HOME = "/",
   CALENDAR = "/calendar",
   ABOUT = "/about",
-  NOT_FOUND = "404",
+  NOT_FOUND = "/404",
 }
