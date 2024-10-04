@@ -6,3 +6,5 @@ export { CarouselButton } from "./buttons/CarouselButton";
 export { CustomLink } from "./links/CustomLink";
 export { ActivityTypeTag } from "./tags/ActivityTypeTag";
 export { DistanceTag } from "./tags/DistanceTag";
+export { CloseButton } from "./buttons/CloseButton";
+export { CustomLabel } from "./label/CustomLabel";

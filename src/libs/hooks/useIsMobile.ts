@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useIsMobile = (breakpoint: number = 768) => {
+export const useIsMobile = (breakpoint: number = 768) => {
   const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = () => {
@@ -15,5 +15,3 @@ const useIsMobile = (breakpoint: number = 768) => {
 
   return isMobile;
 };
-
-export default useIsMobile;
