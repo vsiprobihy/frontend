@@ -3,7 +3,7 @@
 import { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image, { ImageProps } from "next/image";
-import { CarouselButton } from "~/components/components";
+import { CarouselButton } from "~/components";
 import { DotButton, useDotButton } from "./HeroSectionCarouselDot"; // The aspect ratio of component is always 14:17
 
 // The aspect ratio of component is always 14:17

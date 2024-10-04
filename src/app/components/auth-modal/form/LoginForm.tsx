@@ -6,7 +6,7 @@ import * as Checkbox from "@radix-ui/react-checkbox";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Icon } from "@/libs/components/components";
+import { Icon } from "@/libs/components";
 import { IconType } from "@/libs/enums/enums";
 import { CustomLabel } from "@/libs/components/label/CustomLabel";
 import AuthSubmitButton from "../AuthSubmitButton";

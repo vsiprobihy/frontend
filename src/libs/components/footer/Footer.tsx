@@ -5,7 +5,7 @@ import Image from "next/image";
 import DesignedByImage from "~/images/designed-by.webp";
 import { FooterContacts } from "./FooterContacts";
 import { FooterSocialMediaButton } from "./FooterSocialMediaButton";
-import { Icon } from "~/components/components";
+import { Icon } from "~/components";
 import { usePathname } from "next/navigation";
 
 const copyRightText = `© 2015-2022 ВсеПробеги | Угода користувача і політика конфіденційності`;

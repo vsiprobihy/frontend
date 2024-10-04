@@ -1,6 +1,6 @@
 import { IconType } from "~/enums/enums";
 import Link from "next/link";
-import { Icon } from "~/components/components";
+import { Icon } from "~/components";
 
 interface FooterSocialMediaButtonProps {
   icon: IconType;

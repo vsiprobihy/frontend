@@ -1,4 +1,6 @@
-import { Icon } from "~/components/components";
+"use client";
+
+import { Icon } from "~/components";
 import { IconType } from "~/enums/enums";
 import { useRouter, useSearchParams } from "next/navigation";
 

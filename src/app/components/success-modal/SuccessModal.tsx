@@ -10,10 +10,10 @@ import {
 } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CloseButton } from "@/libs/components/components";
+import { CloseButton } from "@/libs/components";
 import { useIsMobile } from "@/libs/hooks/useIsMobile";
-import SuccessImage from "../../../public/images/sucsses-registration.webp";
-import SuccessImageMobile from "../../../public/images/sucsess-registration-MOBILE.webp";
+import SuccessImage from "~/images/success-registration.webp";
+import SuccessImageMobile from "~/images/success-registration-MOBILE.webp";
 import Image from "next/image";
 
 export const SuccessModal: React.FC = () => {
@@ -26,7 +26,7 @@ export const SuccessModal: React.FC = () => {
     const params = new URLSearchParams(searchParams);
     params.delete("showSuccessModal");
     router.push(`?${params.toString()}`);
-  }, [searchParams]);
+  }, [searchParams, router]);
 
   return (
     <Dialog open={showSuccessModal} onOpenChange={handleClose}>

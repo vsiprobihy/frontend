@@ -24,12 +24,12 @@ import {
   Register,
   TokenRefresh,
 } from "../../api-client/types.gen";
-import { CloseButton } from "@/libs/components/components";
+import { CloseButton } from "@/libs/components";
 import { useIsMobile } from "@/libs/hooks/useIsMobile";
 import LoginForm from "./form/LoginForm";
 import RegisterForm from "./form/RegisterForm";
-import LoginImage from "../../../public/images/login.webp";
-import RegisterImage from "../../../public/images/registration.webp";
+import LoginImage from "~/images/login.webp";
+import RegisterImage from "~/images/registration.webp";
 
 export const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
@@ -49,7 +49,7 @@ export const AuthModal: React.FC = () => {
     const params = new URLSearchParams(searchParams);
     params.delete("showAuthModal");
     router.push(`?${params.toString()}`);
-  }, [searchParams]);
+  }, [searchParams, router]);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -67,12 +67,11 @@ export const AuthModal: React.FC = () => {
     };
   }, [handleKeyDown]);
 
-  const {
-    mutate: mutateLogin,
-    status: loginStatus,
-    data: loginData,
-    error: loginError,
-  } = useMutation<{ data?: TokenRefresh }, Error, TokenObtainPair>({
+  const { mutate: mutateLogin } = useMutation<
+    { data?: TokenRefresh },
+    Error,
+    TokenObtainPair
+  >({
     mutationFn: async (tokenObtainPair: TokenObtainPair) => {
       const response = await authTokenCreate({
         body: tokenObtainPair,
@@ -104,12 +103,7 @@ export const AuthModal: React.FC = () => {
     mutateLogin(data);
   };
 
-  const {
-    mutate: mutateRegister,
-    status: registerStatus,
-    data: registerData,
-    error: registerError,
-  } = useMutation<unknown, Error, Register>({
+  const { mutate: mutateRegister } = useMutation<unknown, Error, Register>({
     mutationFn: async (data: Register) => {
       const response = await authRegisterCreate({ body: data });
 

@@ -15,6 +15,11 @@
     "@hey-api/client-fetch": "^0.3.2",
     "@hookform/resolvers": "^3.9.0",
     "@next/env": "^14.2.13",
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-tabs": "^1.1.1",
+    "@radix-ui/react-visually-hidden": "^1.1.0",
     "@tanstack/react-query": "^5.56.2",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
@@ -26,18 +31,19 @@
     "react-hook-form": "^7.53.0"
   },
   "devDependencies": {
+    "@hey-api/openapi-ts": "^0.53.3",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/yup": "^0.32.0",
     "eslint": "^8",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-config-next": "14.2.14",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5",
-    "@types/js-cookie": "^3.0.6",
-    "@types/yup": "^0.32.0",
-    "@hey-api/openapi-ts": "^0.53.3"
+    "typescript": "^5"
   }
 }

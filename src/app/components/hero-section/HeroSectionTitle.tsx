@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import RunningStepImage from "~/images/running-step.webp";
-import { Button } from "~/components/components";
+import { Button } from "~/components";
 
 const titleTextArray: [string, string, string] = [
   `Всеукраїнський`,
