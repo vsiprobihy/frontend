@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "format": "prettier --write .",
+    "lint": "next lint",
+    "precommit": "npm run format && npm run lint"
   },
   "dependencies": {
     "clsx": "^2.1.1",
