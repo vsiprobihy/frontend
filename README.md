@@ -60,30 +60,33 @@ more details.
   - **/404**
     Contains template 404 error page for handling "page not found" errors.
 
-  - **/fonts**
-    Directory for storing fonts used in the project.
+  - **/about**
+  - **/calendar**
 
-  - **/components**
-    Contains components for main page:
+    - **/fonts**
+      Directory for storing fonts used in the project.
 
-    - `HeroSection.tsx` — Components for the hero section.
-    - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
+    - **/components**
+      Contains components for main page:
 
-  - **/styles**
-    Contains global styles and icon styles:
+      - `HeroSection.tsx` — Components for the hero section.
+      - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
 
-    - `globals.css` — Global styles for the application.
-    - `icomoon.css` — Styles for Icomoon icons.
+    - **/styles**
+      Contains global styles and icon styles:
 
-  - **layout.tsx**
-    The main layout file of the application, defining shared structure across pages (header, footer, etc.).
+      - `globals.css` — Global styles for the application.
+      - `icomoon.css` — Styles for Icomoon icons.
 
-  - **not-found.tsx**
-    This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
-    handling.
+    - **layout.tsx**
+      The main layout file of the application, defining shared structure across pages (header, footer, etc.).
 
-  - **page.tsx**
-    The main or root page of the application.
+    - **not-found.tsx**
+      This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
+      handling.
+
+    - **page.tsx**
+      The main or root page of the application.
 
 - ### **_libs_**
 
@@ -104,6 +107,8 @@ more details.
 
       - `CustomLink.tsx` — Component for custom links.
 
+    - **/mobile-menu**
+
     - **/tags**
       Contains components for activity and distance tags:
 
@@ -114,3 +119,5 @@ more details.
 
   - **/enums**
     Directory for enum types used throughout the project.
+  - **/hooks**
+    Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
