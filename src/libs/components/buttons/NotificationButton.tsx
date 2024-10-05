@@ -22,7 +22,7 @@ export const NotificationButton: React.FC<NotificationButtonProps> = ({
   >
     <Icon name={IconType.BELL} className="text-2xl" />
     {hasIndicator && (
-      <div className="absolute right-0 top-1 h-2.5 w-2.5 rounded-full bg-red"></div>
+      <b className="absolute right-0 top-1 h-2.5 w-2.5 rounded-full bg-red"></b>
     )}
   </button>
 );
