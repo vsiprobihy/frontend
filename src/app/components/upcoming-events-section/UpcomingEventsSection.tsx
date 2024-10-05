@@ -4,7 +4,7 @@ import { UpcomingEventsCarousel } from "./carousel/UpcomingEventsCarousel";
 import PlaceholderImage from "~/images/placeholder.webp";
 import dayjs from "dayjs";
 import { EventCard, EventCardProps } from "./carousel/EventCard";
-import { CustomLink } from "~/components/components";
+import { CustomLink } from "~/components";
 
 const titleText = `Найближчі заходи`;
 const linkText = { full: `Дивитися всі забіги`, short: `Всі` };

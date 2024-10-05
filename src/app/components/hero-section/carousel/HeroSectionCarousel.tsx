@@ -3,7 +3,7 @@
 import { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image, { ImageProps } from "next/image";
-import { CarouselButton } from "~/components/components";
+import { CarouselButton } from "~/components";
 import { DotButton, useDotButton } from "./HeroSectionCarouselDot"; // The aspect ratio of component is always 14:17
 
 // The aspect ratio of component is always 14:17
@@ -47,7 +47,11 @@ export const HeroSectionCarousel: React.FC<CarouselProps> = (props) => {
               <div key={index} className="mx-1 h-full flex-full">
                 {/* TODO: Add alt attributes to all images for better accessibility */}
                 <Image
-                  {...{ ...image, className: "h-full w-full rounded-2xl" }}
+                  {...{
+                    ...image,
+                    className: "h-full w-full rounded-2xl",
+                    alt: image.alt || "",
+                  }}
                 />
               </div>
             ))}

@@ -1,7 +1,18 @@
-import { Icon } from "~/components/components";
+"use client";
+
+import { Icon } from "~/components";
 import { IconType } from "~/enums/enums";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const Header: React.FC = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const openModal = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set("showAuthModal", "true");
+    router.push(`?${params.toString()}`);
+  };
   return (
     <header
       className={`flex h-48 w-full flex-col items-center justify-center bg-dark text-center text-white`}
@@ -34,6 +45,7 @@ export const Header: React.FC = () => {
           name={IconType.SEARCH}
           className="absolute left-4 top-1/2 -translate-y-1/2 transform text-xl text-dark"
         />
+        <button onClick={() => openModal()}>Open Login Modal</button>
       </div>
     </header>
   );

@@ -1,5 +1,5 @@
 import { IconType } from "~/enums/enums";
-import { Icon } from "~/components/components";
+import { Icon } from "~/components";
 
 const text = `Інформуємо про актуальні забіги по всій Україні.`;
 
