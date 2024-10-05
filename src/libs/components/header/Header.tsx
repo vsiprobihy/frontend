@@ -16,7 +16,7 @@ import {
   NotificationButton,
   ProfileButton,
 } from "~/components/components";
-import { LanguageSwitcher } from "~/components/header/LanguageSwitcher";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { AppRoute } from "~/enums/enums";
 
 import LogoSrOnlyImage from "~/images/logo.png";
