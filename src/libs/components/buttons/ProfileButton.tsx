@@ -25,8 +25,8 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
     >
       <span
         className={clsx(
-          "ease h-12 w-12 overflow-hidden rounded-full border-2 transition duration-300 group-hover:border-orange-interactive group-active:border-orange-interactive xl:h-14 xl:w-14",
-          isMobile ? "border-white-opacity" : "z-10 -mr-3 border-orange-hot"
+          "ease h-12 w-12 overflow-hidden rounded-full border-2 border-orange-hot transition duration-300 group-hover:border-orange-interactive group-active:border-orange-interactive xl:h-14 xl:w-14",
+          !isMobile && "z-10 -mr-3"
         )}
       >
         {userImage ? (
@@ -40,10 +40,10 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
         ) : (
           <b
             className={clsx(
-              "ease bg-white-opacity flex h-full w-full items-center justify-center backdrop-blur-lg transition duration-300",
+              "ease flex h-full w-full items-center justify-center bg-white bg-opacity-10 backdrop-blur-lg transition duration-300 group-hover:bg-orange-interactive group-hover:text-white group-active:bg-orange-interactive group-active:text-white",
               isLightVariant
-                ? "light-effect xl:bg-white"
-                : "dark-effect xl:bg-grey-dark xl:bg-opacity-70"
+                ? "xl:bg-white"
+                : "xl:bg-grey-dark xl:bg-opacity-70"
             )}
           >
             <Icon name={IconType.USER} className="text-3xl" />
@@ -51,7 +51,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
         )}
       </span>
       {!isMobile && (
-        <span className="ease hidden rounded-r-full bg-orange-hot px-6 py-2 text-lg font-semibold uppercase text-white transition duration-300 group-hover:bg-orange-interactive group-active:bg-orange-interactive xl:block">
+        <span className="ease hidden w-32 rounded-r-full bg-orange-hot py-2 text-lg font-semibold uppercase text-white transition duration-300 group-hover:bg-orange-interactive group-active:bg-orange-interactive xl:block">
           {translatedText}
         </span>
       )}

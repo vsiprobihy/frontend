@@ -8,19 +8,19 @@ export enum Language {
 interface LanguageSwitcherProps {
   language: Language;
   toggleLanguage: () => void;
-  isLightTheme?: boolean;
+  isLightVariant?: boolean;
 }
 
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   language,
   toggleLanguage,
-  isLightTheme,
+  isLightVariant,
 }) => {
   return (
     <div
       className={clsx(
         "flex h-10 w-28 cursor-pointer items-center rounded-full bg-opacity-40 px-1 shadow-sm",
-        isLightTheme ? "bg-white" : "bg-black"
+        isLightVariant ? "bg-white" : "bg-black"
       )}
     >
       {Object.values(Language).map((lang) => (
@@ -28,7 +28,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           key={lang}
           className={clsx(
             "duration-600 ease flex h-8 w-1/2 items-center justify-center rounded-full outline-none transition-all",
-            isLightTheme
+            isLightVariant
               ? {
                   "bg-dark text-white": language === lang,
                   "bg-white": language !== lang,

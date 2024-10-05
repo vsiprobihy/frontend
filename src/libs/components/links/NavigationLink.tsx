@@ -6,7 +6,7 @@ interface NavigationLinkProps {
   href: string;
   label: string;
   variant?: "desktop" | "mobile";
-  isLightTheme?: boolean;
+  isLightVariant?: boolean;
   pathname?: string;
 }
 
@@ -14,15 +14,15 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   href,
   label,
   variant = "desktop",
-  isLightTheme,
+  isLightVariant,
   pathname,
 }) => {
-  const effect = isLightTheme ? "light-effect" : "dark-effect";
+  const effect = isLightVariant ? "light-effect" : "dark-effect";
 
   const isActive = pathname === href;
 
   const activeClasses = isActive
-    ? isLightTheme
+    ? isLightVariant
       ? "bg-dark text-white bg-opacity-1"
       : "bg-white text-dark"
     : `bg-white bg-opacity-20 ${effect}`;
@@ -30,7 +30,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   const commonClasses =
     "transition duration-300 ease rounded-full font-semibold shadow";
 
-  const desktopClasses = `backdrop-blur-lg px-4 py-2.5 text-lg ${activeClasses}`;
+  const desktopClasses = `backdrop-blur-lg text-nowrap w-36 text-center py-2.5 text-lg ${activeClasses}`;
 
   const mobileOuterClasses =
     "flex items-center bg-black bg-opacity-40 backdrop-blur-lg rounded-full p-1 flex-1";

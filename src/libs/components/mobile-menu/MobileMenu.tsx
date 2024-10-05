@@ -9,7 +9,7 @@ import {
 import { useMobileDetect, useUserInteraction } from "~/hooks/hooks";
 
 export const MobileMenu: React.FC = () => {
-  const isMobile = useMobileDetect();
+  const isMobileDetect = useMobileDetect();
   const {
     hasNotification,
     userImage,
@@ -18,10 +18,10 @@ export const MobileMenu: React.FC = () => {
     translatedText,
   } = useUserInteraction();
 
-  if (!isMobile) return null;
+  if (!isMobileDetect) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50">
+    <div className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-lg">
       <nav className="flex items-center justify-between gap-0.5 px-2 py-2 uppercase text-white md:px-4">
         {linkValues.map((link, index) => (
           <NavigationLink

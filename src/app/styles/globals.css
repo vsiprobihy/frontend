@@ -26,10 +26,10 @@
   }
 
   .dark-effect {
-    @apply hover:bg-white hover:text-dark active:bg-white active:text-dark group-hover:bg-white group-hover:text-dark group-active:bg-white group-active:text-dark;
+    @apply hover:bg-white hover:text-dark active:bg-white active:text-dark;
   }
 
   .light-effect {
-    @apply hover:bg-dark hover:text-white active:bg-dark active:text-white group-hover:bg-dark group-hover:text-white group-active:bg-dark group-active:text-white;
+    @apply hover:bg-dark hover:text-white active:bg-dark active:text-white;
   }
 }

@@ -33,7 +33,8 @@ export const useUserInteraction = () => {
     setHasNotification(!hasNotification);
   };
 
-  const translatedText = isAuthenticatedUser ? "Особистий кабінет" : "Вхід";
+  const translatedText = isAuthenticatedUser ? "Профіль" : "Вхід";
+  // const translatedText = isAuthenticatedUser ? "Profile" : "Login";
 
   return {
     language,
