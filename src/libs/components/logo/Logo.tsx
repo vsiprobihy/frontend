@@ -22,7 +22,7 @@ export const Logo: React.FC<LogoProps> = ({
         "hidden md:block": !showIconOnMobile,
       })}
     />
-    <figcaption className="flex flex-col items-center md:flex-row">
+    <figcaption className="flex items-center flex-row">
       <span className="self-end text-2xl font-semibold italic md:text-3xl">
         ВСІ
       </span>
