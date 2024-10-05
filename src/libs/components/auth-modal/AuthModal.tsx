@@ -18,12 +18,12 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   authTokenCreate,
   authRegisterCreate,
-} from "../../api-client/services.gen";
+} from "@/libs/api-client/services.gen";
 import {
   TokenObtainPair,
   Register,
   TokenRefresh,
-} from "../../api-client/types.gen";
+} from "@/libs/api-client/types.gen";
 import { CloseButton } from "@/libs/components";
 import { useIsMobile } from "@/libs/hooks/useIsMobile";
 import LoginForm from "./form/LoginForm";

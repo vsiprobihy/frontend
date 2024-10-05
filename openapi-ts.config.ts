@@ -11,7 +11,7 @@ export default defineConfig({
   output: {
     lint: "eslint",
     format: "prettier",
-    path: "src/app/api-client",
+    path: "src/libs/api-client",
   },
   types: {
     dates: true,

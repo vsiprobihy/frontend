@@ -1,7 +1,7 @@
 "use client";
 
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { client } from "@/app/api-client";
+import { client } from "@/libs/api-client";
 
 import { BASE_URL } from "./constants";
 
