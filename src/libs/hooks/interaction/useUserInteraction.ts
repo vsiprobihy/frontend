@@ -34,7 +34,6 @@ export const useUserInteraction = () => {
   };
 
   const translatedText = isAuthenticatedUser ? "Профіль" : "Вхід";
-  // const translatedText = isAuthenticatedUser ? "Profile" : "Login";
 
   return {
     language,
