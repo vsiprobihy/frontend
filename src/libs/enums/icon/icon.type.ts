@@ -36,4 +36,5 @@ export enum IconType {
   DOTS = "icon-dots",
   CROWN = "icon-crown",
   SEARCH = "icon-search",
+  LIKE = "icon-like",
 }

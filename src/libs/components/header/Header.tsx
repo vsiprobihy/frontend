@@ -39,7 +39,6 @@ export const Header: React.FC = () => {
           isLightVariant ? "text-dark" : "text-white"
         )}
       >
-
         <Link
           href={AppRoute.ROOT}
           aria-label="Go home"

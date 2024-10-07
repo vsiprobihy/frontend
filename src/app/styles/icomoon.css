@@ -1,11 +1,11 @@
 @font-face {
   font-family: "icomoon";
-  src: url("../fonts/icomoon.eot?7khzeo");
+  src: url("../fonts/icomoon.eot?pns5si");
   src:
-    url("../fonts/icomoon.eot?7khzeo#iefix") format("embedded-opentype"),
-    url("../fonts/icomoon.ttf?7khzeo") format("truetype"),
-    url("../fonts/icomoon.woff?7khzeo") format("woff"),
-    url("../fonts/icomoon.svg?7khzeo#icomoon") format("svg");
+    url("../fonts/icomoon.eot?pns5si#iefix") format("embedded-opentype"),
+    url("../fonts/icomoon.ttf?pns5si") format("truetype"),
+    url("../fonts/icomoon.woff?pns5si") format("woff"),
+    url("../fonts/icomoon.svg?pns5si#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 
 [class^="icon-"],
 [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change ../fonts */
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "icomoon" !important;
   speak: never;
   font-style: normal;
@@ -173,4 +173,8 @@
 
 .icon-search:before {
   content: "\e924";
+}
+
+.icon-like:before {
+  content: "\e927";
 }
