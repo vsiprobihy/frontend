@@ -31,15 +31,6 @@ export const Header: React.FC = () => {
     handleNotificationAccess,
   } = useUserInteraction();
 
-  // const router = useRouter();
-  // const searchParams = useSearchParams();
-  //
-  // const openModal = () => {
-  //   const params = new URLSearchParams(searchParams);
-  //   params.set("showAuthModal", "true");
-  //   router.push(`?${params.toString()}`);
-  // };
-
   return (
     <header className="fixed left-0 right-0 top-0 z-10 mx-auto backdrop-blur-lg">
       <div
@@ -48,7 +39,6 @@ export const Header: React.FC = () => {
           isLightVariant ? "text-dark" : "text-white"
         )}
       >
-        {/*<button onClick={() => openModal()}>Open Login Modal</button>*/}
 
         <Link
           href={AppRoute.ROOT}
