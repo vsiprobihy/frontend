@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef } from "react";
-import { IconType } from "~/enums/enums";
-import { Icon } from "~/components/components";
+import { IconType } from "~/enums";
+import { Icon } from "~/components";
 
 interface ButtonProps extends ComponentPropsWithRef<"button"> {
   direction: "left" | "right";

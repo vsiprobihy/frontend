@@ -1,4 +1,4 @@
-import { HeroSection, UpcomingEventsSection } from "./components/components";
+import { HeroSection, UpcomingEventsSection } from "./components";
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Logo } from "~/components/components";
+import { Logo } from "~/components";
 
 const About: NextPage = () => (
   <main className="p-40 text-center text-3xl text-dark">

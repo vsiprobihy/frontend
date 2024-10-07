@@ -1,28 +1,19 @@
 import clsx from "clsx";
-import { IconType } from "~/enums/enums";
-import { Icon } from "~/components/components";
+import { IconType } from "~/enums";
+import { Icon } from "~/components";
 
 interface LogoProps {
-  showIconOnMobile?: boolean;
   isLarge?: boolean;
 }
 
-export const Logo: React.FC<LogoProps> = ({
-  showIconOnMobile = true,
-  isLarge = false,
-}) => (
+export const Logo: React.FC<LogoProps> = ({ isLarge = false }) => (
   <figure
     className={clsx("m-0 inline-flex content-center py-3", {
       "scale-150": isLarge,
     })}
   >
-    <Icon
-      name={IconType.CACTUS}
-      className={clsx("mr-1 text-3xl md:text-4xl", {
-        "hidden md:block": !showIconOnMobile,
-      })}
-    />
-    <figcaption className="flex items-center flex-row">
+    <Icon name={IconType.CACTUS} className="mr-1 text-3xl md:text-4xl" />
+    <figcaption className="flex flex-row items-center">
       <span className="self-end text-2xl font-semibold italic md:text-3xl">
         ВСІ
       </span>

@@ -1,11 +1,11 @@
 "use client";
 
-import { IconType } from "~/enums/enums";
+import { IconType } from "~/enums";
 import Image from "next/image";
 import DesignedByImage from "~/images/designed-by.webp";
 import { FooterContacts } from "./FooterContacts";
 import { FooterSocialMediaButton } from "./FooterSocialMediaButton";
-import { Icon, Logo } from "~/components/components";
+import { Icon, Logo } from "~/components";
 import { usePathname } from "next/navigation";
 
 const copyRightText = `© 2015-2022 ВсеПробеги | Угода користувача і політика конфіденційності`;

@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { IconType } from "~/enums/enums";
-import { Icon } from "~/components/components";
+import { IconType } from "~/enums";
+import { Icon } from "~/components";
 
 interface NotificationButtonProps {
   hasIndicator?: boolean;

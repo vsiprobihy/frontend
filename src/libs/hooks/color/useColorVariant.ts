@@ -1,5 +1,5 @@
 import { usePathname } from "next/navigation";
-import { AppRoute } from "~/enums/enums";
+import { AppRoute } from "~/enums";
 
 export const useColorVariant = () => {
   const pathname = usePathname();

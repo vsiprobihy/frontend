@@ -5,11 +5,12 @@ import {
   NotificationButton,
   ProfileButton,
   linkValues,
-} from "~/components/components";
-import { useMobileDetect, useUserInteraction } from "~/hooks/hooks";
+} from "~/components";
+
+import { useIsMobile, useUserInteraction } from "~/hooks";
 
 export const MobileMenu: React.FC = () => {
-  const isMobileDetect = useMobileDetect();
+  const isMobile = useIsMobile();
   const {
     hasNotification,
     userImage,
@@ -18,7 +19,7 @@ export const MobileMenu: React.FC = () => {
     translatedText,
   } = useUserInteraction();
 
-  if (!isMobileDetect) return null;
+  if (!isMobile) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-lg">

@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
-export const useMobileDetect = () => {
-  const [isMobileDetect, setIsMobileDetect] = useState(false);
+export const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const isSmallScreen = window.innerWidth <= 768;
       const isTouchDevice =
         "ontouchstart" in window || navigator.maxTouchPoints > 0;
-      setIsMobileDetect(isSmallScreen && isTouchDevice);
+      setIsMobile(isSmallScreen && isTouchDevice);
     };
 
     handleResize();
@@ -18,5 +18,5 @@ export const useMobileDetect = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return isMobileDetect;
+  return isMobile;
 };

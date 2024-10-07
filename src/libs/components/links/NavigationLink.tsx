@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
-import { AppRoute } from "~/enums/enums";
+import { AppRoute } from "~/enums";
 
 interface NavigationLinkProps {
   href: string;

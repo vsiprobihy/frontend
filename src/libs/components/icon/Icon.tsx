@@ -1,4 +1,4 @@
-import { IconType } from "~/enums/enums";
+import { IconType } from "~/enums";
 
 type IconProps = {
   name: IconType;

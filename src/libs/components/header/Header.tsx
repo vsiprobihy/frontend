@@ -4,25 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 
 import clsx from "clsx";
-import {
-  useMobileDetect,
-  useColorVariant,
-  useUserInteraction,
-} from "~/hooks/hooks";
+import { useIsMobile, useColorVariant, useUserInteraction } from "~/hooks";
 import {
   linkValues,
   Logo,
   NavigationLink,
   NotificationButton,
   ProfileButton,
-} from "~/components/components";
+} from "~/components";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { AppRoute } from "~/enums/enums";
+import { AppRoute } from "~/enums";
 
 import LogoSrOnlyImage from "~/images/logo.png";
 
 export const Header: React.FC = () => {
-  const isMobile = useMobileDetect();
+  const isMobile = useIsMobile();
   const { isLightVariant, pathname } = useColorVariant();
 
   const {
@@ -35,6 +31,15 @@ export const Header: React.FC = () => {
     handleNotificationAccess,
   } = useUserInteraction();
 
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
+  //
+  // const openModal = () => {
+  //   const params = new URLSearchParams(searchParams);
+  //   params.set("showAuthModal", "true");
+  //   router.push(`?${params.toString()}`);
+  // };
+
   return (
     <header className="fixed left-0 right-0 top-0 z-10 mx-auto backdrop-blur-lg">
       <div
@@ -43,6 +48,8 @@ export const Header: React.FC = () => {
           isLightVariant ? "text-dark" : "text-white"
         )}
       >
+        {/*<button onClick={() => openModal()}>Open Login Modal</button>*/}
+
         <Link
           href={AppRoute.ROOT}
           aria-label="Go home"
@@ -56,7 +63,7 @@ export const Header: React.FC = () => {
             alt="Vsi Probihy logo"
             className="sr-only"
           />
-          <Logo showIconOnMobile={false} />
+          <Logo />
         </Link>
         {!isMobile && (
           <nav

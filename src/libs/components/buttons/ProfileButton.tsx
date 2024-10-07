@@ -1,7 +1,7 @@
 import Image from "next/image";
 import clsx from "clsx";
-import { Icon } from "~/components/components";
-import { IconType } from "~/enums/enums";
+import { Icon } from "~/components";
+import { IconType } from "~/enums";
 
 interface ProfileButtonProps {
   translatedText: string;
