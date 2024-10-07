@@ -1,6 +1,6 @@
 "use client";
 
-import { IconType } from "~/enums";
+import { AppRoute, IconType } from "~/enums";
 import Image from "next/image";
 import DesignedByImage from "~/images/designed-by.webp";
 import { FooterContacts } from "./FooterContacts";
@@ -38,7 +38,7 @@ const socialMediaLinks = [
 export const Footer: React.FC = () => {
   const pathname = usePathname();
 
-  if (pathname.includes("404")) {
+  if (pathname.includes(AppRoute.NOT_FOUND)) {
     return null;
   }
 
