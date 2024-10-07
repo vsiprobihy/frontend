@@ -2,7 +2,7 @@ export { MobileMenu } from "./mobile-menu/MobileMenu";
 export { Logo } from "./logo/Logo";
 export { NavigationLink, linkValues } from "./links/NavigationLink";
 export { ProfileButton } from "./buttons/ProfileButton";
-export { NotificationButton } from "./buttons/NotificationButton";
+export { HeaderNotificationButton } from "./buttons/HeaderNotificationButton";
 export { Icon } from "./icon/Icon";
 export { Button } from "./buttons/Button";
 export { Footer } from "./footer/Footer";

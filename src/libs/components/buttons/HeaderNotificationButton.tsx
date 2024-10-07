@@ -8,7 +8,7 @@ interface NotificationButtonProps {
   isLightVariant?: boolean;
 }
 
-export const NotificationButton: React.FC<NotificationButtonProps> = ({
+export const HeaderNotificationButton: React.FC<NotificationButtonProps> = ({
   hasIndicator,
   onClick,
   isLightVariant,

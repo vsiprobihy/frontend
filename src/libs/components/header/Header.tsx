@@ -9,7 +9,7 @@ import {
   linkValues,
   Logo,
   NavigationLink,
-  NotificationButton,
+  HeaderNotificationButton,
   ProfileButton,
 } from "~/components";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -79,7 +79,7 @@ export const Header: React.FC = () => {
             isLightVariant ? "lg:bg-white" : "lg:bg-black"
           )}
         >
-          <NotificationButton
+          <HeaderNotificationButton
             hasIndicator={hasNotification}
             onClick={handleNotificationAccess}
             isLightVariant={isLightVariant}

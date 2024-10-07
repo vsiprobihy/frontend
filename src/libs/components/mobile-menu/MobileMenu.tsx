@@ -2,7 +2,7 @@
 
 import {
   NavigationLink,
-  NotificationButton,
+  HeaderNotificationButton,
   ProfileButton,
   linkValues,
 } from "~/components";
@@ -33,7 +33,7 @@ export const MobileMenu: React.FC = () => {
           />
         ))}
         <div className="flex gap-x-2 rounded-full bg-black bg-opacity-40 p-1 backdrop-blur-lg sm:gap-x-3">
-          <NotificationButton
+          <HeaderNotificationButton
             hasIndicator={hasNotification}
             onClick={handleNotificationAccess}
           />
