@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import clsx from "clsx";
 import * as Tabs from "@radix-ui/react-tabs";
 import Image from "next/image";
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import {
@@ -23,11 +23,12 @@ import {
   TokenRefresh,
 } from "~/api-client";
 import { CloseButton } from "~/components";
-import { useIsMobile, useUserInteraction } from "~/hooks";
+import { useIsMobile } from "~/hooks";
 import LoginForm from "./form/LoginForm";
 import RegisterForm from "./form/RegisterForm";
 import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
+import { useAuth } from "~/context";
 
 export const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
@@ -39,7 +40,7 @@ export const AuthModal: React.FC = () => {
 
   const showAuthModal = !!searchParams.get("showAuthModal");
 
-  const { setIsAuthenticatedUser } = useUserInteraction();
+  const { setIsAuthenticatedUser } = useAuth();
 
   const handleTabChange = (newValue: "register" | "login") => {
     setValue(newValue);
@@ -60,7 +61,7 @@ export const AuthModal: React.FC = () => {
     [handleClose]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
@@ -119,6 +120,7 @@ export const AuthModal: React.FC = () => {
       params.delete("showAuthModal");
       params.set("showSuccessModal", "true");
       router.push(`?${params.toString()}`);
+      setIsAuthenticatedUser(true);
     },
     onError: (error) => {
       alert(`Registration failed: ${error.message}`);

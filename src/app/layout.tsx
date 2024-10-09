@@ -12,6 +12,7 @@ import {
 } from "~/components";
 import { Suspense } from "react";
 import { ReactQueryProvider } from "~/utils/reactQueryProvider";
+import { AuthProvider } from "~/context";
 
 const manropeVariable = localFont({
   src: "./fonts/Manrope-VariableFont_wght.ttf",
@@ -54,14 +55,16 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          <Suspense>
-            <Header />
-            <MobileMenu />
-            <AuthModal />
-            <SuccessModal />
-          </Suspense>
-          {children}
-          <Footer />
+          <AuthProvider initialAuthState={false}>
+            <Suspense>
+              <Header />
+              <MobileMenu />
+              <AuthModal />
+              <SuccessModal />
+            </Suspense>
+            {children}
+            <Footer />
+          </AuthProvider>
         </ReactQueryProvider>
       </body>
     </html>

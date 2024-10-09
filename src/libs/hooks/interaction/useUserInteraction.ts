@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Language } from "~/enums";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useAuth } from "~/context";
 
 export const useUserInteraction = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { isAuthenticatedUser, setIsAuthenticatedUser } = useAuth();
 
-  // TODO: replace with state manage logic
   const [language, setLanguage] = useState<Language>(Language.UA);
-  const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false);
   const [hasNotification, setHasNotification] = useState(true);
   const [userImage, setUserImage] = useState<string | null>(null);
 
