@@ -87,7 +87,6 @@ export const Header: React.FC = () => {
             translatedText={translatedText}
             userImage={userImage}
             isMobile={false}
-            // onClick={handleUserAccess}
             isLightVariant={isLightVariant}
           />
           <LanguageSwitcher
