@@ -28,9 +28,9 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
     : `bg-white bg-opacity-20 ${effect}`;
 
   const commonClasses =
-    "transition duration-300 rounded-full font-semibold shadow";
+    "transition duration-300 rounded-full font-semibold";
 
-  const desktopClasses = `backdrop-blur-lg text-nowrap w-36 text-center py-2.5 text-lg ${activeClasses}`;
+  const desktopClasses = `backdrop-blur-lg text-nowrap w-36 text-center py-2.5 text-lg  shadow ${activeClasses}`;
 
   const mobileOuterClasses =
     "flex items-center bg-black bg-opacity-40 backdrop-blur-lg rounded-full p-1 flex-1";

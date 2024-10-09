@@ -38,7 +38,7 @@ const socialMediaLinks = [
 export const Footer: React.FC = () => {
   const pathname = usePathname();
 
-  if (pathname.includes(AppRoute.NOT_FOUND)) {
+  if (pathname === AppRoute.NOT_FOUND) {
     return null;
   }
 
