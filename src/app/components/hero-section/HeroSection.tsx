@@ -9,7 +9,7 @@ export const HeroSection: React.FC = () => {
       className={`flex min-h-screen flex-col justify-end bg-dark px-2.5 pb-8 pt-2.5 md:justify-center md:p-8 xl:p-16`}
     >
       <div
-        className={`mx-auto flex w-full max-w-content-limit flex-col justify-between gap-10 md:flex md:flex-row md:items-center md:gap-16`}
+        className={`mx-auto flex w-full max-w-content-limit flex-col justify-between gap-10 pt-16 md:flex md:flex-row md:items-center md:gap-16 md:pt-0`}
       >
         <div className={`flex flex-col gap-8 md:gap-5`}>
           <HeroSectionSubtitle />
