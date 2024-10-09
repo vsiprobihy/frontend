@@ -1,3 +1,4 @@
+export { ProfileMenu } from "./profile-menu/ProfileMenu";
 export { MobileMenu } from "./mobile-menu/MobileMenu";
 export { Logo } from "./logo/Logo";
 export { NavigationLink, linkValues } from "./links/NavigationLink";

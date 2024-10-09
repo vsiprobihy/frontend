@@ -27,7 +27,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         <button
           key={lang}
           className={clsx(
-            "duration-600 ease flex h-8 w-1/2 items-center justify-center rounded-full outline-none transition-all",
+            "duration-600 flex h-8 w-1/2 items-center justify-center rounded-full outline-none transition-all",
             isLightVariant
               ? {
                   "bg-dark text-white": language === lang,

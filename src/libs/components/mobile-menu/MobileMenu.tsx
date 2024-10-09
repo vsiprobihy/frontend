@@ -14,7 +14,6 @@ export const MobileMenu: React.FC = () => {
   const {
     hasNotification,
     userImage,
-    handleUserAccess,
     handleNotificationAccess,
     translatedText,
   } = useUserInteraction();
@@ -41,7 +40,6 @@ export const MobileMenu: React.FC = () => {
           <ProfileButton
             userImage={userImage}
             isMobile={true}
-            onClick={handleUserAccess}
             translatedText={translatedText}
           />
         </div>

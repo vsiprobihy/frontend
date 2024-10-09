@@ -28,7 +28,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
     : `bg-white bg-opacity-20 ${effect}`;
 
   const commonClasses =
-    "transition duration-300 ease rounded-full font-semibold shadow";
+    "transition duration-300 rounded-full font-semibold shadow";
 
   const desktopClasses = `backdrop-blur-lg text-nowrap w-36 text-center py-2.5 text-lg ${activeClasses}`;
 

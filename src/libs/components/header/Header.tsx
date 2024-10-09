@@ -27,7 +27,6 @@ export const Header: React.FC = () => {
     hasNotification,
     userImage,
     handleToggleLanguage,
-    handleUserAccess,
     handleNotificationAccess,
   } = useUserInteraction();
 
@@ -74,10 +73,10 @@ export const Header: React.FC = () => {
         )}
         <div
           className={clsx(
-            "inline-flex items-center gap-x-6 rounded-full px-2 backdrop-blur-lg lg:bg-opacity-40 lg:shadow-sm",
+            "relative inline-flex items-center gap-x-6 rounded-full px-2 backdrop-blur-lg lg:bg-opacity-40 lg:shadow-sm",
             isLightVariant ? "lg:bg-white" : "lg:bg-black",
-              {"hidden-child" : isMobile}
-            )}
+            { "hidden-child": isMobile }
+          )}
         >
           <HeaderNotificationButton
             hasIndicator={hasNotification}
@@ -88,7 +87,7 @@ export const Header: React.FC = () => {
             translatedText={translatedText}
             userImage={userImage}
             isMobile={false}
-            onClick={handleUserAccess}
+            // onClick={handleUserAccess}
             isLightVariant={isLightVariant}
           />
           <LanguageSwitcher

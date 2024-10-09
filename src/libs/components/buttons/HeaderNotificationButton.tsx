@@ -16,7 +16,7 @@ export const HeaderNotificationButton: React.FC<NotificationButtonProps> = ({
   <button
     onClick={onClick}
     className={clsx(
-      "ease relative my-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white bg-opacity-20 shadow backdrop-blur-lg transition duration-300",
+      "relative my-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white bg-opacity-20 shadow backdrop-blur-lg transition duration-300",
       isLightVariant ? "light-effect" : "dark-effect"
     )}
   >
