@@ -38,7 +38,7 @@ export const ProfileMenu: React.FC<ProfileMenuProps> = ({
               />
             ) : (
               <IconWrapper>
-                <Icon name={IconType.USER} className="text-xl" />
+                <Icon name={IconType.USER} className="text-xl text-white" />
               </IconWrapper>
             )}
           </span>
