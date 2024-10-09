@@ -74,9 +74,10 @@ export const Header: React.FC = () => {
         )}
         <div
           className={clsx(
-            "hidden-child inline-flex items-center gap-x-6 rounded-full px-2 backdrop-blur-lg lg:bg-opacity-40 lg:shadow-sm",
-            isLightVariant ? "lg:bg-white" : "lg:bg-black"
-          )}
+            "inline-flex items-center gap-x-6 rounded-full px-2 backdrop-blur-lg lg:bg-opacity-40 lg:shadow-sm",
+            isLightVariant ? "lg:bg-white" : "lg:bg-black",
+              {"hidden-child" : isMobile}
+            )}
         >
           <HeaderNotificationButton
             hasIndicator={hasNotification}
