@@ -5,21 +5,22 @@ import clsx from "clsx";
 import { Icon, ProfileMenu } from "~/components";
 import { IconType } from "~/enums";
 import { useAuth } from "~/context";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
+import { useClickOutside } from "~/hooks";
 
 interface ProfileButtonProps {
   translatedText: string;
   userImage?: string | null;
-  isMobile?: boolean;
+  isResponsiveDevice?: boolean;
   isLightVariant?: boolean;
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({
   translatedText,
   userImage,
-  isMobile = false,
+  isResponsiveDevice = false,
   isLightVariant,
 }) => {
   const router = useRouter();
@@ -27,6 +28,8 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
   const { isAuthenticatedUser, setIsAuthenticatedUser } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const toggleProfileMenu = () => setIsMenuOpen((prevState) => !prevState);
 
   const openAuthModal = () => {
@@ -46,16 +49,19 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
     setIsMenuOpen(false);
   };
 
+  useClickOutside(menuRef, () => setIsMenuOpen(false), buttonRef);
+
   return (
     <>
       <button
+        ref={buttonRef}
         onClick={handleUserAccess}
         className="group flex cursor-pointer items-center p-0"
       >
         <span
           className={clsx(
             "h-12 w-12 overflow-hidden rounded-full border-2 border-orange-hot transition duration-300 group-hover:border-orange-interactive group-active:border-orange-interactive xl:h-14 xl:w-14",
-            !isMobile && "z-10 -mr-3"
+            !isResponsiveDevice && "z-10 -mr-3"
           )}
         >
           {userImage ? (
@@ -79,7 +85,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
             </b>
           )}
         </span>
-        {!isMobile && (
+        {!isResponsiveDevice && (
           <span className="hidden w-32 rounded-r-full bg-orange-hot py-2 text-lg font-semibold uppercase text-white transition duration-300 group-hover:bg-orange-interactive group-active:bg-orange-interactive xl:block">
             {translatedText}
           </span>
@@ -88,9 +94,10 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
 
       {isMenuOpen && (
         <ProfileMenu
+          ref={menuRef}
           userImage={userImage}
           userName="Користувач"
-          isMobile={isMobile}
+          isResponsiveDevice={isResponsiveDevice}
           onLogout={handleLogout}
         />
       )}

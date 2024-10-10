@@ -4,7 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 import clsx from "clsx";
-import { useIsMobile, useColorVariant, useUserInteraction } from "~/hooks";
+import {
+  useColorVariant,
+  useUserInteraction,
+  useResponsiveDevice,
+} from "~/hooks";
 import {
   linkValues,
   Logo,
@@ -18,7 +22,7 @@ import { AppRoute } from "~/enums";
 import LogoSrOnlyImage from "~/images/logo.png";
 
 export const Header: React.FC = () => {
-  const isMobile = useIsMobile();
+  const isResponsiveDevice = useResponsiveDevice();
   const { isLightVariant, pathname } = useColorVariant();
 
   const {
@@ -53,10 +57,10 @@ export const Header: React.FC = () => {
           />
           <Logo />
         </Link>
-        {!isMobile && (
+        {!isResponsiveDevice && (
           <nav
             className={clsx(
-              "flex gap-x-6 rounded-full bg-opacity-40 p-2 uppercase shadow-sm backdrop-blur-lg xl:ml-28",
+              "hidden gap-x-6 rounded-full bg-opacity-40 p-2 uppercase shadow-sm backdrop-blur-lg md:flex xl:ml-28",
               isLightVariant ? "bg-white" : "bg-black"
             )}
           >
@@ -73,9 +77,8 @@ export const Header: React.FC = () => {
         )}
         <div
           className={clsx(
-            "relative inline-flex items-center gap-x-6 rounded-full px-2 backdrop-blur-lg lg:bg-opacity-40 lg:shadow-sm",
-            isLightVariant ? "lg:bg-white" : "lg:bg-black",
-            { "hidden-child": isMobile }
+            "hidden-child relative inline-flex items-center gap-x-6 rounded-full px-2 backdrop-blur-lg lg:bg-opacity-40 lg:shadow-sm",
+            isLightVariant ? "lg:bg-white" : "lg:bg-black"
           )}
         >
           <HeaderNotificationButton
@@ -86,7 +89,7 @@ export const Header: React.FC = () => {
           <ProfileButton
             translatedText={translatedText}
             userImage={userImage}
-            isMobile={false}
+            isResponsiveDevice={false}
             isLightVariant={isLightVariant}
           />
           <LanguageSwitcher
