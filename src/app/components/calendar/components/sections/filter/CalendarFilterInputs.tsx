@@ -1,7 +1,9 @@
 import { Input, Select } from "~/components";
 import { IconType } from "~/enums/icon/icon.type";
-
-// TODO call API for regions
+import { CalendarFilterListData } from "~/api-client/types.gen";
+import dayjs from "dayjs";
+import "dayjs/locale/uk";
+import "dayjs/locale/en";
 
 // TODO call API for regions
 
@@ -18,24 +20,39 @@ for (let i = 0; i < 5; i++) {
   });
 }
 
+interface CalendarFilterInputsProps {
+  onChange: (newFilters: Partial<CalendarFilterListData["query"]>) => void;
+}
+
 // TODO change month selector to a better date picker
 // The current issue is selecting months from past years... or from the next year
 // ... or selecting several months at once
-type MonthType = {
-  title: string;
-  id: string;
+
+const capitalizeFirstLetter = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const months: MonthType[] = [];
+const generateMonths = (locale: string) => {
+  dayjs.locale(locale);
+  return Array.from({ length: 12 }, (_, i) => ({
+    title: capitalizeFirstLetter(dayjs().month(i).format("MMMM")),
+    id: i + 1,
+  }));
+};
 
-for (let i = 0; i < 12; i++) {
-  months.push({
-    title: `Month ${i}`,
-    id: i.toString(),
-  });
-}
+const selectedLocale = "uk";
+const months = generateMonths(selectedLocale);
 
-export const CalendarFilterInputs: React.FC = () => {
+export const CalendarFilterInputs: React.FC<CalendarFilterInputsProps> = ({
+  onChange,
+}) => {
+  const handleMonthChange = (value: string | null) => {
+    const monthNumber = value ? parseInt(value, 10) : null;
+    onChange({
+      month: monthNumber ?? undefined,
+    });
+  };
+
   return (
     <div
       className={`flex w-full flex-col gap-6 text-white lg:grid lg:grid-cols-3 xl:grid-cols-7`}
@@ -56,14 +73,15 @@ export const CalendarFilterInputs: React.FC = () => {
       <div className={`xl:col-span-2`}>
         <Select
           options={months.map((month) => ({
-            value: month.id,
+            value: month.id.toString(),
             label: month.title,
           }))}
           placeholder={`Місяць`}
           label={{
             icon: IconType.CALENDAR,
-            text: `Дата проведен`,
+            text: `Дата проведення`,
           }}
+          onChange={handleMonthChange}
         />
       </div>
       <div className={`xl:col-span-2`}>

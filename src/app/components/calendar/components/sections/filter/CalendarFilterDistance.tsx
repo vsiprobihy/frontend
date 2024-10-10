@@ -2,13 +2,20 @@
 import * as Slider from "@radix-ui/react-slider";
 import { useState } from "react";
 import { Input } from "~/components";
+import { CalendarFilterListData } from "~/api-client/types.gen";
+
+interface CalendarFilterDistanceProps {
+  onChange: (newFilters: Partial<CalendarFilterListData["query"]>) => void;
+}
 
 const formatNumber = (value: string) => {
   const newValue = value.length ? parseInt(value) : 0;
   return isNaN(newValue) ? 0 : newValue;
 };
 
-export const CalendarFilterDistance: React.FC = () => {
+export const CalendarFilterDistance: React.FC<CalendarFilterDistanceProps> = ({
+  onChange,
+}) => {
   // TODO call API for max value
   const maxValue = 42;
   const minValue = 0;
@@ -32,7 +39,31 @@ export const CalendarFilterDistance: React.FC = () => {
   const commonInputProps = {
     className: `max-w-24`,
     type: "number",
-    centerText: true,
+    // centerText: true,
+  };
+
+  const handleSliderChange = (newValues: number[]) => {
+    setSliderValue(newValues);
+
+    onChange({
+      distance_min: newValues[0],
+      distance_max: newValues[1],
+    });
+  };
+
+  const handleInputChange = (value: string, index: number) => {
+    const numberValue = formatNumber(value);
+
+    setSliderValue((prevValue) => {
+      const newValue = [...prevValue];
+      newValue[index] = valueWithinRange(numberValue);
+      return newValue;
+    });
+
+    onChange({
+      distance_min: sliderValue[0],
+      distance_max: sliderValue[1],
+    });
   };
 
   return (
@@ -43,20 +74,13 @@ export const CalendarFilterDistance: React.FC = () => {
       <div className={`flex w-full flex-row items-center gap-2`}>
         <Input
           value={sliderValue[0] + ``}
-          onValueChange={(newValue) => {
-            const numberValue = formatNumber(newValue);
-
-            setSliderValue((prevValue) => [
-              valueWithinRange(numberValue),
-              prevValue[1],
-            ]);
-          }}
+          onValueChange={(newValue) => handleInputChange(newValue, 0)}
           {...commonInputProps}
         />
         <Slider.Root
           className="relative flex h-7 w-full flex-1 cursor-pointer touch-none select-none items-center"
           value={sliderValue}
-          onValueChange={(newValue) => setSliderValue(newValue)}
+          onValueChange={handleSliderChange}
           max={maxValue}
           min={minValue}
         >
@@ -69,14 +93,7 @@ export const CalendarFilterDistance: React.FC = () => {
         </Slider.Root>
         <Input
           value={sliderValue[1] + ``}
-          onValueChange={(newValue) => {
-            const numberValue = formatNumber(newValue);
-
-            setSliderValue((prevValue) => [
-              prevValue[0],
-              valueWithinRange(numberValue),
-            ]);
-          }}
+          onValueChange={(newValue) => handleInputChange(newValue, 1)}
           {...commonInputProps}
         />
       </div>

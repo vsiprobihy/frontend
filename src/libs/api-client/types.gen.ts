@@ -231,10 +231,6 @@ export type EventAdditionalItemsCreateData = {
   };
   path: {
     event_id: string;
-    /**
-     * Event ID
-     */
-    // event_id: number;
   };
 };
 

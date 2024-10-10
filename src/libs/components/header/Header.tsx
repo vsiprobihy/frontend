@@ -3,6 +3,8 @@
 import { Icon } from "~/components";
 import { IconType } from "~/enums/enums";
 import { useRouter, useSearchParams } from "next/navigation";
+import { AuthModal, SuccessModal } from "~/components";
+import { Suspense } from "react";
 
 export const Header: React.FC = () => {
   const router = useRouter();
@@ -47,6 +49,10 @@ export const Header: React.FC = () => {
         />
         <button onClick={() => openModal()}>Open Login Modal</button>
       </div>
+      <Suspense>
+        <AuthModal />
+        <SuccessModal />
+      </Suspense>
     </header>
   );
 };

@@ -299,7 +299,10 @@ export const eventAdditionalItemsPartialUpdate = <
 };
 
 /**
- * Delete additional items for an event by ID.
+ *
+ * Delete multiple additional items associated with a specific event identified by the `event_id` in the URL.
+ * The `id` field is required to identify each additional item to be deleted.
+ *
  */
 export const eventAdditionalItemsDelete = <
   ThrowOnError extends boolean = false,
@@ -389,7 +392,10 @@ export const eventDistancesPartialUpdate = <
 };
 
 /**
- * Delete event distance by ID.
+ *
+ * Delete multiple distances associated with a specific event identified by the `event_id` in the URL.
+ * The `id` field is required to identify each distance to be deleted.
+ *
  */
 export const eventDistancesDelete = <ThrowOnError extends boolean = false>(
   options: Options<EventDistancesDeleteData, ThrowOnError>

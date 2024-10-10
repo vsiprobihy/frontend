@@ -17,6 +17,7 @@ interface SelectProps extends RadixSelect.SelectProps {
     text: string;
     icon?: IconType;
   };
+  onChange?: (value: string | null) => void;
 }
 
 const SelectItem = React.forwardRef<
@@ -45,11 +46,12 @@ export const Select: React.FC<SelectProps> = ({
   placeholder,
   label,
   options,
+  onChange,
   ...rootProps
 }) => (
   <div className={`flex flex-col gap-2.5`}>
     {!!label && <Label icon={label.icon}>{label.text}</Label>}
-    <RadixSelect.Root {...rootProps}>
+    <RadixSelect.Root {...rootProps} onValueChange={onChange}>
       <RadixSelect.Trigger
         // aria-label={"Food"}
         className="data-[placeholder]:grey flex h-[3.25rem] w-full flex-row items-center justify-between gap-2 rounded-[0.75rem] bg-white px-5 font-semibold text-dark placeholder:uppercase placeholder:text-grey focus:outline-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:uppercase"

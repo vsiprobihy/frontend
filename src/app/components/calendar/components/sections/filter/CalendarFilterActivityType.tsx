@@ -2,25 +2,34 @@
 "use client";
 import { ActivityTypeTagProps } from "~/components/tags/ActivityTypeTag";
 import { ActivityTypeButton } from "~/components/activity-type/ActivityTypeButton";
+import { CalendarFilterListData } from "~/api-client/types.gen";
 import { useState } from "react";
 
-export const CalendarFilterActivityType: React.FC = () => {
-  const tags: ActivityTypeTagProps[] = [];
+interface CalendarFilterActivityTypeProps {
+  onChange: (newFilters: Partial<CalendarFilterListData["query"]>) => void;
+}
 
-  for (let i = 0; i < 5; i++) {
-    tags.push({
-      id: i.toString(),
-      children: `Tag ${i}`,
-    });
-  }
-  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
+export const CalendarFilterActivityType: React.FC<
+  CalendarFilterActivityTypeProps
+> = ({ onChange }) => {
+  const tags: ActivityTypeTagProps[] = [
+    { id: "all", children: "Усі" },
+    { id: "running", children: "Біг" },
+    { id: "trail", children: "Трейл" },
+    { id: "ultramarathon", children: "Ультрамарафон" },
+    { id: "cycling", children: "Велоспорт" },
+    { id: "online", children: "Онлайн" },
+    { id: "walking", children: "Ходьба" },
+    { id: "ocr", children: "OCR" },
+    { id: "swimming", children: "Плавання" },
+    { id: "triathlon", children: "Триатлон" },
+  ];
+
+  const [selectedTagId, setSelectedTagId] = useState<string | null>(null);
 
   const toggleSelect = (id: string) => {
-    setSelectedTagIds((prevTags) =>
-      prevTags.includes(id)
-        ? prevTags.filter((tagId) => tagId !== id)
-        : [...prevTags, id]
-    );
+    setSelectedTagId(id);
+    onChange({ competition_type: id === "all" ? undefined : id });
   };
 
   return (
@@ -29,7 +38,7 @@ export const CalendarFilterActivityType: React.FC = () => {
       <div className={`flex flex-row flex-wrap gap-2`}>
         {tags.map((tag) => (
           <ActivityTypeButton
-            selected={selectedTagIds.includes(tag.id)}
+            selected={selectedTagId === tag.id}
             key={tag.id}
             {...tag}
             onClick={() => toggleSelect(tag.id)}
