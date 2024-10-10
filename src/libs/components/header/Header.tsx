@@ -35,10 +35,10 @@ export const Header: React.FC = () => {
   } = useUserInteraction();
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-10 mx-auto backdrop-blur-lg">
+    <header className="fixed left-0 right-0 top-0 z-10 backdrop-blur-lg">
       <div
         className={clsx(
-          "flex w-full max-w-content-limit justify-between py-1 md:px-2 md:py-2 lg:px-16 lg:py-4",
+          "mx-auto flex w-full max-w-content-limit justify-between py-1 md:px-2 md:py-2 lg:px-8 lg:py-4 xl:px-16",
           isLightVariant ? "text-dark" : "text-white"
         )}
       >
