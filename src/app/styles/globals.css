@@ -21,5 +21,15 @@
 }
 
 @layer utilities {
-  /**/
+  .hidden-child > *:not(:last-child) {
+    @apply hidden lg:flex;
+  }
+
+  .dark-effect {
+    @apply hover:bg-white hover:text-dark active:bg-white active:text-dark;
+  }
+
+  .light-effect {
+    @apply hover:bg-dark hover:text-white active:bg-dark active:text-white;
+  }
 }

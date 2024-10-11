@@ -1,8 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import { ComponentPropsWithRef } from "react";
-import { Icon } from "@/libs/components/icon/Icon";
-import { IconType } from "@/libs/enums/enums";
+import { Icon } from "~/components";
+import { IconType } from "~/enums";
 
 interface AuthGoogleButtonProps extends ComponentPropsWithRef<"button"> {
   className?: string;

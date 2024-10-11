@@ -1,5 +1,5 @@
 import Link, { LinkProps } from "next/link";
-import { IconType } from "~/enums/enums";
+import { IconType } from "~/enums";
 import { Icon } from "~/components";
 
 interface CustomLinkProps extends LinkProps {
