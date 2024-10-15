@@ -1,9 +1,15 @@
 import { NextPage } from "next";
 
-const Calendar: NextPage = () => (
-  <main className="bg-dark p-40 text-center text-3xl text-white">
-    <p>Calendar</p>
-  </main>
-);
+import { CalendarFilterSection } from "./components/sections/filter";
+import EventsCalendarSection from "@/app/calendar/components/sections/events/EventsCalendarSection";
+
+const Calendar: NextPage = () => {
+  return (
+    <main>
+      <CalendarFilterSection />
+      <EventsCalendarSection />
+    </main>
+  );
+};
 
 export default Calendar;

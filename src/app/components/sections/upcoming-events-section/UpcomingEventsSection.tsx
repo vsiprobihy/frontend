@@ -1,26 +1,12 @@
 "use client";
 
 import { UpcomingEventsCarousel } from "./carousel/UpcomingEventsCarousel";
-import { SlideType } from "./carousel/UpcomingEventsCarousel";
-import PlaceholderImage from "~/images/placeholder.webp";
-import dayjs from "dayjs";
-import { EventCard, EventCardProps } from "./carousel/EventCard";
+import { EventCard, EventCardProps } from "~/components/event-card/EventCard";
 import { CustomLink } from "~/components";
+import { newEvent } from "~/placeholder-data/placeholderEvents";
 
 const titleText = `Найближчі заходи`;
 const linkText = { full: `Дивитися всі забіги`, short: `Всі` };
-
-const newEvent: () => SlideType["event"] = () => ({
-  image: { src: PlaceholderImage, alt: "Event" },
-  title: "Event",
-  date: dayjs("2022-01-01", "YYYY-MM-DD"),
-  activityType: {
-    id: `0`,
-    children: `Activity Type`,
-  },
-  location: "Lorem ipsum dolor sit amet",
-  distanceTitles: ["5 km", "10 km", "21 km", "42 km"],
-});
 
 const events: [EventCardProps, EventCardProps, EventCardProps] = [
   newEvent(),

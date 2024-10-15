@@ -1,9 +1,9 @@
 import { ActivityTypeTag, Button, DistanceTag, Icon } from "~/components";
 import { ActivityTypeTagProps } from "~/components/tags/ActivityTypeTag";
-import { IconType } from "~/enums/enums";
 import { IconType } from "~/enums";
 import dayjs from "dayjs";
 import Image, { ImageProps } from "next/image";
+import { EventCardImagePlaceholder } from "~/components/event-card/EventCardImagePlaceholder";
 
 const buttonText = `Детальніше`;
 
@@ -20,7 +20,7 @@ const IconText: React.FC<{ icon: IconType; text: string }> = ({
 };
 
 export interface EventCardProps {
-  image: ImageProps;
+  image?: ImageProps;
   title: string;
   date: dayjs.Dayjs;
   activityType: ActivityTypeTagProps;
@@ -32,11 +32,17 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
   return (
     <div className={`flex flex-col overflow-hidden rounded-2xl bg-white`}>
       <div className={`relative h-0 w-full pb-[50%]`}>
-        <Image
-          {...props.image}
-          className={`absolute inset-0 h-full w-full`}
-          alt="card"
-        />
+        <div className={`absolute inset-0 px-4 pt-4`}>
+          {props.image ? (
+            <Image
+              {...props.image}
+              className={`h-full rounded-xl`}
+              alt="card"
+            />
+          ) : (
+            <EventCardImagePlaceholder title={props.title} />
+          )}
+        </div>
       </div>
       <div className={`flex flex-col gap-6 p-4`}>
         <div className={`flex flex-col`}>

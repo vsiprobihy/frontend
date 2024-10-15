@@ -57,15 +57,13 @@ export const CalendarFilterInputs: React.FC<CalendarFilterInputsProps> = ({
     <div
       className={`flex w-full flex-col gap-6 text-white lg:grid lg:grid-cols-3 xl:grid-cols-7`}
     >
-      {/*TODO Change icon to search*/}
-
       <div className={`xl:col-span-3`}>
         <Input
           id={`title`}
-          icon={IconType.BELL}
+          icon={IconType.SEARCH}
           placeholder={`Ввести назву події`}
           label={{
-            icon: IconType.BELL,
+            icon: IconType.SEARCH,
             text: `Пошук за назвою`,
           }}
         />

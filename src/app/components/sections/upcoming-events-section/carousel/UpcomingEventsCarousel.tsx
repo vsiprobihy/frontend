@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { EventCard, EventCardProps } from "./EventCard";
+import { EventCard, EventCardProps } from "~/components/event-card/EventCard";
 import { CarouselButton } from "~/components"; // The aspect ratio of component is always 14:17
 
 // The aspect ratio of component is always 14:17
