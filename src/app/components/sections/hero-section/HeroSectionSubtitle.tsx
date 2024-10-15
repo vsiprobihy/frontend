@@ -1,4 +1,4 @@
-import { IconType } from "~/enums/enums";
+import { IconType } from "~/enums";
 import { Icon } from "~/components";
 
 const text = `Інформуємо про актуальні забіги по всій Україні.`;

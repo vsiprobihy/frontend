@@ -11,7 +11,7 @@ import {
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CloseButton } from "@/libs/components";
-import { useIsMobile } from "@/libs/hooks/useIsMobile";
+import { useIsMobile } from "~/hooks";
 import SuccessImage from "~/images/success-registration.webp";
 import SuccessImageMobile from "~/images/success-registration-MOBILE.webp";
 import Image from "next/image";

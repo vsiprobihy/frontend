@@ -1,6 +1,7 @@
 import { ActivityTypeTag, Button, DistanceTag, Icon } from "~/components";
 import { ActivityTypeTagProps } from "~/components/tags/ActivityTypeTag";
 import { IconType } from "~/enums/enums";
+import { IconType } from "~/enums";
 import dayjs from "dayjs";
 import Image, { ImageProps } from "next/image";
 

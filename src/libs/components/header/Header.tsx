@@ -1,53 +1,105 @@
 "use client";
 
-import { Icon } from "~/components";
-import { IconType } from "~/enums/enums";
-import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+
+import clsx from "clsx";
+import {
+  useColorVariant,
+  useUserInteraction,
+  useResponsiveDevice,
+} from "~/hooks";
+import {
+  linkValues,
+  Logo,
+  NavigationLink,
+  HeaderNotificationButton,
+  ProfileButton,
+} from "~/components";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { AppRoute } from "~/enums";
+
+import LogoSrOnlyImage from "~/images/logo.png";
 import { AuthModal, SuccessModal } from "~/components";
 import { Suspense } from "react";
 
 export const Header: React.FC = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const isResponsiveDevice = useResponsiveDevice();
+  const { isLightVariant, pathname } = useColorVariant();
 
-  const openModal = () => {
-    const params = new URLSearchParams(searchParams);
-    params.set("showAuthModal", "true");
-    router.push(`?${params.toString()}`);
-  };
+  const {
+    language,
+    translatedText,
+    hasNotification,
+    userImage,
+    handleToggleLanguage,
+    handleNotificationAccess,
+  } = useUserInteraction();
+
   return (
-    <header
-      className={`flex h-48 w-full flex-col items-center justify-center bg-dark text-center text-white`}
-    >
-      {/* TODO: Remove this after usage example */}
-      <h2 className="mb-4 text-lg">Example of icon usage</h2>
-
-      <div className="flex items-center gap-4">
-        <Icon
-          name={IconType.GOOGLE}
-          className="flex h-8 w-8 items-center justify-center rounded bg-orange-hot text-xl text-white"
-        />
-        <Icon
-          name={IconType.SEARCH}
-          className="flex h-8 w-8 items-center justify-center rounded bg-white text-xl text-dark"
-        />
-        <Icon
-          name={IconType.CLOSE}
-          className="flex h-8 w-8 items-center justify-center rounded bg-white text-sm text-dark"
-        />
-      </div>
-
-      <div className="relative mt-6">
-        <input
-          type="text"
-          placeholder="Ввести назву події"
-          className="w-80 rounded-full border-none bg-white py-2 pl-10 pr-4 text-dark focus:outline-none"
-        />
-        <Icon
-          name={IconType.SEARCH}
-          className="absolute left-4 top-1/2 -translate-y-1/2 transform text-xl text-dark"
-        />
-        <button onClick={() => openModal()}>Open Login Modal</button>
+    <header className="fixed left-0 right-0 top-0 z-10 backdrop-blur-lg">
+      <div
+        className={clsx(
+          "mx-auto flex w-full max-w-content-limit justify-between py-1 md:px-2 md:py-2 lg:px-8 lg:py-4 xl:px-16",
+          isLightVariant ? "text-dark" : "text-white"
+        )}
+      >
+        <Link
+          href={AppRoute.ROOT}
+          aria-label="Go home"
+          className={clsx(
+            "inline-flex rounded-full px-3 backdrop-blur-lg md:px-6 lg:bg-black lg:bg-opacity-40 lg:shadow-sm",
+            isLightVariant ? "lg:bg-white" : "lg:bg-black"
+          )}
+        >
+          <Image
+            src={LogoSrOnlyImage}
+            alt="Vsi Probihy logo"
+            className="sr-only"
+          />
+          <Logo />
+        </Link>
+        {!isResponsiveDevice && (
+          <nav
+            className={clsx(
+              "hidden gap-x-6 rounded-full bg-opacity-40 p-2 uppercase shadow-sm backdrop-blur-lg md:flex xl:ml-28",
+              isLightVariant ? "bg-white" : "bg-black"
+            )}
+          >
+            {linkValues.map((link, index) => (
+              <NavigationLink
+                key={index}
+                href={link.url}
+                label={link.name}
+                isLightVariant={isLightVariant}
+                pathname={pathname}
+              />
+            ))}
+          </nav>
+        )}
+        <div
+          className={clsx(
+            "hidden-child relative inline-flex items-center gap-x-6 rounded-full px-2 backdrop-blur-lg lg:bg-opacity-40 lg:shadow-sm",
+            isLightVariant ? "lg:bg-white" : "lg:bg-black"
+          )}
+        >
+          <HeaderNotificationButton
+            hasIndicator={hasNotification}
+            onClick={handleNotificationAccess}
+            isLightVariant={isLightVariant}
+          />
+          <ProfileButton
+            translatedText={translatedText}
+            userImage={userImage}
+            isResponsiveDevice={false}
+            isLightVariant={isLightVariant}
+          />
+          <LanguageSwitcher
+            language={language}
+            toggleLanguage={handleToggleLanguage}
+            isLightVariant={isLightVariant}
+          />
+        </div>
       </div>
       <Suspense>
         <AuthModal />

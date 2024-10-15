@@ -1,8 +1,8 @@
 import React from "react";
 import clsx from "clsx";
 import { ComponentPropsWithRef } from "react";
-import { Icon } from "../icon/Icon";
-import { IconType } from "../../enums/enums";
+import { Icon } from "~/components";
+import { IconType } from "~/enums";
 
 interface CloseButtonProps extends ComponentPropsWithRef<"button"> {
   className?: string;

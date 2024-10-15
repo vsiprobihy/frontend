@@ -1,4 +1,4 @@
-import { IconType } from "~/enums/enums";
+import { IconType } from "~/enums";
 import Link from "next/link";
 import { Icon } from "~/components";
 

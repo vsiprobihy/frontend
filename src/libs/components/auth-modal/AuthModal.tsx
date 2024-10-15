@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import clsx from "clsx";
 import * as Tabs from "@radix-ui/react-tabs";
 import Image from "next/image";
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import {
@@ -18,18 +18,17 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   authTokenCreate,
   authRegisterCreate,
-} from "@/libs/api-client/services.gen";
-import {
   TokenObtainPair,
   Register,
   TokenRefresh,
-} from "@/libs/api-client/types.gen";
-import { CloseButton } from "@/libs/components";
-import { useIsMobile } from "@/libs/hooks/useIsMobile";
+} from "~/api-client";
+import { CloseButton } from "~/components";
+import { useIsMobile } from "~/hooks";
 import LoginForm from "./form/LoginForm";
 import RegisterForm from "./form/RegisterForm";
 import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
+import { useAuth } from "~/context";
 
 export const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
@@ -40,6 +39,8 @@ export const AuthModal: React.FC = () => {
   const isMobile = useIsMobile();
 
   const showAuthModal = !!searchParams.get("showAuthModal");
+
+  const { setIsAuthenticatedUser } = useAuth();
 
   const handleTabChange = (newValue: "register" | "login") => {
     setValue(newValue);
@@ -60,7 +61,7 @@ export const AuthModal: React.FC = () => {
     [handleClose]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
@@ -91,6 +92,7 @@ export const AuthModal: React.FC = () => {
           secure: process.env.NODE_ENV === "production",
           sameSite: "Strict",
         });
+        setIsAuthenticatedUser(true);
       }
       handleClose();
     },
@@ -118,6 +120,7 @@ export const AuthModal: React.FC = () => {
       params.delete("showAuthModal");
       params.set("showSuccessModal", "true");
       router.push(`?${params.toString()}`);
+      setIsAuthenticatedUser(true);
     },
     onError: (error) => {
       alert(`Registration failed: ${error.message}`);
@@ -141,7 +144,7 @@ export const AuthModal: React.FC = () => {
         <DialogContent
           aria-describedby={undefined}
           className={clsx(
-            "fixed inset-0 mx-auto mt-5 flex items-center justify-between rounded-lg bg-white p-6 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:transform",
+            "fixed inset-0 z-50 mx-auto mt-5 flex items-center justify-between rounded-lg bg-white p-6 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:transform",
             value === "register"
               ? "max-h-[675px] w-[340px] md:min-h-[760px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"
               : "h-[675px] w-[340px] py-6 md:min-h-[693px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"

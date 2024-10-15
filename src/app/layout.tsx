@@ -2,9 +2,17 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./styles/globals.css";
 import clsx from "clsx";
-import { Footer, Header } from "~/components";
+
+import {
+  AuthModal,
+  Footer,
+  Header,
+  MobileMenu,
+  SuccessModal,
+} from "~/components";
 import { Suspense } from "react";
 import { ReactQueryProvider } from "~/utils/reactQueryProvider";
+import { AuthProvider } from "~/context";
 
 const manropeVariable = localFont({
   src: "./fonts/Manrope-VariableFont_wght.ttf",
@@ -47,11 +55,16 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          <Suspense>
-            <Header />
-          </Suspense>
-          {children}
-          <Footer />
+          <AuthProvider initialAuthState={false}>
+            <Suspense>
+              <Header />
+              <MobileMenu />
+              <AuthModal />
+              <SuccessModal />
+            </Suspense>
+            {children}
+            <Footer />
+          </AuthProvider>
         </ReactQueryProvider>
       </body>
     </html>
