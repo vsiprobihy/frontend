@@ -9,10 +9,12 @@ interface CustomLinkProps extends LinkProps {
 export const CustomLink: React.FC<CustomLinkProps> = (props) => {
   return (
     <span
-      className={`inline-flex flex-row items-center gap-2 text-dark hover:text-orange-hot disabled:text-grey-light-middle`}
+      className={`link-hover inline-flex flex-row items-center gap-2 pr-4 text-base font-semibold uppercase text-dark hover:text-orange-hot disabled:text-grey-light-middle`}
     >
-      <Link className={`text-base font-semibold uppercase`} {...props} />
-      <Icon name={IconType.LINK} />
+      <Link {...props}>
+        {props.children}
+        <Icon className="pl-2" name={IconType.LINK} />
+      </Link>
     </span>
   );
 };
