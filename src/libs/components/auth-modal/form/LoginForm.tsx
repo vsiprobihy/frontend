@@ -10,17 +10,7 @@ import { Icon, CustomLabel } from "~/components";
 import { IconType } from "~/enums";
 import AuthSubmitButton from "../AuthSubmitButton";
 import AuthGoogleButton from "../AuthGoogleButton";
-
-const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Невірний формат email")
-    .required("Електронна адреса обов'язкова"),
-  password: yup
-    .string()
-    .min(6, "Пароль повинен містити принаймні 6 символів")
-    .required("Пароль обов'язковий"),
-});
+import { useTranslations } from "next-intl";
 
 interface ILoginFormFields {
   email: string;
@@ -33,6 +23,15 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, setRememberMe }) => {
+  const t = useTranslations("AuthForm");
+
+  const loginSchema = yup.object().shape({
+    email: yup.string().email(t("invalidEmail")).required(t("requiredEmail")),
+    password: yup
+      .string()
+      .min(6, t("invalidPassword"))
+      .required(t("requiredPassword")),
+  });
   const {
     register,
     handleSubmit,
@@ -61,7 +60,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, setRememberMe }) => {
         inputProps={{
           id: "email",
           type: "email",
-          placeholder: "Електронна адреса",
+          placeholder: t("emailPlaceholder"),
           ...register("email", { required: true }),
           className: errors.email ? "border-red" : "",
           onChange: () => {
@@ -84,7 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, setRememberMe }) => {
         inputProps={{
           id: "password",
           type: "password",
-          placeholder: "Пароль",
+          placeholder: t("passwordPlaceholder"),
           ...register("password", { required: true }),
           className: errors.email ? "border-red" : "",
           onChange: () => {
@@ -95,7 +94,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, setRememberMe }) => {
           htmlFor: "password",
         }}
       >
-        Пароль
+        {t("passwordLabel")}
       </CustomLabel>
       {errors.password && (
         <p className="mb-4 text-sm font-medium text-red">
@@ -122,16 +121,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, setRememberMe }) => {
             className="pl-2 text-sm font-normal text-black"
             htmlFor="rememberMe"
           >
-            Запам&apos;ятати мене
+            {t("rememberMe")}
           </label>
           <a href="#" className="text-sm font-normal text-orange-hot">
-            Забули пароль?
+            {t("forgotPassword")}
           </a>
         </div>
       </div>
       <div className="flex w-full flex-col items-center">
-        <AuthSubmitButton>Увійти</AuthSubmitButton>
-        <p className="mb-4 mt-4 text-center text-sm text-black">Або</p>
+        <AuthSubmitButton>{t("loginButton")}</AuthSubmitButton>
+        <p className="mb-4 mt-4 text-center text-sm text-black">{t("or")}</p>
         <AuthGoogleButton>Google</AuthGoogleButton>
       </div>
     </form>
