@@ -135,9 +135,19 @@ export const TokenRefreshSchema = {
 } as const;
 
 export const OrganizerEventSchema = {
-  required: ["name", "phone_number", "email"],
+  required: ["name", "email"],
   type: "object",
   properties: {
+    id: {
+      title: "ID",
+      type: "integer",
+      readOnly: true,
+    },
+    users: {
+      title: "Users",
+      type: "string",
+      readOnly: true,
+    },
     name: {
       title: "Name",
       type: "string",
@@ -155,7 +165,7 @@ export const OrganizerEventSchema = {
       title: "Phone number",
       type: "string",
       maxLength: 20,
-      minLength: 1,
+      "x-nullable": true,
     },
     email: {
       title: "Email",
@@ -254,7 +264,8 @@ export const EventSchema = {
     "date_from",
     "date_to",
     "place",
-    "description",
+    "organizer_id",
+    "distances",
   ],
   type: "object",
   properties: {
@@ -328,6 +339,10 @@ export const EventSchema = {
     organizer: {
       $ref: "#/definitions/OrganizerEvent",
     },
+    organizer_id: {
+      title: "Organizer id",
+      type: "integer",
+    },
     additional_items: {
       type: "array",
       items: {
@@ -344,6 +359,22 @@ export const EventSchema = {
       title: "Extended description",
       type: "string",
       "x-nullable": true,
+    },
+  },
+} as const;
+
+export const OrganizationAccessSchema = {
+  required: ["user", "role"],
+  type: "object",
+  properties: {
+    user: {
+      title: "User",
+      type: "string",
+    },
+    role: {
+      title: "Role",
+      type: "string",
+      enum: ["owner", "organizer"],
     },
   },
 } as const;

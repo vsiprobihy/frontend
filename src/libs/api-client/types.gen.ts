@@ -32,9 +32,11 @@ export type TokenRefresh = {
 };
 
 export type OrganizerEvent = {
+  readonly id?: number;
+  readonly users?: string;
   name: string;
   site_url?: string | null;
-  phone_number: string;
+  phone_number?: string | null;
   email: string;
   instagram_url?: string | null;
   facebook_url?: string | null;
@@ -72,14 +74,20 @@ export type Event = {
   date_to: Date;
   place: string;
   readonly photos?: string | null;
-  description: string;
+  description?: string;
   registration_link?: string | null;
   hide_participants?: boolean;
   readonly schedule_pdf?: string | null;
   organizer?: OrganizerEvent;
+  organizer_id: number;
   additional_items?: Array<AdditionalItemEvent>;
-  distances?: Array<DistanceEvent>;
+  distances: Array<DistanceEvent>;
   extended_description?: string | null;
+};
+
+export type OrganizationAccess = {
+  user: string;
+  role: "owner" | "organizer";
 };
 
 export type EventRegistration = {
@@ -232,8 +240,8 @@ export type EventAdditionalItemsCreateData = {
   path: {
     event_id: string;
     /**
-     * Event ID
-     */
+    //  * Event ID
+    //  */
     // event_id: number;
   };
 };
@@ -630,47 +638,67 @@ export type EventEventsDeleteResponse = void;
 
 export type EventEventsDeleteError = unknown;
 
-export type EventOrganizersReadData = {
+export type EventInviteModeratorCreateData = {
+  body: OrganizationAccess;
+};
+
+export type EventInviteModeratorCreateResponse = OrganizationAccess;
+
+export type EventInviteModeratorCreateError = unknown;
+
+export type EventOrganizerEventsListResponse = Array<OrganizerEvent>;
+
+export type EventOrganizerEventsListError = unknown;
+
+export type EventOrganizerEventsCreateData = {
+  body: OrganizerEvent;
+};
+
+export type EventOrganizerEventsCreateResponse = OrganizerEvent;
+
+export type EventOrganizerEventsCreateError = unknown;
+
+export type EventOrganizerEventsReadData = {
   path: {
-    event_id: string;
+    id: string;
   };
 };
 
-export type EventOrganizersReadResponse = OrganizerEvent;
+export type EventOrganizerEventsReadResponse = OrganizerEvent;
 
-export type EventOrganizersReadError = unknown;
+export type EventOrganizerEventsReadError = unknown;
 
-export type EventOrganizersUpdateData = {
+export type EventOrganizerEventsUpdateData = {
   body: OrganizerEvent;
   path: {
-    event_id: string;
+    id: string;
   };
 };
 
-export type EventOrganizersUpdateResponse = OrganizerEvent;
+export type EventOrganizerEventsUpdateResponse = OrganizerEvent;
 
-export type EventOrganizersUpdateError = unknown;
+export type EventOrganizerEventsUpdateError = unknown;
 
-export type EventOrganizersPartialUpdateData = {
+export type EventOrganizerEventsPartialUpdateData = {
   body: OrganizerEvent;
   path: {
-    event_id: string;
+    id: string;
   };
 };
 
-export type EventOrganizersPartialUpdateResponse = OrganizerEvent;
+export type EventOrganizerEventsPartialUpdateResponse = OrganizerEvent;
 
-export type EventOrganizersPartialUpdateError = unknown;
+export type EventOrganizerEventsPartialUpdateError = unknown;
 
-export type EventOrganizersDeleteData = {
+export type EventOrganizerEventsDeleteData = {
   path: {
-    event_id: string;
+    id: string;
   };
 };
 
-export type EventOrganizersDeleteResponse = void;
+export type EventOrganizerEventsDeleteResponse = void;
 
-export type EventOrganizersDeleteError = unknown;
+export type EventOrganizerEventsDeleteError = unknown;
 
 export type RegisterUserForEventData = {
   body: {
@@ -756,3 +784,16 @@ export type DeleteEventRegistrationData = {
 export type DeleteEventRegistrationResponse = void;
 
 export type DeleteEventRegistrationError = unknown;
+
+export type UpcomingEventsListData = {
+  query?: {
+    /**
+     * Number of upcoming events to return (default is 3)
+     */
+    count?: number;
+  };
+};
+
+export type UpcomingEventsListResponse = unknown;
+
+export type UpcomingEventsListError = unknown;

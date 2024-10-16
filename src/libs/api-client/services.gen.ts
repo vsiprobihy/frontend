@@ -71,18 +71,26 @@ import type {
   EventEventsDeleteData,
   EventEventsDeleteError,
   EventEventsDeleteResponse,
-  EventOrganizersReadData,
-  EventOrganizersReadError,
-  EventOrganizersReadResponse,
-  EventOrganizersUpdateData,
-  EventOrganizersUpdateError,
-  EventOrganizersUpdateResponse,
-  EventOrganizersPartialUpdateData,
-  EventOrganizersPartialUpdateError,
-  EventOrganizersPartialUpdateResponse,
-  EventOrganizersDeleteData,
-  EventOrganizersDeleteError,
-  EventOrganizersDeleteResponse,
+  EventInviteModeratorCreateData,
+  EventInviteModeratorCreateError,
+  EventInviteModeratorCreateResponse,
+  EventOrganizerEventsListError,
+  EventOrganizerEventsListResponse,
+  EventOrganizerEventsCreateData,
+  EventOrganizerEventsCreateError,
+  EventOrganizerEventsCreateResponse,
+  EventOrganizerEventsReadData,
+  EventOrganizerEventsReadError,
+  EventOrganizerEventsReadResponse,
+  EventOrganizerEventsUpdateData,
+  EventOrganizerEventsUpdateError,
+  EventOrganizerEventsUpdateResponse,
+  EventOrganizerEventsPartialUpdateData,
+  EventOrganizerEventsPartialUpdateError,
+  EventOrganizerEventsPartialUpdateResponse,
+  EventOrganizerEventsDeleteData,
+  EventOrganizerEventsDeleteError,
+  EventOrganizerEventsDeleteResponse,
   RegisterUserForEventData,
   RegisterUserForEventError,
   RegisterUserForEventResponse,
@@ -98,6 +106,9 @@ import type {
   DeleteEventRegistrationData,
   DeleteEventRegistrationError,
   DeleteEventRegistrationResponse,
+  UpcomingEventsListData,
+  UpcomingEventsListError,
+  UpcomingEventsListResponse,
 } from "./types.gen";
 
 export const client = createClient(createConfig());
@@ -299,7 +310,10 @@ export const eventAdditionalItemsPartialUpdate = <
 };
 
 /**
- * Delete additional items for an event by ID.
+ *
+ * Delete multiple additional items associated with a specific event identified by the `event_id` in the URL.
+ * The `id` field is required to identify each additional item to be deleted.
+ *
  */
 export const eventAdditionalItemsDelete = <
   ThrowOnError extends boolean = false,
@@ -389,7 +403,10 @@ export const eventDistancesPartialUpdate = <
 };
 
 /**
- * Delete event distance by ID.
+ *
+ * Delete multiple distances associated with a specific event identified by the `event_id` in the URL.
+ * The `id` field is required to identify each distance to be deleted.
+ *
  */
 export const eventDistancesDelete = <ThrowOnError extends boolean = false>(
   options: Options<EventDistancesDeleteData, ThrowOnError>
@@ -484,69 +501,104 @@ export const eventEventsDelete = <ThrowOnError extends boolean = false>(
   });
 };
 
-/**
- * Retrieve the details of an event organizer by event_id. The event_id is used to find the organizer associated with a specific event.
- */
-export const eventOrganizersRead = <ThrowOnError extends boolean = false>(
-  options: Options<EventOrganizersReadData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    EventOrganizersReadResponse,
-    EventOrganizersReadError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/event/organizers/{event_id}/",
-  });
-};
-
-/**
- * Update the details of an event organizer by event_id. The event_id is used to find the organizer, and the request body contains the updated information about the organizer.
- */
-export const eventOrganizersUpdate = <ThrowOnError extends boolean = false>(
-  options: Options<EventOrganizersUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).put<
-    EventOrganizersUpdateResponse,
-    EventOrganizersUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/event/organizers/{event_id}/",
-  });
-};
-
-/**
- * Partially update an event organizer by event_id. Only the fields provided in the request body will be updated.
- */
-export const eventOrganizersPartialUpdate = <
+export const eventInviteModeratorCreate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<EventOrganizersPartialUpdateData, ThrowOnError>
+  options: Options<EventInviteModeratorCreateData, ThrowOnError>
 ) => {
-  return (options?.client ?? client).patch<
-    EventOrganizersPartialUpdateResponse,
-    EventOrganizersPartialUpdateError,
+  return (options?.client ?? client).post<
+    EventInviteModeratorCreateResponse,
+    EventInviteModeratorCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/event/organizers/{event_id}/",
+    url: "/event/invite-moderator/",
   });
 };
 
-/**
- * Delete an event organizer by event_id. The event_id is used to find and delete the organizer associated with a specific event.
- */
-export const eventOrganizersDelete = <ThrowOnError extends boolean = false>(
-  options: Options<EventOrganizersDeleteData, ThrowOnError>
+export const eventOrganizerEventsList = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
 ) => {
-  return (options?.client ?? client).delete<
-    EventOrganizersDeleteResponse,
-    EventOrganizersDeleteError,
+  return (options?.client ?? client).get<
+    EventOrganizerEventsListResponse,
+    EventOrganizerEventsListError,
     ThrowOnError
   >({
     ...options,
-    url: "/event/organizers/{event_id}/",
+    url: "/event/organizer-events/",
+  });
+};
+
+export const eventOrganizerEventsCreate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<EventOrganizerEventsCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    EventOrganizerEventsCreateResponse,
+    EventOrganizerEventsCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/event/organizer-events/",
+  });
+};
+
+export const eventOrganizerEventsRead = <ThrowOnError extends boolean = false>(
+  options: Options<EventOrganizerEventsReadData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    EventOrganizerEventsReadResponse,
+    EventOrganizerEventsReadError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/event/organizer-events/{id}/",
+  });
+};
+
+export const eventOrganizerEventsUpdate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<EventOrganizerEventsUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).put<
+    EventOrganizerEventsUpdateResponse,
+    EventOrganizerEventsUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/event/organizer-events/{id}/",
+  });
+};
+
+export const eventOrganizerEventsPartialUpdate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<EventOrganizerEventsPartialUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<
+    EventOrganizerEventsPartialUpdateResponse,
+    EventOrganizerEventsPartialUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/event/organizer-events/{id}/",
+  });
+};
+
+export const eventOrganizerEventsDelete = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<EventOrganizerEventsDeleteData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<
+    EventOrganizerEventsDeleteResponse,
+    EventOrganizerEventsDeleteError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/event/organizer-events/{id}/",
   });
 };
 
@@ -643,5 +695,21 @@ export const deleteEventRegistration = <ThrowOnError extends boolean = false>(
   >({
     ...options,
     url: "/event/registrations/{id}/",
+  });
+};
+
+/**
+ * API endpoint for receiving the next upcoming events.
+ */
+export const upcomingEventsList = <ThrowOnError extends boolean = false>(
+  options?: Options<UpcomingEventsListData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    UpcomingEventsListResponse,
+    UpcomingEventsListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/upcoming-events/",
   });
 };
