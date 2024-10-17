@@ -90,6 +90,8 @@ more details.
 
 - ### **_libs_**
 
+  - **/api-client**
+
   - **/components**
     Contains reusable components organized into subdirectories:
 
@@ -117,13 +119,14 @@ more details.
 
     - `components.ts` — Re-exports common components used in this section.
 
+  - **/context**
   - **/enums**
     Directory for enum types used throughout the project.
   - **/hooks**
-    Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.  
+    Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
   - **/locale**
   - **/utils**
 
 - ### **_i18_**
-  - **config**
-  - **request**
+  - **`config.ts`**
+  - **`request.ts`**
