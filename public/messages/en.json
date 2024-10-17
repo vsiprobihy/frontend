@@ -1,4 +1,6 @@
 {
+  "metadata_title": "VsiProbihy",
+  "metadata_description": "All-Ukrainian Running Calendar",
   "Logo": {
     "all": "VSI",
     "races": "Probihy"
@@ -19,7 +21,7 @@
     "title": {
       "part1": "All-Ukrainian",
       "part2": "calendar",
-      "part3": "of runs"
+      "part3": "runs"
     },
     "button": "Calendar",
     "subtitle": "Stay updated on races across Ukraine"

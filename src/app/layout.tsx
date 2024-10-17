@@ -33,12 +33,16 @@ const manropeBold = localFont({
   weight: "700",
 });
 
-// TODO Adjust Metadata
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const messages = await getMessages({ locale });
+  const currentYear = new Date().getFullYear();
 
-export const metadata: Metadata = {
-  title: "Vsi Probihy",
-  description: "Платформа для аматорських забігів",
-};
+  return {
+    title: typeof messages["metadata_title"] === "string" ? messages["metadata_title"] : "ВсіПробіги",
+    description: `${typeof messages["metadata_description"] === "string" ? messages["metadata_description"] : "Всеукраїнський календар пробігів"} ${currentYear}`,
+  };
+}
 
 export default async function RootLayout({
   children,
