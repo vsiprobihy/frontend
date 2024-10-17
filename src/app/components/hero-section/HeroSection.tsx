@@ -11,7 +11,7 @@ export const HeroSection: React.FC = () => {
       <div
         className={`mx-auto flex w-full max-w-content-limit flex-col justify-between gap-10 pt-20 md:flex md:flex-row md:items-center md:gap-16`}
       >
-        <div className={`flex flex-col gap-8 md:gap-5`}>
+        <div className={`inline-flex flex-col gap-8 md:gap-5`}>
           <HeroSectionSubtitle />
           <HeroSectionTitle />
         </div>

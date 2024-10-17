@@ -8,7 +8,7 @@ export const HeroSectionSubtitle: React.FC = () => {
 
   return (
     <div
-      className={`grid grid-cols-[auto,1fr] items-center gap-2.5 rounded-[16rem] bg-grey-dark p-3 text-white lg:p-4`}
+      className={`grid grid-cols-[auto,1fr] items-center gap-2.5 rounded-[16rem] bg-grey-dark p-3 text-white lg:w-fit lg:pl-4 lg:pr-6`}
     >
       <div className={`relative size-10 rounded-full bg-white`}>
         <div

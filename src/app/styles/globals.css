@@ -22,7 +22,7 @@
   }
 
   .h3 {
-    font-size: clamp(0.8rem, 1.5vw + 0.1rem, 1.6rem);
+    font-size: clamp(0.8rem, 1.5vw + 0.1rem, 1.4rem);
     @apply font-semibold uppercase;
   }
 }
