@@ -15,7 +15,7 @@ export const HeroSection: React.FC = () => {
           <HeroSectionSubtitle />
           <HeroSectionTitle />
         </div>
-        <div className={`w-full max-w-[700px]`}>
+        <div className={`w-full max-w-[500px] 2xl:max-w-[700px]`}>
           <HeroSectionCarousel
             elements={Array(4).fill({
               image: { src: PlaceholderImage, alt: "Running" },

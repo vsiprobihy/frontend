@@ -120,4 +120,10 @@ more details.
   - **/enums**
     Directory for enum types used throughout the project.
   - **/hooks**
-    Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
+    Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.  
+  - **/locale**
+  - **/utils**
+
+- ### **_i18_**
+  - **config**
+  - **request**
