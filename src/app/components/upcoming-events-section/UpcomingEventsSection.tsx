@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 export const UpcomingEventsSection: React.FC = () => {
   const t = useTranslations("UpcomingEventsSection");
 
-  const createEvent = (id: number): EventCardProps => ({
+  const createEvent = (id: string): EventCardProps => ({
     id,
     image: { src: "", alt: "Event" },
     title: "Event",
@@ -22,7 +22,7 @@ export const UpcomingEventsSection: React.FC = () => {
 
   const events = Array(3)
     .fill(null)
-    .map((_, index) => createEvent(index + 1));
+    .map((_, index) => createEvent((index + 1).toString()));
 
   const renderCustomLink = (text: string, display: string) => (
     <div className={clsx(display)}>
@@ -32,15 +32,15 @@ export const UpcomingEventsSection: React.FC = () => {
 
   const renderEventCards = () =>
     events.map((event, i) => (
-      <div
+      <li
         key={i}
         className={clsx(
-          "min-w-96 flex-1 md:w-[49%] xl:flex-none 2xl:w-[32.6%]",
-          i === events.length - 1 && "lg:hidden xl:block xl:flex-1"
+          "min-w-96 flex-1 md:w-[49%] xl:w-[32.4%] xl:flex-none",
+          i == events.length - 1 && "lg:hidden xl:block xl:flex-1"
         )}
       >
-        <EventCard {...event} />
-      </div>
+        <EventCard {...event} isLiked={i == events.length - 2} />
+      </li>
     ));
 
   return (
@@ -51,15 +51,15 @@ export const UpcomingEventsSection: React.FC = () => {
           {renderCustomLink(t("link.short"), "block md:hidden")}
           {renderCustomLink(t("link.full"), "hidden md:block")}
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <UpcomingEventsCarousel
             elements={events.map((event) => ({ event }))}
           />
         </div>
-        <div className="hidden md:block">
-          <div className="flex flex-row flex-wrap gap-4">
+        <div className="hidden lg:block">
+          <ul className="flex flex-row flex-wrap gap-4">
             {renderEventCards()}
-          </div>
+          </ul>
         </div>
       </div>
     </div>

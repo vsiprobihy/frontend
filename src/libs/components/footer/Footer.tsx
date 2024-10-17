@@ -101,7 +101,9 @@ export const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className={`relative w-full flex-1 pb-[66%] md:h-full md:pb-0`}>
+        <div
+          className={`relative -ml-2.5 w-full flex-1 pb-[66%] md:ml-0 md:h-full md:pb-0`}
+        >
           <Image
             className={`absolute inset-0 z-0 h-full w-full object-[center_0] grayscale sm:object-[calc(50%_+_10rem)_center] 2xl:object-top`}
             src={DesignedByImage}

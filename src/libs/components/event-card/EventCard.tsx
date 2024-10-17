@@ -22,13 +22,20 @@ export interface EventCardProps {
   category: string;
   location: string;
   distanceTitles: string[];
-  id: number;
+  id: string;
 }
 
-export const EventCard: React.FC<EventCardProps> = (props) => (
+interface EventCardAdditionalProps {
+  isLiked?: boolean;
+}
+
+export const EventCard: React.FC<EventCardProps & EventCardAdditionalProps> = ({
+  isLiked = false,
+  ...props
+}) => (
   <Link href={`${AppRoute.EVENT}/${props.id}`} passHref>
     <article
-      className={`flex flex-col overflow-hidden rounded-2xl bg-white p-4`}
+      className={`flex flex-col overflow-hidden rounded-2xl bg-white p-4 transition-shadow hover:shadow-md active:shadow-md`}
     >
       <figure
         className={`relative mb-4 h-0 w-full overflow-hidden rounded-2xl pb-[50%]`}
@@ -39,7 +46,14 @@ export const EventCard: React.FC<EventCardProps> = (props) => (
           alt={props.title}
           className={`absolute inset-0 h-full w-full`}
         />
-        <figcaption className={`sr-only`}>{props.title}</figcaption>
+        {isLiked && (
+          <figcaption className={`absolute bottom-2 right-2`}>
+            <Icon
+              name={IconType.LIKE}
+              className="flex size-10 items-center justify-center rounded-full bg-white text-xl text-orange-hot shadow-sm xl:size-12 xl:text-2xl"
+            />
+          </figcaption>
+        )}
       </figure>
       <section className={`flex flex-col gap-4`}>
         <header>
