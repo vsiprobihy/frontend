@@ -58,6 +58,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link
+          rel="icon"
+          href="./images/icon.svg"
+          type="image/svg+xml"
+          sizes="any"
+        />
+      </head>
       <body
         className={clsx(
           "bg-grey-light antialiased",
