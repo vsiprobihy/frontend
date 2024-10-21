@@ -1,0 +1,35 @@
+@import "icomoon.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  img {
+    @apply object-cover;
+  }
+}
+
+@layer components {
+  .h1 {
+    @apply text-[2.25rem] font-semibold uppercase md:text-[3.5rem] xl:text-[6.25rem];
+  }
+
+  .h2 {
+    @apply text-[1.5rem] font-semibold uppercase md:text-[2rem] xl:text-[3.25rem];
+  }
+}
+
+@layer utilities {
+  .hidden-child > *:not(:last-child) {
+    @apply hidden lg:flex;
+  }
+
+  .dark-effect {
+    @apply hover:bg-white hover:text-dark active:bg-white active:text-dark;
+  }
+
+  .light-effect {
+    @apply hover:bg-dark hover:text-white active:bg-dark active:text-white;
+  }
+}
