@@ -1,3 +1,4 @@
+export { NotFoundTemplate } from "./not-found-template/NotFoundTemplate";
 export { EventCard } from "./event-card/EventCard";
 export type { EventCardProps } from "./event-card/EventCard";
 export { ProfileMenu } from "./profile-menu/ProfileMenu";
