@@ -24,7 +24,7 @@
       "part3": "of runs"
     },
     "button": "Calendar",
-    "subtitle": "Stay updated on races across Ukraine"
+    "subtitle": "Your source for the latest race events in Ukraine"
   },
   "UpcomingEventsSection": {
     "title": "Upcoming Events",
@@ -68,5 +68,15 @@
     "title1": "Congratulations",
     "title2": "on your successful registration.",
     "subtitle": "Good luck with your runs!"
+  },
+  "notFoundPage": {
+    "title": "You seem lost",
+    "description": "This page does not exist",
+    "button": "View calendar"
+  },
+  "notFoundEvent": {
+    "heading": "Empty",
+    "title": "There are no events matching your filters",
+    "description": "We recommend adjusting your filters or resetting them"
   }
 }
