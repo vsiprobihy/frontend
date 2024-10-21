@@ -17,7 +17,7 @@
   }
 
   .h2 {
-    font-size: clamp(1rem, 2vw + 0.8rem, 3.5rem);
+    font-size: clamp(1rem, 2vw + 0.8rem, 3.25rem);
     @apply font-semibold uppercase;
   }
 

@@ -13,7 +13,7 @@ export const CustomLink: React.FC<CustomLinkProps> = (props) => {
     >
       <Link {...props}>
         {props.children}
-        <Icon className="pl-2" name={IconType.LINK} />
+        <Icon className="pl-2 text-xl" name={IconType.LINK} />
       </Link>
     </span>
   );
