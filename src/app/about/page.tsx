@@ -10,7 +10,7 @@ const About: NextPage = () => (
     {/* TODO: Remove this after usage example */}
 
     <div
-      className={`flex h-48 w-full flex-col items-center justify-center bg-dark text-center text-white`}
+      className={`mt-40 flex h-48 w-full flex-col items-center justify-center bg-dark text-center text-white`}
     >
       <h2 className="mb-4 text-lg">Example of icon usage</h2>
 
