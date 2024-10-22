@@ -1,0 +1,72 @@
+{
+  "metadata_title": "ВсіПробіги",
+  "metadata_description": "Всеукраїнський календар пробігів",
+  "Logo": {
+    "all": "ВСІ",
+    "races": "Пробіги"
+  },
+  "Navigation": {
+    "calendar": "Календар",
+    "about": "Про нас"
+  },
+  "ProfileButton": {
+    "profile": "Профіль",
+    "login": "Вхід",
+    "userName": "Користувач"
+  },
+  "LogoutButton": {
+    "logout": "Вийти"
+  },
+  "HeroSection": {
+    "title": {
+      "part1": "Всеукраїнський",
+      "part2": "календар",
+      "part3": "пробігів"
+    },
+    "button": "Календар",
+    "subtitle": "Інформуємо про актуальні забіги по всій Україні"
+  },
+  "UpcomingEventsSection": {
+    "title": "Найближчі заходи",
+    "link": {
+      "full": "Дивитися всі забіги",
+      "short": "Всі"
+    }
+  },
+  "Footer": {
+    "footerText": "Місце зустрічі всіх бігунів",
+    "phoneNumberText": "Телефон",
+    "copyRightText": "© 2015-{year} ВсіПробіги | Угода користувача і політика конфіденційності"
+  },
+  "AuthForm": {
+    "emailPlaceholder": "Електронна адреса",
+    "invalidEmail": "Невірний формат email",
+    "requiredEmail": "Електронна адреса обов'язкова",
+    "passwordPlaceholder": "Пароль",
+    "passwordLabel": "Пароль",
+    "invalidPassword": "Пароль повинен містити принаймні 6 символів",
+    "requiredPassword": "Пароль обов'язковий",
+    "password2Placeholder": "Підтвердження пароля",
+    "password2Label": "Підтвердження пароля",
+    "passwordsMismatch": "Паролі не співпадають",
+    "requiredPassword2": "Підтвердження пароля обов'язкове",
+    "rememberMe": "Запам'ятати мене",
+    "forgotPassword": "Забули пароль?",
+    "loginButton": "Увійти",
+    "registerButton": "Зареєструватися",
+    "termsText": "Заповнюючи форму реєстрації, ви автоматично приймаєте умови",
+    "termsLink": "Договору оферти",
+    "or": "Або"
+  },
+  "AuthModal": {
+    "loginTab": "Вхід",
+    "registerTab": "Реєстрація",
+    "loginFailed": "Не вдалося увійти: {error}",
+    "registrationFailed": "Не вдалося зареєструватися: {error}"
+  },
+  "SuccessModal": {
+    "title1": "Вітаємо вас",
+    "title2": "з успішною реєстрацією.",
+    "subtitle": "Вдалих забігів вам!"
+  }
+}

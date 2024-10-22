@@ -4,25 +4,25 @@ import {
   NavigationLink,
   HeaderNotificationButton,
   ProfileButton,
-  linkValues,
+  getLinkValues,
 } from "~/components";
 
 import { useResponsiveDevice, useUserInteraction } from "~/hooks";
+import { useTranslations } from "next-intl";
 
 export const MobileMenu: React.FC = () => {
   const isResponsiveDevice = useResponsiveDevice();
-  const {
-    hasNotification,
-    userImage,
-    handleNotificationAccess,
-    translatedText,
-  } = useUserInteraction();
+  const { hasNotification, userImage, handleNotificationAccess } =
+    useUserInteraction();
+
+  const t = useTranslations("Navigation");
+  const linkValues = getLinkValues(t);
 
   if (!isResponsiveDevice) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-lg">
-      <nav className="flex items-center justify-between gap-0.5 px-2 py-2 uppercase text-white md:px-4">
+      <nav className="flex items-center justify-between gap-x-0.5 px-2 py-2 uppercase text-white md:gap-x-5 md:px-4">
         {linkValues.map((link, index) => (
           <NavigationLink
             key={index}
@@ -37,11 +37,7 @@ export const MobileMenu: React.FC = () => {
             onClick={handleNotificationAccess}
           />
 
-          <ProfileButton
-            userImage={userImage}
-            isResponsiveDevice={true}
-            translatedText={translatedText}
-          />
+          <ProfileButton userImage={userImage} isResponsiveDevice={true} />
         </div>
       </nav>
     </div>

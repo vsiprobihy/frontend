@@ -1,0 +1,72 @@
+{
+  "metadata_title": "VsiProbihy",
+  "metadata_description": "All-Ukrainian Running Calendar",
+  "Logo": {
+    "all": "VSI",
+    "races": "Probihy"
+  },
+  "Navigation": {
+    "calendar": "Calendar",
+    "about": "About us"
+  },
+  "ProfileButton": {
+    "profile": "Profile",
+    "login": "Login",
+    "userName": "User"
+  },
+  "LogoutButton": {
+    "logout": "Logout"
+  },
+  "HeroSection": {
+    "title": {
+      "part1": "All-Ukrainian",
+      "part2": "calendar",
+      "part3": "of runs"
+    },
+    "button": "Calendar",
+    "subtitle": "Stay updated on races across Ukraine"
+  },
+  "UpcomingEventsSection": {
+    "title": "Upcoming Events",
+    "link": {
+      "full": "See all runs",
+      "short": "All"
+    }
+  },
+  "Footer": {
+    "footerText": "The meeting place for all runners",
+    "phoneNumberText": "Phone",
+    "copyRightText": "© 2015-{year} VsiProbihy | User Agreement and Privacy Policy"
+  },
+  "AuthForm": {
+    "emailPlaceholder": "Email address",
+    "invalidEmail": "Invalid email format",
+    "requiredEmail": "Email is required",
+    "passwordPlaceholder": "Password",
+    "passwordLabel": "Password",
+    "invalidPassword": "Password must be at least 6 characters",
+    "requiredPassword": "Password is required",
+    "password2Placeholder": "Confirm password",
+    "password2Label": "Confirm password",
+    "passwordsMismatch": "Passwords do not match",
+    "requiredPassword2": "Password confirmation is required",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Login",
+    "registerButton": "Sign up",
+    "termsText": "By registering, you automatically accept the terms of the",
+    "termsLink": "User Agreement",
+    "or": "Or"
+  },
+  "AuthModal": {
+    "loginTab": "Login",
+    "registerTab": "Register",
+    "loginFailed": "Login failed: {error}",
+    "registrationFailed": "Registration failed: {error}"
+  },
+  "SuccessModal": {
+    "title1": "Congratulations",
+    "title2": "on your successful registration.",
+    "subtitle": "Good luck with your runs!"
+  }
+}
