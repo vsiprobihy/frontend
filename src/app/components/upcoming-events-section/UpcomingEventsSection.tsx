@@ -40,17 +40,15 @@ export const UpcomingEventsSection: React.FC = () => {
   });
 
   const events =
-    data?.events
-      .map((event) => ({
-        photos: { src: event.photos || PlaceholderImage, alt: event.name },
-        name: event.name,
-        date_from: event.date_from,
-        date_to: event.date_to,
-        competition_type: event.competition_type,
-        place: event.place,
-        distances: event.distances,
-      }))
-      .slice(-3) || [];
+    data?.events.map((event) => ({
+      photos: { src: event.photos || PlaceholderImage, alt: event.name },
+      name: event.name,
+      date_from: event.date_from,
+      date_to: event.date_to,
+      competition_type: event.competition_type,
+      place: event.place,
+      distances: event.distances,
+    })) || [];
 
   return (
     <div className={`px-2.5 py-12 lg:px-16 lg:py-20 xl:py-32`}>

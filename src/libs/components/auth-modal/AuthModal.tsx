@@ -86,8 +86,15 @@ export const AuthModal: React.FC = () => {
     },
     onSuccess: (data: { data?: TokenRefresh }) => {
       const token = data.data?.access;
-      if (token) {
+      const refreshToken = data.data?.refresh;
+
+      if (token && refreshToken) {
         Cookies.set("authToken", token, {
+          expires: rememberMe ? 7 : 1,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
+        });
+        Cookies.set("refreshToken", refreshToken, {
           expires: rememberMe ? 7 : 1,
           secure: process.env.NODE_ENV === "production",
           sameSite: "Strict",
@@ -126,8 +133,6 @@ export const AuthModal: React.FC = () => {
       alert(`Registration failed: ${error.message}`);
     },
   });
-
-  // const token = Cookies.get("authToken");
 
   const onSubmitRegister = (data: Register) => {
     mutateRegister(data);
