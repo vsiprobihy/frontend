@@ -55,16 +55,16 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          <AuthProvider initialAuthState={false}>
-            <Suspense>
+          <Suspense>
+            <AuthProvider initialAuthState={false}>
               <Header />
               <MobileMenu />
               <AuthModal />
               <SuccessModal />
-            </Suspense>
-            {children}
-            <Footer />
-          </AuthProvider>
+              {children}
+              <Footer />
+            </AuthProvider>
+          </Suspense>
         </ReactQueryProvider>
       </body>
     </html>
