@@ -22,6 +22,7 @@ RUN npm run build && \
 FROM base As production
 ENV NODE_ENV production
 RUN apk add --no-cache bash
+RUN apk add --no-cache bash curl
 
 USER node
 
@@ -42,6 +43,6 @@ USER node
 
 EXPOSE 3000
 
-CMD ["./wait-for-it.sh", "backend:8000", "--", "npm", "run", "start"]
+CMD ["./wait-for-it.sh", "probihy_back_container:8000", "--", "npm", "run", "start"]
 
 # CMD ["npm", "start"]
