@@ -43,9 +43,9 @@ export const UpcomingEventsSection: React.FC = () => {
     data?.events.map((event) => ({
       photos: { src: event.photos || PlaceholderImage, alt: event.name },
       name: event.name,
-      date_from: event.date_from,
-      date_to: event.date_to,
-      competition_type: event.competition_type,
+      dateFrom: event.date_from,
+      dateTo: event.date_to,
+      competitionType: event.competition_type,
       place: event.place,
       distances: event.distances,
     })) || [];

@@ -22,9 +22,9 @@ export const IconText: React.FC<{ icon: IconType; text: string }> = ({
 export interface EventCardProps {
   photos: ImageProps;
   name: string;
-  date_from: string;
-  date_to: string;
-  competition_type: string;
+  dateFrom: string;
+  dateTo: string;
+  competitionType: string;
   place: string;
   distances: { name: string }[];
 }
@@ -32,30 +32,35 @@ export interface EventCardProps {
 export const EventCard: React.FC<EventCardProps> = (props) => {
   dayjs.locale("uk");
 
-  function capitalizeFirstLetter(string: string): string {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
   const formatDateRange = (
-    date_from: string,
-    date_to: string,
+    dateFrom: string,
+    dateTo: string,
     locale: string
   ): string => {
     dayjs.locale(locale);
 
-    const startDate = dayjs(date_from).format("D");
-    const endDay = dayjs(date_to).format("D");
-    const monthYear = dayjs(date_from).format("MMMM YYYY");
-
-    let result: string;
-    if (date_from === date_to) {
-      result = `${startDate} ${monthYear}`;
-    } else {
-      result = `${startDate}-${endDay} ${monthYear}`;
+    const startDate = dayjs(dateFrom).format("D");
+    const endDay = dayjs(dateTo).format("D");
+    let month = dayjs(dateFrom).format("MMMM");
+    if (locale === "uk") {
+      month = month.replace(/(ень|ий|д)$/, (match) => {
+        if (match === "ень") return "ня";
+        if (match === "ий") return "ого";
+        if (match === "д") return "да";
+        return match;
+      });
     }
-    return capitalizeFirstLetter(result);
+    const year = dayjs(dateFrom).format("YYYY");
+
+    const result =
+      dateFrom === dateTo
+        ? `${startDate} ${month} ${year}`
+        : `${startDate}-${endDay} ${month} ${year}`;
+
+    return result;
   };
 
-  const formattedDate = formatDateRange(props.date_from, props.date_to, "uk");
+  const formattedDate = formatDateRange(props.dateFrom, props.dateTo, "uk");
 
   return (
     <div
@@ -72,7 +77,7 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
         <div className={`flex flex-col`}>
           <div className={`flex flex-col gap-2`}>
             <div>
-              <ActivityTypeTag>{props.competition_type}</ActivityTypeTag>
+              <ActivityTypeTag>{props.competitionType}</ActivityTypeTag>
             </div>
             <h3 className={`text-2xl font-semibold text-dark lg:text-[2rem]`}>
               {props.name}
