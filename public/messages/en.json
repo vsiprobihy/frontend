@@ -78,5 +78,41 @@
     "heading": "Empty",
     "title": "There are no events matching your filters",
     "description": "We recommend adjusting your filters or resetting them"
+  },
+  "profile": {
+    "title": "Runner profile"
+  },
+  "profileForm": {
+    "dataTitle": {
+      "title": "My data",
+      "personal": "Personal data",
+      "contact": "Contact date",
+      "club": "Sport club",
+      "contactPerson": "Emergency contact person"
+    },
+    "labels": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "sex": "Sex",
+      "birth": "Date of birth",
+      "size": "Size of T-shirt",
+      "country": "Country",
+      "city": "City or locality",
+      "email": "E-mail",
+      "phone": "Phone",
+      "clubName": "Club name",
+      "fullNameEmergencyPerson": "Full name"
+    },
+    "sex": {
+      "female": "female",
+      "male": "male"
+    },
+    "button": "Save"
+  },
+  "profileCard": {
+    "data": "Participant data",
+    "registrations": "My registartions",
+    "archive": "Archive of starts",
+    "likes": "Favorites starts"
   }
 }
