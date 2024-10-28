@@ -10,7 +10,7 @@ on:
 
 jobs:
   build_and_deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     env:
       SERVICE_NAME: frontend
@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Show current directory
+        run: pwd
 
       # - name: Create .env file
       #   run: |
@@ -45,7 +48,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
-            docker-compose -f VsiProbihy/docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
+            docker-compose -f docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
             docker image prune -f
 #            docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:latest
 #            docker-compose up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
