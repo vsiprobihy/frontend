@@ -7,4 +7,5 @@ export enum AppRoute {
   ABOUT = "/about",
   NOT_FOUND = "/404",
   EVENT = "/event/events",
+  PROFILE = "/profile",
 }

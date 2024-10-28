@@ -2,7 +2,7 @@ import { ProfileHeader } from "@/libs/components/profile/profile-header/ProfileH
 import { NextPage } from "next";
 
 const Profile: NextPage = () => (
-  <main>
+  <main className="lg:mb-22 mb-20">
     <ProfileHeader />
   </main>
 );
