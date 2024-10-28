@@ -26,7 +26,7 @@ RUN apk add --no-cache bash curl
 
 USER node
 
-COPY --chown=node:node --from=build /var/www/app/.env ./
+#COPY --chown=node:node --from=build /var/www/app/.env ./
 COPY --chown=node:node --from=build /var/www/app/node_modules ./node_modules
 COPY --chown=node:node package*.json ./
 COPY --chown=node:node --from=build /var/www/app/.next ./.next
