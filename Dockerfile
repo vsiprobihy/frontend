@@ -22,10 +22,11 @@ RUN npm run build && \
 FROM base As production
 ENV NODE_ENV production
 RUN apk add --no-cache bash
+RUN apk add --no-cache bash curl
 
 USER node
 
-COPY --chown=node:node --from=build /var/www/app/.env ./
+#COPY --chown=node:node --from=build /var/www/app/.env ./
 COPY --chown=node:node --from=build /var/www/app/node_modules ./node_modules
 COPY --chown=node:node package*.json ./
 COPY --chown=node:node --from=build /var/www/app/.next ./.next
@@ -42,6 +43,6 @@ USER node
 
 EXPOSE 3000
 
-CMD ["./wait-for-it.sh", "backend:8000", "--", "npm", "run", "start"]
+CMD ["./wait-for-it.sh", "probihy_back_container:8000", "--", "npm", "run", "start"]
 
 # CMD ["npm", "start"]
