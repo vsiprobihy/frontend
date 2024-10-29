@@ -57,7 +57,7 @@ jobs:
             cd /home/***
             ls -la
             pwd
-            docker-compose --env-file .env -f docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
+            docker-compose -f docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
             docker image prune -f
 
       - name: Cleanup Docker images on GitHub runner
