@@ -44,7 +44,7 @@ jobs:
             export BACKEND_SHA="latest"
 
             docker pull ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
-            docker-compose -f docker-compose.yml up -d --no-deps frontend
+            docker-compose -f docker-compose.yml up -d --no-deps --force-recreate frontend
 
       - name: Cleanup Docker images on GitHub runner
         run: |
