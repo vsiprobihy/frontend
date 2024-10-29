@@ -24,7 +24,7 @@ jobs:
         run: pwd
 
       - name: Show directory lists
-        run: ls-la /home/runner/work/
+        run: ls -la /home/runner/work/
 
 
       # - name: Create .env file
@@ -51,7 +51,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
-            docker-compose -f docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
+            docker-compose -f /home/runner/work/ docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
             docker image prune -f
 #            docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:latest
 #            docker-compose up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
