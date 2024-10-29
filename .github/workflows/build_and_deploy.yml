@@ -54,9 +54,13 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
-            docker-compose -f /home/runner/work/frontend/frontend/docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
+            docker-compose -f ./docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
             docker image prune -f
+#            docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+#            docker-compose -f /home/runner/work/frontend/frontend/docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
+#            docker image prune -f
 #            docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:latest
 #            docker-compose up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
 #            docker image prune -f
