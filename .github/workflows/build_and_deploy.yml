@@ -14,8 +14,6 @@ jobs:
     env:
       SERVICE_NAME: frontend
 
-
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,18 +29,6 @@ jobs:
         run: |
           docker push ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
 
-      - name: Create .env file for docker-compose
-        run: |
-          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" > .env
-          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
-          pwd
-          ls -la
-
-      - name: Show files
-        run: |
-          ls -l
-          pwd
-
       - name: Deploy to Remote Server with Rolling Update
         uses: appleboy/ssh-action@v0.1.5
         with:
@@ -52,12 +38,8 @@ jobs:
           script: |
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
-            ls -la
-            pwd
-            cd /home/***
-            ls -la
-            pwd
-            cat docker-compose.yml
+            export GITHUB_REPOSITORY=${{ github.repository }}
+            export GITHUB_SHA=${{ github.sha }}
             docker-compose -f docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
             docker image prune -f
 
