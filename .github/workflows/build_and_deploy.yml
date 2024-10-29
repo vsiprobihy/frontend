@@ -26,6 +26,7 @@ jobs:
       - name: Show directory lists
         run: ls-la /home/runner/work/
 
+
       # - name: Create .env file
       #   run: |
       #     echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env
