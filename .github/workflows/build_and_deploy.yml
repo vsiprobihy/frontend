@@ -44,7 +44,7 @@ jobs:
 
             docker pull ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
             
-            docker stack deploy docker-compose.yml probihy_app
+            docker stack deploy -c docker-compose.yml probihy_app
 
       - name: Cleanup Docker images on GitHub runner
         run: |
