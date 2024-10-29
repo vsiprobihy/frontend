@@ -11,6 +11,7 @@ interface NotFoundTemplateProps {
   title: string;
   description: string;
   isLage?: boolean;
+  isSmall?: boolean;
 }
 
 export const NotFoundTemplate: NextPage<NotFoundTemplateProps> = ({
@@ -19,6 +20,7 @@ export const NotFoundTemplate: NextPage<NotFoundTemplateProps> = ({
   title,
   description,
   isLage = false,
+  isSmall = false,
 }) => {
   return (
     <div className="flex flex-col items-center justify-center text-center">
@@ -28,7 +30,8 @@ export const NotFoundTemplate: NextPage<NotFoundTemplateProps> = ({
             "font-bold uppercase leading-[10rem] text-grey-light-middle md:leading-[15rem] lg:leading-none",
             isLage
               ? "text-[21rem]"
-              : "text-[11rem] md:text-[16rem] lg:text-[21rem]"
+              : "text-[11rem] md:text-[16rem] lg:text-[21rem]",
+            isSmall && "lg:!text-[11rem]"
           )}
         >
           {heading}

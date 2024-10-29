@@ -1,9 +1,9 @@
-import { ProfileHeader } from "@/libs/components/profile/profile-header/ProfileHeader";
+import { ProfileComponent } from "@/libs/components/profile/Profile";
 import { NextPage } from "next";
 
 const Profile: NextPage = () => (
   <main className="lg:mb-22 mb-20">
-    <ProfileHeader />
+    <ProfileComponent />
   </main>
 );
 

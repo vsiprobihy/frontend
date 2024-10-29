@@ -114,5 +114,22 @@
     "registrations": "My registartions",
     "archive": "Archive of starts",
     "likes": "Favorites starts"
+  },
+  "NotFoundProfileFavorites": {
+    "message": "You currently have no favorites.",
+    "calendarMessage": "Add your favorite events here in our",
+    "calendar": "running calendar."
+  },
+  "notFoundProfileArchiveOfStarts": {
+    "heading": "Empty",
+    "title": "You currently have no archived registrations.",
+    "description": "Find a new challenge in our",
+    "calendar": "running calendar."
+  },
+  "notFoundProfileRegistration": {
+    "heading": "Empty",
+    "title": "You currently have no registrations.",
+    "description": "Find a new challenge in our",
+    "calendar": "running calendar."
   }
 }

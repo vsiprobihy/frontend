@@ -30,6 +30,7 @@ import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
 import { useAuth } from "~/context";
 import { useTranslations } from "next-intl";
+import { AppRoute } from "@/libs/enums";
 
 export const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
@@ -124,6 +125,7 @@ export const AuthModal: React.FC = () => {
       params.set("showSuccessModal", "true");
       router.push(`?${params.toString()}`);
       setIsAuthenticatedUser(true);
+      router.push(AppRoute.PROFILE);
     },
     onError: (error) => {
       alert(t("registrationFailed", { error: error.message }));

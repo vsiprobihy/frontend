@@ -113,6 +113,23 @@
     "data": "Дані учасника",
     "registrations": "Мої реєстрації",
     "archive": "Архів стартів",
-    "likes": "Вподобані старти старти"
+    "likes": "Вподобані старти"
+  },
+  "NotFoundProfileFavorites": {
+    "message": "Наразі у вас немає вподобань",
+    "calendarMessage": "Додавай сюди улюблені старти в нашому",
+    "calendar": "календарі пробігів"
+  },
+  "notFoundProfileArchiveOfStarts": {
+    "heading": "Пусто",
+    "title": "Наразі у вас немає архівних реєстрацій",
+    "description": "Знайди новий виклик в нашому",
+    "calendar": "календарі пробігів"
+  },
+  "notFoundProfileRegistartion": {
+    "heading": "Пусто",
+    "title": "Наразі у вас немає реєстрацій",
+    "description": "Знайди новий виклик в нашому",
+    "calendar": "календарі пробігів"
   }
 }
