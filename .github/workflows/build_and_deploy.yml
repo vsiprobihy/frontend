@@ -40,7 +40,7 @@ jobs:
         run: ls -l .env docker-compose.yml
 
       - name: Show files
-        run:
+        run: |
           ls -l
           pwd
 
