@@ -36,12 +36,10 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
             export FRONTEND_REPOSITORY=${{ github.repository }}
             export FRONTEND_SHA=${{ github.sha }}
-            export BACKEND_REPOSITORY=${{ github.repository }}
-            export BACKEND_SHA=${{ github.sha }}
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            docker pull ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
             docker-compose -f docker-compose.yml up -d --no-deps --scale ${{ env.SERVICE_NAME }}=1 --remove-orphans
 
       - name: Cleanup Docker images on GitHub runner
