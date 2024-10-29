@@ -36,13 +36,21 @@ jobs:
           echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env
           echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
 
+      - name: Verify .env and docker-compose.yml files
+        run: ls -l .env docker-compose.yml
+
+      - name: Show files
+        run:
+          ls -l
+          pwd
+
       - name: Copy docker-compose.yml to remote server
         uses: appleboy/scp-action@v0.1.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ".env docker-compose.yml"
+          source: "./.env ./docker-compose.yml"
           target: "/home/***/"
 
       - name: Deploy to Remote Server with Rolling Update
