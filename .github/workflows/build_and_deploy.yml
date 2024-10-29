@@ -44,7 +44,7 @@ jobs:
 
             docker pull ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
             
-            docker service update --image ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA} app_stack_frontend
+            docker service update --image ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA} probihy_app_frontend
 
       - name: Cleanup Docker images on GitHub runner
         run: |
