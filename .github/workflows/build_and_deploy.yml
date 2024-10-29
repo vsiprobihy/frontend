@@ -41,10 +41,9 @@ jobs:
             export FRONTEND_SHA=${{ github.sha }}
             export BACKEND_REPOSITORY="${{ github.repository }}"
             export BACKEND_SHA="latest"
-
-            docker pull ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
             
             docker pull ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
+            
             docker rm -f probihy_front_container || true
             docker-compose -f docker-compose.yml up -d --no-deps frontend
 
