@@ -39,12 +39,12 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
             export FRONTEND_REPOSITORY=${{ github.repository }}
             export FRONTEND_SHA=${{ github.sha }}
-            
             export BACKEND_REPOSITORY="${{ github.repository }}"
             export BACKEND_SHA="latest"
 
             docker pull ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
-            docker-compose -f docker-compose.yml up -d --no-deps --force-recreate frontend
+            
+            docker stack deploy docker-compose.yml probihy_app
 
       - name: Cleanup Docker images on GitHub runner
         run: |
