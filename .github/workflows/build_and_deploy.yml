@@ -36,6 +36,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
             export FRONTEND_REPOSITORY=${{ github.repository }}
             export FRONTEND_SHA=${{ github.sha }}
             
