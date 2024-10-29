@@ -17,14 +17,18 @@ jobs:
       BASE_URL: ${{ secrets.BASE_URL }}
 
     steps:
-      - name: Checkout frontend repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Show current directory
         run: pwd
 
       - name: Show directory lists
-        run: ls -la /home/runner/work/
+        run: ls -la /home/runner/work/frontend
+
+      - name: Find path of docker-compose.yml
+        run: |
+          find . -name "docker-compose.yml"
 
 
       # - name: Create .env file
