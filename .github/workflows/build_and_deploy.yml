@@ -52,6 +52,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./.env ./docker-compose.yml"
           target: "/home/***/"
+          rm: false
+          strip_components: 0
+          overwrite: true
+          debug: true
 
       - name: Deploy to Remote Server with Rolling Update
         uses: appleboy/ssh-action@v0.1.5
