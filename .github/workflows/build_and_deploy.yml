@@ -39,4 +39,4 @@ jobs:
             export FRONTEND_REPOSITORY=${{ github.repository }}
             export FRONTEND_SHA=${{ github.sha }}
             
-            docker-compose -f docker-compose.yml up -d
+            docker-compose -f /home/azureuser/probihy/frontend/docker-compose.yml up -d
