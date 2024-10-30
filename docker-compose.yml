@@ -16,8 +16,6 @@ services:
       - ./frontend/src:/var/www/app/.next
     networks:
       - app-network
-    depends_on:
-      - backend
 
 
 volumes:
