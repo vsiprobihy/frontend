@@ -6,6 +6,7 @@ on:
       - closed
     branches:
       - main
+      - devops
 
 jobs:
   build_and_deploy:
