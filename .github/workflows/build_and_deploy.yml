@@ -1,11 +1,11 @@
 name: Deploy Front to Server
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - main
+      - devops
+      - deployment
 
 jobs:
   build_and_deploy:
@@ -39,14 +39,5 @@ jobs:
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
             export FRONTEND_REPOSITORY=${{ github.repository }}
             export FRONTEND_SHA=${{ github.sha }}
-            export BACKEND_REPOSITORY="${{ github.repository }}"
-            export BACKEND_SHA="latest"
             
-            docker pull ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
-            
-            docker rm -f probihy_front_container || true
-            docker-compose -f docker-compose.yml up -d --no-deps frontend
-
-      - name: Cleanup Docker images on GitHub runner
-        run: |
-          docker rmi ghcr.io/${{ github.repository }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+            docker-compose -f /home/azureuser/probihy/frontend/docker-compose.yml up -d
