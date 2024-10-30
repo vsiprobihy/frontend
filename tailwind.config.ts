@@ -54,7 +54,7 @@ const config: Config = {
     }),
   },
   fontSize,
-  plugins: [fluid],
+  plugins: [fluid({ checkSC144: false })],
 };
 
 export default config;
