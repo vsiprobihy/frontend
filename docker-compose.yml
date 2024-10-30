@@ -10,7 +10,7 @@ services:
     container_name: probihy_front_container 
     restart: unless-stopped
     ports:
-      - 3000:8000
+      - 3000:3000
     volumes:
       - app_build:/var/www/app/.next
       # - ./frontend/src:/var/www/app/.next
