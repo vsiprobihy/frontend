@@ -1,3 +1,4 @@
+import { stack } from './stack/Stack';
 export { ProfileMenu } from "./profile-menu/ProfileMenu";
 export { MobileMenu } from "./mobile-menu/MobileMenu";
 export { Logo } from "./logo/Logo";
@@ -16,3 +17,14 @@ export { CloseButton } from "./buttons/CloseButton";
 export { CustomLabel } from "./label/CustomLabel";
 export { AuthModal } from "./auth-modal/AuthModal";
 export { SuccessModal } from "./success-modal/SuccessModal";
+export {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from "./table";
+export { Paper } from "./paper/Paper";
+export { Stack } from "./stack/Stack";
