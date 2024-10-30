@@ -1,9 +1,9 @@
 name: Deploy Front to Server
 
 on:
-  pull_request:
-    types:
-      - closed
+#  pull_request:
+#    types:
+#      - closed
     branches:
       - main
       - devops
