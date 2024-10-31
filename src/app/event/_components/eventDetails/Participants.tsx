@@ -9,7 +9,7 @@ import {
 } from "@/libs/components/table";
 import { TableRow } from "@/libs/components/table/TableRow";
 import { useIsMobile } from "@/libs/hooks";
-import DistanceSelector from "../../_ui/DistanceSelector";
+import DistanceSelector from "../DistanceSelector";
 import { distances, participants } from "./data";
 import { Participant } from "./Participant";
 
@@ -51,13 +51,12 @@ export const Participants = () => {
 
   return (
     <Paper>
-      <Stack spacing={6}>
+      <Stack spacing={6} className="flex-col-reverse">
         <DistanceSelector
           distanceOptions={distances}
           theme="grey-dark"
           //TODO: implement logic from api
           onSelectDistance={() => {}}
-          fullWidth
         />
 
         <TableContainer>
