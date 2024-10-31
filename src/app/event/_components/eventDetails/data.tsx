@@ -1,6 +1,6 @@
 import { IconType } from "@/libs/enums";
 import LogoOrgonizer from "~/images/logo-organizer.jpg";
-import { DistanceOption } from "../eventSummary/EventSummary";
+import { DistanceOption } from "../DistanceSelector";
 
 export const organizerInfo = {
   name: "Твоя Пригода",

@@ -6,6 +6,7 @@ type Props = PropsWithChildren<{
   textColor?: string;
   className?: string;
 }>;
+
 export const TableRow: React.FC<Props> = ({
   children,
   bgColor,

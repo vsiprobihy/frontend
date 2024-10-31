@@ -19,7 +19,6 @@ export const TableCell: React.FC<Props> = ({
           "text-left": align === "left",
           "text-right": align === "right",
           "text-center": align === "center",
-          "text-grey": align === "inherit",
         },
         className
       )}
