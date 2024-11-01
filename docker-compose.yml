@@ -15,10 +15,12 @@ services:
       - app_build:/var/www/app/.next
       # - ./frontend/src:/var/www/app/.next
     environment:
-      - NEXT_PUBLIC_BASE_URL=http://48.209.37.8:8000
-      - BASE_URL=http://48.209.37.8:8000
-    env_file:
-     - .env
+#      - NEXT_PUBLIC_BASE_URL=http://48.209.37.8:8000
+#      - BASE_URL=http://48.209.37.8:8000
+      - NEXT_PUBLIC_BASE_URL=http://backend:8000
+      - BASE_URL=http://backend:8000
+#    env_file:
+#     - .env
     networks:
       - app-network
 
