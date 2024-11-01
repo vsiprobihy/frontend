@@ -14,6 +14,9 @@ services:
     volumes:
       - app_build:/var/www/app/.next
       # - ./frontend/src:/var/www/app/.next
+    environment:
+      - NEXT_PUBLIC_BASE_URL=http://48.209.37.8:8000
+      - BASE_URL=http://48.209.37.8:8000
     networks:
       - app-network
 
