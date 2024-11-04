@@ -48,6 +48,9 @@ const config: Config = {
         "content-limit": "2000px",
         "content-limit-1/2": "1000px",
       },
+      fontFamily: {
+        helvetica: ["Helvetica", "Arial", "sans-serif"],
+      },
     },
     fluid: () => ({
       defaultScreens: ["22.5rem", "120rem"],

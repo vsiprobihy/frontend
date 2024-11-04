@@ -29,10 +29,13 @@ import RegisterForm from "./form/RegisterForm";
 import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
 import { useAuth } from "~/context";
+import { useTranslations } from "next-intl";
 
 export const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
   const [rememberMe, setRememberMe] = useState(false);
+
+  const t = useTranslations("AuthModal");
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -97,7 +100,7 @@ export const AuthModal: React.FC = () => {
       handleClose();
     },
     onError: (error) => {
-      alert(`Login failed: ${error.message}`);
+      alert(t("loginFailed", { error: error.message }));
     },
   });
 
@@ -123,7 +126,7 @@ export const AuthModal: React.FC = () => {
       setIsAuthenticatedUser(true);
     },
     onError: (error) => {
-      alert(`Registration failed: ${error.message}`);
+      alert(t("registrationFailed", { error: error.message }));
     },
   });
 
@@ -137,7 +140,7 @@ export const AuthModal: React.FC = () => {
     <Dialog open={showAuthModal} onOpenChange={handleClose}>
       <DialogPortal>
         <DialogOverlay
-          className="fixed inset-0 bg-black bg-opacity-50"
+          className="fixed inset-0 z-50 bg-black bg-opacity-50"
           onClick={handleClose}
         />
 
@@ -181,16 +184,16 @@ export const AuthModal: React.FC = () => {
                 <Tabs.Trigger
                   value="login"
                   onClick={() => handleTabChange("login")}
-                  className="rounded-[50px] text-xl font-semibold uppercase data-[state=active]:absolute data-[state=active]:left-1 data-[state=active]:top-1 data-[state=active]:h-[40px] data-[state=inactive]:h-[48px] data-[state=active]:w-[83px] data-[state=inactive]:w-[254px] data-[state=active]:bg-dark data-[state=inactive]:bg-grey-light data-[state=active]:px-5 data-[state=inactive]:pl-6 data-[state=inactive]:text-start data-[state=active]:text-white data-[state=inactive]:text-dark md:text-2xl md:data-[state=active]:h-[45px] md:data-[state=inactive]:h-[53px] md:data-[state=active]:w-[113px] md:data-[state=inactive]:w-[301px] md:data-[state=active]:px-7 md:data-[state=inactive]:pl-7"
+                  className="rounded-[50px] text-xl font-semibold uppercase data-[state=active]:absolute data-[state=active]:left-1 data-[state=active]:top-1 data-[state=active]:h-[40px] data-[state=inactive]:h-[48px] data-[state=active]:w-[83px] data-[state=inactive]:w-[254px] data-[state=active]:bg-dark data-[state=inactive]:bg-grey-light data-[state=active]:px-5 data-[state=inactive]:pl-6 data-[state=inactive]:text-start data-[state=active]:text-white data-[state=inactive]:text-dark md:text-2xl md:data-[state=active]:h-[45px] md:data-[state=inactive]:h-[53px] md:data-[state=active]:w-[118px] md:data-[state=inactive]:w-[301px] md:data-[state=active]:px-6 md:data-[state=inactive]:px-6"
                 >
-                  Вхід
+                  {t("loginTab")}
                 </Tabs.Trigger>
                 <Tabs.Trigger
                   value="register"
                   onClick={() => handleTabChange("register")}
                   className="rounded-[50px] text-xl font-semibold uppercase data-[state=active]:absolute data-[state=active]:right-[42px] data-[state=active]:top-1 data-[state=active]:h-[40px] data-[state=inactive]:h-[48px] data-[state=active]:w-[161px] data-[state=inactive]:w-[254px] data-[state=active]:bg-dark data-[state=inactive]:bg-grey-light data-[state=active]:px-5 data-[state=inactive]:pr-5 data-[state=inactive]:text-end data-[state=active]:text-white data-[state=inactive]:text-dark md:text-2xl md:data-[state=active]:right-[84px] md:data-[state=active]:h-[45px] md:data-[state=inactive]:h-[53px] md:data-[state=active]:w-[185px] md:data-[state=inactive]:w-[306px] md:data-[state=active]:px-5 md:data-[state=inactive]:pr-4"
                 >
-                  Реєстрація
+                  {t("registerTab")}
                 </Tabs.Trigger>
               </Tabs.List>
 

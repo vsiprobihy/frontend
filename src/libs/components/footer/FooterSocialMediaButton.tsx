@@ -12,10 +12,10 @@ export const FooterSocialMediaButton: React.FC<FooterSocialMediaButtonProps> = (
 ) => {
   return (
     <Link
-      className={`flex h-8 w-8 items-center justify-center rounded bg-grey-dark text-white`}
+      className={`link-hover flex size-16 items-center justify-center rounded-full bg-grey-dark text-white`}
       href={props.url}
     >
-      <Icon name={props.icon} className="text-xl" />
+      <Icon name={props.icon} className="text-2xl" />
     </Link>
   );
 };

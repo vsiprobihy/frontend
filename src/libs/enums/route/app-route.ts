@@ -6,4 +6,5 @@ export enum AppRoute {
   CALENDAR = "/calendar",
   ABOUT = "/about",
   NOT_FOUND = "/404",
+  EVENT = "/event/events",
 }

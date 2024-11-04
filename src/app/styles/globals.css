@@ -12,11 +12,18 @@
 
 @layer components {
   .h1 {
-    @apply text-[2.25rem] font-semibold uppercase md:text-[3.5rem] xl:text-[6.25rem];
+    font-size: clamp(1.8rem, 3vw + 1.5rem, 7rem);
+    @apply font-semibold uppercase;
   }
 
   .h2 {
-    @apply text-[1.5rem] font-semibold uppercase md:text-[2rem] xl:text-[3.25rem];
+    font-size: clamp(1rem, 2vw + 0.8rem, 3.25rem);
+    @apply font-semibold uppercase;
+  }
+
+  .h3 {
+    font-size: clamp(0.8rem, 1.5vw + 0.1rem, 1.4rem);
+    @apply font-semibold uppercase;
   }
 }
 
@@ -31,5 +38,21 @@
 
   .light-effect {
     @apply hover:bg-dark hover:text-white active:bg-dark active:text-white;
+  }
+
+  .link-hover {
+    @apply transform-gpu transition-all duration-300 hover:scale-95 active:scale-95 group-hover:scale-95 group-active:scale-95;
+  }
+
+  .fluid-px {
+    padding-left: clamp(0.75rem, 2vw + 0.5rem, 4rem);
+    padding-right: clamp(0.75rem, 2vw + 0.5rem, 4rem);
+  }
+  .fluid-pl {
+    padding-left: clamp(0.75rem, 2vw + 0.5rem, 4rem);
+  }
+
+  .fluid-badge {
+    max-width: clamp(8rem, 4vw + 8rem, 21rem);
   }
 }

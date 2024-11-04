@@ -9,24 +9,26 @@ import { useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 import { useClickOutside } from "~/hooks";
+import { useTranslations } from "next-intl";
 
 interface ProfileButtonProps {
-  translatedText: string;
   userImage?: string | null;
   isResponsiveDevice?: boolean;
   isLightVariant?: boolean;
 }
 
 export const ProfileButton: React.FC<ProfileButtonProps> = ({
-  translatedText,
   userImage,
   isResponsiveDevice = false,
   isLightVariant,
 }) => {
+  const t = useTranslations("ProfileButton");
   const router = useRouter();
   const searchParams = useSearchParams();
   const { isAuthenticatedUser, setIsAuthenticatedUser } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const translatedText = isAuthenticatedUser ? t("profile") : t("login");
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -96,7 +98,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
         <ProfileMenu
           ref={menuRef}
           userImage={userImage}
-          userName="Користувач"
+          userName={t("userName")}
           isResponsiveDevice={isResponsiveDevice}
           onLogout={handleLogout}
         />
