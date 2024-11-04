@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { calendarFilterList, CalendarFilterListData } from "~/api-client";
 import { useQuery } from "@tanstack/react-query";
-import { LoadingOrError } from "~/components";
+import { LoadingOrError, NotFoundTemplate } from "~/components";
 
 const currentMonth = dayjs().month() + 1;
 const currentYear = dayjs().year();
@@ -79,31 +79,42 @@ const EventsCalendarSection: React.FC = () => {
   return (
     <div className={`px-2.5 py-12 lg:px-16 lg:py-20 xl:py-32`}>
       <div className={`mx-auto flex w-full max-w-content-limit flex-col gap-4`}>
-        <div className={`gap flex flex-col gap-6 md:gap-8`}>
-          {eventsByMonths.map((eventsGroup) => (
-            <div
-              key={`${eventsGroup.monthNumber}-${eventsGroup.yearNumber}`}
-              className={`flex flex-col gap-4 md:gap-6`}
-            >
+        {/*TODO adjust not found element*/}
+        {eventsByMonths.length === 0 ? (
+          <NotFoundTemplate
+            heading={"heading"}
+            title={"title"}
+            description={"description"}
+          >
+            children
+          </NotFoundTemplate>
+        ) : (
+          <div className={`gap flex flex-col gap-6 md:gap-8`}>
+            {eventsByMonths.map((eventsGroup) => (
               <div
-                className={`w-full rounded-lg bg-grey-light-dark px-4 py-2 text-base font-semibold uppercase text-dark md:text-xl`}
+                key={`${eventsGroup.monthNumber}-${eventsGroup.yearNumber}`}
+                className={`flex flex-col gap-4 md:gap-6`}
               >
-                {dayjs()
-                  .month(eventsGroup.monthNumber)
-                  .year(eventsGroup.yearNumber)
-                  .format("MMMM YYYY")}
+                <div
+                  className={`w-full rounded-lg bg-grey-light-dark px-4 py-2 text-base font-semibold uppercase text-dark md:text-xl`}
+                >
+                  {dayjs()
+                    .month(eventsGroup.monthNumber)
+                    .year(eventsGroup.yearNumber)
+                    .format("MMMM YYYY")}
+                </div>
+                <div
+                  className={`grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3`}
+                >
+                  {eventsGroup.events.map((event, i) => (
+                    // TODO change to event id
+                    <EventCard key={i} {...event} />
+                  ))}
+                </div>
               </div>
-              <div
-                className={`grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3`}
-              >
-                {eventsGroup.events.map((event, i) => (
-                  // TODO change to event id
-                  <EventCard key={i} {...event} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
