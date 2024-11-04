@@ -194,7 +194,7 @@ export const AuthModal: React.FC = () => {
                 <Tabs.Trigger
                   value="login"
                   onClick={() => handleTabChange("login")}
-                  className="rounded-[50px] text-xl font-semibold uppercase data-[state=active]:absolute data-[state=active]:left-1 data-[state=active]:top-1 data-[state=active]:h-[40px] data-[state=inactive]:h-[48px] data-[state=active]:w-[83px] data-[state=inactive]:w-[254px] data-[state=active]:bg-dark data-[state=inactive]:bg-grey-light data-[state=active]:px-5 data-[state=inactive]:pl-6 data-[state=inactive]:text-start data-[state=active]:text-white data-[state=inactive]:text-dark md:text-2xl md:data-[state=active]:h-[45px] md:data-[state=inactive]:h-[53px] md:data-[state=active]:w-[118px] md:data-[state=inactive]:w-[301px] md:data-[state=active]:px-6 md:data-[state=inactive]:px-6"
+                  className="rounded-[50px] text-xl font-semibold uppercase data-[state=active]:absolute data-[state=active]:left-1 data-[state=active]:top-1 data-[state=active]:h-[40px] data-[state=inactive]:h-[48px] data-[state=active]:w-[83px] data-[state=inactive]:w-[254px] data-[state=active]:bg-dark data-[state=inactive]:bg-grey-light data-[state=inactive]:pl-6 data-[state=inactive]:text-start data-[state=active]:text-white data-[state=inactive]:text-dark md:text-2xl md:data-[state=active]:h-[45px] md:data-[state=inactive]:h-[53px] md:data-[state=active]:w-[118px] md:data-[state=inactive]:w-[301px] md:data-[state=active]:px-6 md:data-[state=inactive]:px-6"
                 >
                   {t("loginTab")}
                 </Tabs.Trigger>
