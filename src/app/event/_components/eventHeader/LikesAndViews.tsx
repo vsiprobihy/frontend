@@ -8,7 +8,7 @@ type Props = {
 
 const LikesAndViews: React.FC<Props> = ({ views, likes }) => {
   return (
-    <div className="grid grid-flow-col justify-center ~mb-9/8 ~gap-6/8">
+    <div className="grid grid-flow-col justify-center ~gap-6/8">
       <div className="grid grid-flow-col items-center justify-start gap-2">
         <Icon name={IconType.EYE} className="text-grey" />
         <p className="text-sm font-medium leading-[1.4] text-grey">

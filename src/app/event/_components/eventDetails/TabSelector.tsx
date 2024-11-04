@@ -21,13 +21,13 @@ const TabSelector: React.FC<TabSelectorProps> = ({ tabs, onSelect }) => {
   };
 
   return (
-    <div className="grid grid-flow-col grid-cols-[repeat(3,1fr)] content-between rounded-full border-4 border-white bg-white ~mb-4/9">
+    <div className="m-auto grid max-w-[1050px] grid-flow-col grid-cols-[repeat(3,1fr)] content-between rounded-full border-4 border-white bg-white ~mb-4/8">
       {tabs.map((tab, index) => (
         <button
           onClick={() => handleOnSelect(index)}
           key={index}
           className={clsx(
-            "text-sm/2xl rounded-full font-semibold uppercase leading-[1.2] ~py-2/6",
+            "rounded-full font-semibold uppercase leading-[1.2] ~text-sm/2xl ~py-2/6",
             {
               "bg-dark text-white": index === activeTab,
             }

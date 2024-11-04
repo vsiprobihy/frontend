@@ -9,9 +9,9 @@ const text =
 
 export const EventHeader = () => {
   return (
-    <>
+    <div className="~mb-9/8">
       <div className="mb-2 grid justify-center">
-        <p className="justify-self-center rounded-md bg-grey-light-middle px-3 py-2 text-center text-sm font-bold uppercase italic text-white md:px-4 md:py-3 md:text-base">
+        <p className="mb-2 justify-self-center rounded-md bg-grey-light-middle px-3 py-2 text-center text-sm font-bold uppercase italic text-white md:px-4 md:py-3 md:text-base">
           {title}
         </p>
 
@@ -21,6 +21,6 @@ export const EventHeader = () => {
       </div>
       <TimeAndPlace />
       <LikesAndViews views={views} likes={likes} />
-    </>
+    </div>
   );
 };

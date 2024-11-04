@@ -50,14 +50,14 @@ const Information: React.FC<InformationProps> = ({ organizerInfo }) => {
       <div className="grid justify-items-center rounded-2xl bg-white font-semibold leading-[1.2] text-dark ~p-4/6">
         <h3 className="mb-6 uppercase ~text-base/2xl">Організатор</h3>
 
-        <div className="mb-4 overflow-hidden rounded-full ~w-[5.625rem]/[7.375rem]">
+        <div className="~mb-4/2 overflow-hidden rounded-full ~w-[5.625rem]/[7.375rem]">
           <Image src={logo} alt={`${name} logo`} className="w-full" />
         </div>
         <h4 className="mb-4 ~text-base/2xl">{name}</h4>
 
         <SocialLinks links={socialLinks} />
 
-        <p className="uppercase ~text-sm/base ~mb-2/4">{email}</p>
+        <p className="uppercase ~text-sm/base mb-2">{email}</p>
         <p className="~text-sm/base">{phone}</p>
       </div>
     </div>

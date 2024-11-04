@@ -138,7 +138,7 @@ const DistanceSelector: React.FC<Props> = ({
           className="cursor-pointer"
         >
           <p
-            className={`px-6 py-3 text-center text-base font-semibold uppercase leading-[1.2] ${selectedDistanceIndex === index && activeDistanceStyle}`}
+            className={`px-6 py-3 text-center text-base font-semibold uppercase leading-[1.4] ${selectedDistanceIndex === index && activeDistanceStyle}`}
           >
             {formatDistanceLabel(index)}
           </p>
