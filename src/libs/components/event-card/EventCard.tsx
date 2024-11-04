@@ -1,10 +1,10 @@
-import { ActivityTypeTag, DistanceTag, Icon } from "~/components";
+import { ActivityTypeTag, Button, DistanceTag, Icon } from "~/components";
 import { AppRoute, IconType } from "~/enums";
 import dayjs from "dayjs";
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
-import DefaultImage from "~/images/default.webp";
-
+import { ActivityTypeTagProps } from "~/components/tags/ActivityTypeTag";
+import { EventCardImagePlaceholder } from "~/components/event-card/EventCardImagePlaceholder";
 
 const IconText: React.FC<{ icon: IconType; text: string }> = ({
   icon,
@@ -24,12 +24,16 @@ export interface EventCardProps {
   location: string;
   distanceTitles: string[];
   id: string;
-  isLiked?:boolean;
+  isLiked?: boolean;
 }
 
 export const EventCard: React.FC<EventCardProps> = (props) => {
   return (
-    <Link href={`${AppRoute.EVENT}/${props.id}`} passHref className={`flex flex-col overflow-hidden rounded-2xl bg-white`}>
+    <Link
+      href={`${AppRoute.EVENT}/${props.id}`}
+      passHref
+      className={`flex flex-col overflow-hidden rounded-2xl bg-white`}
+    >
       <div className={`relative h-0 w-full pb-[50%]`}>
         <div className={`absolute inset-0 px-4 pt-4`}>
           {props.image ? (
@@ -72,7 +76,7 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
             </div>
           </div>
         </div>
-        <Button size={"middle"}>{buttonText}</Button>
+        <Button size={"middle"}>{"buttonText"}</Button>
       </div>
     </Link>
   );
@@ -87,7 +91,7 @@ export const EventCard: React.FC<EventCardProps> = (props) => {
         className={`relative mb-4 h-0 w-full overflow-hidden rounded-2xl pb-[50%]`}
       >
         <Image
-          {...props.image}
+          {...props.image}H
           src={props.image.src || DefaultImage}
           alt={props.title}
           className={`absolute inset-0 h-full w-full`}

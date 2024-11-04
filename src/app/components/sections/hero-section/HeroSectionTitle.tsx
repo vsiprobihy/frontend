@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import RunningStepImage from "~/images/running-step.webp";
 import { Button } from "~/components";
-import { useRouter } from "next/navigation";
-import { AppRoute } from "~/enums";
 import { useTranslations } from "next-intl";
+
 export const HeroSectionTitle: React.FC = () => {
   const t = useTranslations("HeroSection");
 

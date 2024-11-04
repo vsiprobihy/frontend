@@ -1,4 +1,4 @@
-# Next JS boilerplate
+# Next JS Boilerplate
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [
 `create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
@@ -84,44 +84,44 @@ more details.
 
     - **/api-client**
 
-  - **/components**
+    - **/components**
       Contains reusable components organized into subdirectories:
 
-        - **/buttons**
+          - **/buttons**
 
-        - **/footer**
+          - **/footer**
 
-        - **/header**
+          - **/header**
 
-        - **/icon**
-          Contains components for handling icons (`Icon.tsx`).
+          - **/icon**
+            Contains components for handling icons (`Icon.tsx`).
 
-        - **/links**
-          Contains link-related components, such as:
+          - **/links**
+            Contains link-related components, such as:
 
-            - `CustomLink.tsx` — Component for custom links.
+              - `CustomLink.tsx` — Component for custom links.
 
-        - **/mobile-menu**
+          - **/mobile-menu**
 
-        - **/tags**
-          Contains components for activity and distance tags:
+          - **/tags**
+            Contains components for activity and distance tags:
 
-            - `ActivityTypeTag.tsx` — For activity type tags.
-            - `DistanceTag.tsx` — For distance tags.
+              - `ActivityTypeTag.tsx` — For activity type tags.
+              - `DistanceTag.tsx` — For distance tags.
 
-        - `components.ts` — Re-exports common components used in this section.
+          - `components.ts` — Re-exports common components used in this section.
 
-    - **/context**
-  - **/enums**
+        - **/context**
+    - **/enums**
       Directory for enum types used throughout the project.
-    - **/hooks**
-      Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
-  - **/locale**
-  - **/utils**
+        - **/hooks**
+          Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
+    - **/locale**
+    - **/utils**
 
 - ### **_i18_**
-  - **`config.ts`**
-  - **`request.ts`**
+    - **`config.ts`**
+    - **`request.ts`**
 
 # Basics
 
