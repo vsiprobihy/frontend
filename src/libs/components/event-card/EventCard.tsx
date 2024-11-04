@@ -1,4 +1,4 @@
-import { ActivityTypeTag, Button, DistanceTag, Icon } from "~/components";
+import { ActivityTypeTag, DistanceTag, Icon } from "~/components";
 import { AppRoute, IconType } from "~/enums";
 import dayjs from "dayjs";
 import Image, { ImageProps } from "next/image";
@@ -29,106 +29,108 @@ export interface EventCardProps {
 
 export const EventCard: React.FC<EventCardProps> = (props) => {
   return (
-    <Link
-      href={`${AppRoute.EVENT}/${props.id}`}
-      passHref
-      className={`flex flex-col overflow-hidden rounded-2xl bg-white`}
-    >
-      <div className={`relative h-0 w-full pb-[50%]`}>
-        <div className={`absolute inset-0 px-4 pt-4`}>
-          {props.image ? (
-            <Image
-              {...props.image}
-              className={`h-full rounded-xl`}
-              alt="card"
-            />
-          ) : (
-            <EventCardImagePlaceholder title={props.title} />
-          )}
-        </div>
-      </div>
-      <div className={`flex flex-col gap-6 p-4`}>
-        <div className={`flex flex-col`}>
-          <div className={`flex flex-col gap-2`}>
-            <div>
-              <ActivityTypeTag {...props.activityType}>
-                {props.activityType.children}
-              </ActivityTypeTag>
-            </div>
-            <h3 className={`text-2xl font-semibold text-dark lg:text-[2rem]`}>
-              {props.title}
-            </h3>
-          </div>
-          <div className={`flex flex-col gap-4`}>
-            <div className={`flex flex-col gap-1`}>
-              <IconText
-                icon={IconType.CALENDAR}
-                text={props.date.format("YYYY-MM-DD")}
+    <>
+      <Link
+        href={`${AppRoute.EVENT}/${props.id}`}
+        passHref
+        className={`flex flex-col overflow-hidden rounded-2xl bg-white`}
+      >
+        {/*Image*/}
+        <div className={`relative h-0 w-full pb-[50%]`}>
+          <div className={`absolute inset-0 px-4 pt-4`}>
+            {props.image ? (
+              <Image
+                {...props.image}
+                className={`h-full rounded-xl`}
+                alt="card"
               />
-              <IconText icon={IconType.PIN} text={props.location} />
+            ) : (
+              <EventCardImagePlaceholder title={props.title} />
+            )}
+          </div>
+        </div>
+        {/*Content*/}
+        <div className={`flex flex-col gap-6 p-4`}>
+          <div className={`flex flex-col gap-2`}>
+            <div className={`flex flex-col gap-2`}>
+              <div>
+                <ActivityTypeTag {...props.activityType}>
+                  {props.activityType.children}
+                </ActivityTypeTag>
+              </div>
+              <h4 className={`text-2xl font-semibold text-dark lg:text-[2rem]`}>
+                {props.title}
+              </h4>
             </div>
-            <div>
-              <div className={`flex flex-row flex-wrap gap-2`}>
-                {props.distanceTitles.map((title, index) => (
-                  <DistanceTag key={index}>{title}</DistanceTag>
-                ))}
+            <div className={`flex flex-col gap-4`}>
+              <div className={`flex flex-col gap-1`}>
+                <IconText
+                  icon={IconType.CALENDAR}
+                  text={props.date.format("YYYY-MM-DD")}
+                />
+                <IconText icon={IconType.PIN} text={props.location} />
+              </div>
+              <div>
+                <div className={`flex flex-row flex-wrap gap-2`}>
+                  {props.distanceTitles.map((title, index) => (
+                    <DistanceTag key={index}>{title}</DistanceTag>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <Button size={"middle"}>{"buttonText"}</Button>
-      </div>
-    </Link>
+      </Link>
+    </>
   );
 };
 
+// Saved for later semantics reference ...
 /*
-  <Link href={`${AppRoute.EVENT}/${props.id}`} passHref>
-    <article
-      className={`flex flex-col overflow-hidden rounded-2xl bg-white p-4 transition-shadow hover:shadow-md active:shadow-md`}
-    >
-      <figure
-        className={`relative mb-4 h-0 w-full overflow-hidden rounded-2xl pb-[50%]`}
-      >
-        <Image
-          {...props.image}H
-          src={props.image.src || DefaultImage}
-          alt={props.title}
-          className={`absolute inset-0 h-full w-full`}
-        />
-        {isLiked && (
-          <figcaption className={`absolute bottom-2 right-2`}>
-            <Icon
-              name={IconType.LIKE}
-              className="flex size-10 items-center justify-center rounded-full bg-white text-xl text-orange-hot shadow-sm xl:size-12 xl:text-2xl"
-            />
-          </figcaption>
-        )}
-      </figure>
-      <section className={`flex flex-col gap-4`}>
-        <header>
-          <ActivityTypeTag>{props.category}</ActivityTypeTag>
-          <h4
-            className={`pt-4 text-2xl font-semibold text-dark lg:text-[2rem]`}
+<Link href={`${AppRoute.EVENT}/${props.id}`} passHref>
+        <article
+          className={`flex flex-col overflow-hidden rounded-2xl bg-white p-4 transition-shadow hover:shadow-md active:shadow-md`}
+        >
+          <figure
+            className={`relative mb-4 h-0 w-full overflow-hidden rounded-2xl pb-[50%]`}
           >
-            {props.title}
-          </h4>
-        </header>
-        <section className={`flex flex-col gap-4`}>
-          <div className={`flex flex-col gap-2`}>
-            <IconText
-              icon={IconType.CALENDAR}
-              text={props.date.format("YYYY-MM-DD")}
+            <Image
+              {...props.image}
+              className={`absolute inset-0 h-full w-full`}
             />
-            <IconText icon={IconType.PIN} text={props.location} />
-          </div>
-          <footer className={`flex flex-row flex-wrap gap-2`}>
-            {props.distanceTitles.map((title, index) => (
-              <DistanceTag key={index}>{title}</DistanceTag>
-            ))}
-          </footer>
-        </section>
-      </section>
-    </article>
-  </Link>
+            {props.isLiked && (
+              <figcaption className={`absolute bottom-2 right-2`}>
+                <Icon
+                  name={IconType.LIKE}
+                  className="flex size-10 items-center justify-center rounded-full bg-white text-xl text-orange-hot shadow-sm xl:size-12 xl:text-2xl"
+                />
+              </figcaption>
+            )}
+          </figure>
+          <section className={`flex flex-col gap-4`}>
+            <header>
+              <ActivityTypeTag {...props.activityType} />
+              <h4
+                className={`pt-4 text-2xl font-semibold text-dark lg:text-[2rem]`}
+              >
+                {props.title}
+              </h4>
+            </header>
+            <section className={`flex flex-col gap-4`}>
+              <div className={`flex flex-col gap-2`}>
+                <IconText
+                  icon={IconType.CALENDAR}
+                  text={props.date.format("YYYY-MM-DD")}
+                />
+                <IconText icon={IconType.PIN} text={props.location} />
+              </div>
+              <footer className={`flex flex-row flex-wrap gap-2`}>
+                {props.distanceTitles.map((title, index) => (
+                  <DistanceTag key={index}>{title}</DistanceTag>
+                ))}
+              </footer>
+            </section>
+          </section>
+        </article>
+      </Link>
  */
