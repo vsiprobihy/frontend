@@ -159,7 +159,7 @@ export const AuthModal: React.FC = () => {
           className={clsx(
             "fixed inset-0 z-50 mx-auto mt-5 flex items-center justify-between rounded-lg bg-white p-6 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:transform",
             value === "register"
-              ? "max-h-[675px] w-[340px] md:min-h-[760px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"
+              ? "w-[340px] md:min-h-[760px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"
               : "h-[675px] w-[340px] py-6 md:min-h-[693px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"
           )}
         >
@@ -209,7 +209,7 @@ export const AuthModal: React.FC = () => {
 
               <Tabs.Content
                 value="login"
-                className="flex flex-grow items-center justify-center"
+                className="flex items-center justify-center"
               >
                 <LoginForm
                   onSubmit={onSubmitLogin}
@@ -218,7 +218,7 @@ export const AuthModal: React.FC = () => {
               </Tabs.Content>
               <Tabs.Content
                 value="register"
-                className="flex flex-grow items-center justify-center"
+                className="flex items-center justify-center"
               >
                 <RegisterForm onSubmit={onSubmitRegister} />
               </Tabs.Content>
