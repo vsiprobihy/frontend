@@ -21,3 +21,4 @@ export { Input } from "./inputs/Input";
 export { Label } from "./inputs/Label";
 export { Select } from "./inputs/Select";
 export { Badge } from "./badge/Badge";
+export { LoadingOrError } from "./loading-or-error/LoadingOrError";

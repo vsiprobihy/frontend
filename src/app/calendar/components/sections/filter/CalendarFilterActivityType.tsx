@@ -1,19 +1,22 @@
 // TODO pull tags from API
 "use client";
-import { ActivityTypeTagProps } from "~/components/tags/ActivityTypeTag";
 import { ActivityTypeButton } from "~/components/activity-type/ActivityTypeButton";
-import { CalendarFilterListData } from "~/api-client/types.gen";
+import { CalendarFilterListResponse } from "~/api-client/types.gen";
 import { useState } from "react";
 
+type CompetitionType = CalendarFilterListResponse[0]["competition_type"];
+
 interface CalendarFilterActivityTypeProps {
-  onChange: (newFilters: Partial<CalendarFilterListData["query"]>) => void;
+  onChange: (competitionTypeId?: CompetitionType) => void;
 }
 
 export const CalendarFilterActivityType: React.FC<
   CalendarFilterActivityTypeProps
-> = ({ onChange }) => {
-  const tags: ActivityTypeTagProps[] = [
-    { id: "all", children: "Усі" },
+> = (props) => {
+  const tags: {
+    id: CompetitionType;
+    children: string;
+  }[] = [
     { id: "running", children: "Біг" },
     { id: "trail", children: "Трейл" },
     { id: "ultramarathon", children: "Ультрамарафон" },
@@ -25,11 +28,13 @@ export const CalendarFilterActivityType: React.FC<
     { id: "triathlon", children: "Триатлон" },
   ];
 
-  const [selectedTagId, setSelectedTagId] = useState<string | null>(null);
+  const [selectedTagId, setSelectedTagId] = useState<
+    CompetitionType | undefined
+  >(undefined);
 
-  const toggleSelect = (id: string) => {
+  const toggleSelect = (id?: CompetitionType) => {
     setSelectedTagId(id);
-    onChange({ competition_type: id === "all" ? undefined : id });
+    props.onChange(id);
   };
 
   return (

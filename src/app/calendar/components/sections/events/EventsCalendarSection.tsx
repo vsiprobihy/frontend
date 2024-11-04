@@ -1,12 +1,51 @@
 "use client";
 import { EventCard, EventCardProps } from "~/components/event-card/EventCard";
-import { newEventsArray } from "~/placeholder-data/placeholderEvents";
 import dayjs from "dayjs";
+import { useState } from "react";
+import { calendarFilterList, CalendarFilterListData } from "~/api-client";
+import { useQuery } from "@tanstack/react-query";
+import { LoadingOrError } from "~/components";
 
-const randomEvents = newEventsArray(10);
+const currentMonth = dayjs().month() + 1;
+const currentYear = dayjs().year();
 
 const EventsCalendarSection: React.FC = () => {
-  const events = randomEvents.sort((a, b) => a.date.diff(b.date));
+  const [queryFilters, setQueryFilters] = useState<
+    CalendarFilterListData["query"]
+  >({
+    competition_type: undefined,
+    distance_max: undefined,
+    distance_min: undefined,
+    month: currentMonth,
+    year: currentYear,
+    name: undefined,
+    page: undefined,
+    place: undefined,
+  });
+
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["calendarFilteredEvents", queryFilters],
+    queryFn: async () => {
+      const response = await calendarFilterList({ query: queryFilters });
+      console.log(`queryFn`);
+      console.log(response.response);
+      if (response.data && response.response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error(response.response.statusText);
+      }
+    },
+    enabled: Object.values(queryFilters ?? {}).some(
+      (value) => value !== "" && value !== undefined
+    ),
+  });
+
+  if (isLoading || isError) {
+    return <LoadingOrError {...{ isError, isLoading }} />;
+  }
+
+  const events: EventCardProps[] = [];
+
   const eventsByMonths: {
     events: EventCardProps[];
     monthNumber: number;
@@ -34,6 +73,8 @@ const EventsCalendarSection: React.FC = () => {
       });
     }
   });
+
+  // TODO show placeholder if no events
 
   return (
     <div className={`px-2.5 py-12 lg:px-16 lg:py-20 xl:py-32`}>
