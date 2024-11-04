@@ -8,21 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import AuthSubmitButton from "../AuthSubmitButton";
 import AuthGoogleButton from "../AuthGoogleButton";
 import { CustomLabel } from "@/libs/components/label/CustomLabel";
-
-const registerSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Невірний формат email")
-    .required("Електронна адреса обов'язкова"),
-  password: yup
-    .string()
-    .min(6, "Пароль повинен містити принаймні 6 символів")
-    .required("Пароль обов'язковий"),
-  password2: yup
-    .string()
-    .oneOf([yup.ref("password"), undefined], "Паролі не співпадають") // Заміна null на undefined
-    .required("Підтвердження пароля обов'язково"),
-});
+import { useTranslations } from "next-intl";
 
 interface IRegisterFormFields {
   email: string;
@@ -35,6 +21,19 @@ interface RegisterFormProps {
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
+  const t = useTranslations("AuthForm");
+
+  const registerSchema = yup.object().shape({
+    email: yup.string().email(t("invalidEmail")).required(t("requiredEmail")),
+    password: yup
+      .string()
+      .min(6, t("invalidPassword"))
+      .required(t("requiredPassword")),
+    password2: yup
+      .string()
+      .oneOf([yup.ref("password"), undefined], t("passwordsMismatch"))
+      .required(t("requiredPassword2")),
+  });
   const {
     register,
     handleSubmit,
@@ -56,7 +55,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
         inputProps={{
           id: "email",
           type: "email",
-          placeholder: "Електронна адреса",
+          placeholder: t("emailPlaceholder"),
           ...register("email", { required: true }),
           className: errors.email ? "border-red" : "",
           onChange: () => {
@@ -78,7 +77,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
         inputProps={{
           id: "password",
           type: "password",
-          placeholder: "Пароль",
+          placeholder: t("passwordPlaceholder"),
           ...register("password", { required: true }),
           className: errors.password ? "border-red" : "",
           onChange: () => {
@@ -89,7 +88,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
           htmlFor: "password",
         }}
       >
-        Пароль
+        {t("passwordLabel")}
       </CustomLabel>
       {errors.password && (
         <p className="mb-4 block text-sm font-medium text-red">
@@ -100,7 +99,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
         inputProps={{
           id: "password2",
           type: "password",
-          placeholder: "Підтвердження пароля",
+          placeholder: t("password2Placeholder"),
           ...register("password2", { required: true }),
           className: errors.password2 ? "border-red" : "",
           onChange: () => {
@@ -111,7 +110,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
           htmlFor: "password2",
         }}
       >
-        Підтвердження пароля
+        {t("password2Label")}
       </CustomLabel>
       {errors.password2 && (
         <p className="mb-4 block text-sm font-medium text-red">
@@ -119,14 +118,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
         </p>
       )}
       <p className="mt-4 text-sm font-normal text-black">
-        Заповнюючи форму реєстрації, ви автоматично приймаєте умови{" "}
+        {t("termsText")}{" "}
         <a href="#" className="text-sm font-normal text-orange-hot underline">
-          Договору оферти
+          {t("termsLink")}
         </a>
       </p>
       <div className="mt-6 flex w-full flex-col items-center">
-        <AuthSubmitButton>Зареєструватися</AuthSubmitButton>
-        <p className="mb-4 mt-4 text-center text-sm text-black">Або</p>
+        <AuthSubmitButton>{t("registerButton")}</AuthSubmitButton>
+        <p className="mb-4 mt-4 text-center text-sm text-black">{t("or")}</p>
         <AuthGoogleButton>Google</AuthGoogleButton>
       </div>
     </form>

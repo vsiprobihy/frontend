@@ -10,11 +10,11 @@ import {
   useResponsiveDevice,
 } from "~/hooks";
 import {
-  linkValues,
   Logo,
   NavigationLink,
   HeaderNotificationButton,
   ProfileButton,
+  getLinkValues,
 } from "~/components";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { AppRoute } from "~/enums";
@@ -22,25 +22,26 @@ import { AppRoute } from "~/enums";
 import LogoSrOnlyImage from "~/images/logo.png";
 import { AuthModal, SuccessModal } from "~/components";
 import { Suspense } from "react";
+import { useTranslations } from "next-intl";
 
 export const Header: React.FC = () => {
   const isResponsiveDevice = useResponsiveDevice();
   const { isLightVariant, pathname } = useColorVariant();
+  const dropShadow = isLightVariant
+    ? "drop-shadow-[0_1px_1px_rgba(255,255,255,0.45)]"
+    : "drop-shadow-[0_1px_1px_rgba(0,0,0,0.3)]";
 
-  const {
-    language,
-    translatedText,
-    hasNotification,
-    userImage,
-    handleToggleLanguage,
-    handleNotificationAccess,
-  } = useUserInteraction();
+  const { hasNotification, userImage, handleNotificationAccess } =
+    useUserInteraction();
+
+  const t = useTranslations("Navigation");
+  const linkValues = getLinkValues(t);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-10 backdrop-blur-lg">
+    <header className="fluid-px fixed left-0 right-0 top-0 z-10 backdrop-blur-lg">
       <div
         className={clsx(
-          "mx-auto flex w-full max-w-content-limit justify-between py-1 md:px-2 md:py-2 lg:px-8 lg:py-4 xl:px-16",
+          "mx-auto flex w-full max-w-content-limit justify-between py-4 md:py-2 lg:py-4",
           isLightVariant ? "text-dark" : "text-white"
         )}
       >
@@ -48,7 +49,7 @@ export const Header: React.FC = () => {
           href={AppRoute.ROOT}
           aria-label="Go home"
           className={clsx(
-            "inline-flex rounded-full px-3 backdrop-blur-lg md:px-6 lg:bg-black lg:bg-opacity-40 lg:shadow-sm",
+            "inline-flex w-[17.5rem] rounded-full text-center backdrop-blur-lg md:px-6 md:py-3 lg:bg-opacity-40 lg:shadow-sm",
             isLightVariant ? "lg:bg-white" : "lg:bg-black"
           )}
         >
@@ -57,7 +58,7 @@ export const Header: React.FC = () => {
             alt="Vsi Probihy logo"
             className="sr-only"
           />
-          <Logo />
+          <Logo className={isResponsiveDevice ? dropShadow : ""} />
         </Link>
         {!isResponsiveDevice && (
           <nav
@@ -89,16 +90,11 @@ export const Header: React.FC = () => {
             isLightVariant={isLightVariant}
           />
           <ProfileButton
-            translatedText={translatedText}
             userImage={userImage}
             isResponsiveDevice={false}
             isLightVariant={isLightVariant}
           />
-          <LanguageSwitcher
-            language={language}
-            toggleLanguage={handleToggleLanguage}
-            isLightVariant={isLightVariant}
-          />
+          <LanguageSwitcher isLightVariant={isLightVariant} />
         </div>
       </div>
       <Suspense>

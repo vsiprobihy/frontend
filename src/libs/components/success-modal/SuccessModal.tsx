@@ -15,6 +15,7 @@ import { useIsMobile } from "~/hooks";
 import SuccessImage from "~/images/success-registration.webp";
 import SuccessImageMobile from "~/images/success-registration-MOBILE.webp";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const SuccessModal: React.FC = () => {
   const isMobile = useIsMobile();
@@ -27,6 +28,8 @@ export const SuccessModal: React.FC = () => {
     params.delete("showSuccessModal");
     router.push(`?${params.toString()}`);
   }, [searchParams, router]);
+
+  const t = useTranslations("SuccessModal");
 
   return (
     <Dialog open={showSuccessModal} onOpenChange={handleClose}>
@@ -53,10 +56,10 @@ export const SuccessModal: React.FC = () => {
           />
           <div className="h-[calc(100%-308px)] w-full text-center md:h-[calc(100%-384px)]">
             <p className="mb-[16px] mt-[43px] text-[26px] md:text-[42px]">
-              Вітаємо вас <br /> з успішною реєстрацією.
+              {t("title1")} <br /> {t("title2")}
             </p>
             <p className="text-[26px] text-orange-hot md:text-[42px]">
-              Вдалих забігів вам!
+              {t("subtitle")}
             </p>
           </div>
         </DialogContent>

@@ -3,49 +3,43 @@ import Image from "next/image";
 import Link from "next/link";
 import RunningStepImage from "~/images/running-step.webp";
 import { Button } from "~/components";
-
-const titleTextArray: [string, string, string] = [
-  `Всеукраїнський`,
-  `календар`,
-  `пробігів`,
-];
-
-const buttonText = `Календар`;
+import { useRouter } from "next/navigation";
+import { AppRoute } from "~/enums";
+import { useTranslations } from "next-intl";
 export const HeroSectionTitle: React.FC = () => {
+  const t = useTranslations("HeroSection");
+
   return (
-    <div>
+    <>
       <h1 className={`flex flex-col text-white`}>
-        <span className={`h1`}>{titleTextArray[0]}</span>
+        <span className={`h1`}>{t("title.part1")}</span>
         <span
           className={`flex flex-row items-center gap-2.5 md:gap-6 xl:gap-12`}
         >
-          <span className={`flex-1`}>
-            <Image
-              width={335}
-              height={113}
-              className="h-[2.875rem] w-full rounded-full md:h-[4.5rem] xl:h-[7.125rem]"
-              alt={`Running`}
-              src={RunningStepImage}
-            />
-          </span>
+          <Image
+            width={335}
+            height={113}
+            className="lg:max-h[3.5rem] fluid-badge min-h-[2rem] rounded-full xl:max-h-[7rem]"
+            alt={`Running`}
+            src={RunningStepImage}
+          />
           <span className={`h1 w-min whitespace-nowrap`}>
-            {titleTextArray[1]}
+            {t("title.part2")}
           </span>
         </span>
-
         <span
           className={`flex flex-col gap-2 md:flex-row md:items-center md:gap-6 xl:gap-12`}
         >
-          <span className={`h1`}>{titleTextArray[2]}</span>
+          <span className={`h1`}>{t("title.part3")}</span>
           <span className={`md:flex-1`}>
             <Link href={`/calendar`}>
               <Button size={"large"} fullWidth>
-                {buttonText}
+                {t("button")}
               </Button>
             </Link>
           </span>
         </span>
       </h1>
-    </div>
+    </>
   );
 };
