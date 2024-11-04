@@ -28,6 +28,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/libs/helpers/getProfileScreen.tsx"  ],
   "exclude": ["node_modules"]
 }

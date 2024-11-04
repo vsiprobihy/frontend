@@ -18,6 +18,7 @@ const config: Config = {
         DEFAULT: "#5E617D",
         "light-middle": "#989DB6",
         light: "#F1F2F8",
+        middle: "#0202024D",
       },
       green: {
         DEFAULT: "#6A7821",
