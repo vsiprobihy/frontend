@@ -1,18 +1,12 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import RunningStepImage from "~/images/running-step.webp";
 import { Button } from "~/components";
-import { useRouter } from "next/navigation";
-import { AppRoute } from "~/enums";
 import { useTranslations } from "next-intl";
 
 export const HeroSectionTitle: React.FC = () => {
   const t = useTranslations("HeroSection");
-  const router = useRouter();
-
-  const onCalendarButtonClick = () => {
-    router.push(AppRoute.CALENDAR);
-  };
 
   return (
     <>
@@ -37,9 +31,11 @@ export const HeroSectionTitle: React.FC = () => {
         >
           <span className={`h1`}>{t("title.part3")}</span>
           <span className={`md:flex-1`}>
-            <Button size={"large"} fullWidth onClick={onCalendarButtonClick}>
-              {t("button")}
-            </Button>
+            <Link href={`/calendar`}>
+              <Button size={"large"} fullWidth>
+                {t("button")}
+              </Button>
+            </Link>
           </span>
         </span>
       </h1>

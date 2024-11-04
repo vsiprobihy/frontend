@@ -23,7 +23,6 @@ export const HeroSection: React.FC = () => {
               image: { src: PlaceholderImage, alt: "Running" },
             })}
           />
-          ;
         </div>
       </div>
     </div>

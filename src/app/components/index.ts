@@ -1,2 +1,2 @@
-export { UpcomingEventsSection } from "./upcoming-events-section/UpcomingEventsSection";
-export { HeroSection } from "./hero-section/HeroSection";
+export { UpcomingEventsSection } from "./sections/upcoming-events-section/UpcomingEventsSection";
+export { HeroSection } from "./sections/hero-section/HeroSection";
