@@ -13,14 +13,16 @@ export const ArchiveOfStarts = () => {
         <NotFoundTemplate
           heading={t("heading")}
           title={t("title")}
-          description={t("description")}
-          children={
-            <Link
-              href={AppRoute.CALENDAR}
-              className="text-base font-medium text-orange-hot"
-            >
-              {t("calendar")}
-            </Link>
+          description={
+            <div className="flex flex-col items-center justify-center gap-1 lg:flex-row">
+              <span className="text-grey">{t("description")}</span>
+              <Link
+                href={AppRoute.CALENDAR}
+                className="text-base font-medium text-orange-hot"
+              >
+                {t("calendar")}
+              </Link>
+            </div>
           }
           isSmall={true}
         />

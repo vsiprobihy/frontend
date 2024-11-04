@@ -103,11 +103,36 @@
       "clubName": "Назва клубу",
       "fullNameEmergencyPerson": "П.І.Б"
     },
-    "sex": {
-      "female": "Жіноча",
-      "male": "Чоловіча"
+    "placeholders": {
+      "name": "Введіть імя",
+      "lastName": "Введіть прізвище",
+      "country": "Введіть країну",
+      "city": "Введіть місто",
+      "email": "Введіть email",
+      "phone": "Введіть телефон",
+      "day":"день",
+      "month":"місяць",
+      "year":"рік",
+      "size":"розмір"
     },
-    "button": "Зберегти"
+    "sex": {
+      "female": "жіноча",
+      "male": "чоловіча"
+    },
+    "validation": {
+      "firstNameRequired": "Ім'я є обов'язковим",
+      "lastNameRequired": "Прізвище є обов'язковим",
+      "countryRequired": "Вкажіть країну",
+      "cityRequired": "Вкажіть місто або населений пункт",
+      "phoneDigits": "Номер телефону має містити лише цифри",
+      "emailRequired": "Вкажіть емейл",
+      "invalidEmail": "Невірний формат email",
+      "clubNameRequired": "Вкажіть назву клубу",
+      "emergencyContactFullNameRequired": "Вкажіть ПІБ контактної особи",
+      "emergencyContactPhoneDigits": "Номер телефону має містити лише цифри"
+    },
+    "button": "Зберегти",
+    "updateFailed": "Не вдалося додати інформацію в профіль: {error}"
   },
   "profileCard": {
     "data": "Дані учасника",
@@ -126,10 +151,24 @@
     "description": "Знайди новий виклик в нашому",
     "calendar": "календарі пробігів"
   },
-  "notFoundProfileRegistartion": {
+  "notFoundProfileRegistration": {
     "heading": "Пусто",
     "title": "Наразі у вас немає реєстрацій",
     "description": "Знайди новий виклик в нашому",
     "calendar": "календарі пробігів"
+  },
+  "month": {
+    "january": "Січень",
+    "february": "Лютий",
+    "march": "Березень",
+    "april": "Квітень",
+    "may": "Травень",
+    "june": "Червень",
+    "july": "Липень",
+    "august": "Серпень",
+    "september": "Вересень",
+    "october": "Жовтень",
+    "november": "Листопад",
+    "december": "Грудень"
   }
 }

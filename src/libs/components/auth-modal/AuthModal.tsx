@@ -16,11 +16,11 @@ import {
 } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
-  authTokenCreate,
+  authLoginCreate,
+  AuthLoginCreateResponse,
   authRegisterCreate,
-  TokenObtainPair,
+  Login,
   Register,
-  TokenRefresh,
 } from "~/api-client";
 import { CloseButton } from "~/components";
 import { useIsMobile } from "~/hooks";
@@ -73,14 +73,15 @@ export const AuthModal: React.FC = () => {
   }, [handleKeyDown]);
 
   const { mutate: mutateLogin } = useMutation<
-    { data?: TokenRefresh },
+    { data?: AuthLoginCreateResponse },
     Error,
-    TokenObtainPair
+    Login
   >({
-    mutationFn: async (tokenObtainPair: TokenObtainPair) => {
-      const response = await authTokenCreate({
+    mutationFn: async (tokenObtainPair: Login) => {
+      const response = await authLoginCreate({
         body: tokenObtainPair,
       });
+      console.log(response)
 
       if (response.response.status === 200) {
         return response;
@@ -88,8 +89,8 @@ export const AuthModal: React.FC = () => {
         throw new Error(response.response.statusText);
       }
     },
-    onSuccess: (data: { data?: TokenRefresh }) => {
-      const token = data.data?.access;
+    onSuccess: (data: { data?: AuthLoginCreateResponse }) => {
+      const token = data.data?.access_token.value;
       if (token) {
         Cookies.set("authToken", token, {
           expires: rememberMe ? 7 : 1,
@@ -98,6 +99,7 @@ export const AuthModal: React.FC = () => {
         });
         setIsAuthenticatedUser(true);
       }
+      
       handleClose();
     },
     onError: (error) => {
@@ -105,7 +107,7 @@ export const AuthModal: React.FC = () => {
     },
   });
 
-  const onSubmitLogin = (data: TokenObtainPair) => {
+  const onSubmitLogin = (data: Login) => {
     mutateLogin(data);
   };
 

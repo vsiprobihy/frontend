@@ -5,7 +5,7 @@ import { AppRoute } from "@/libs/enums";
 import { useTranslations } from "next-intl";
 
 export const RegistartionsSection = () => {
-  const t = useTranslations("notFoundProfileRegistartion");
+  const t = useTranslations("notFoundProfileRegistration");
 
   return (
     <div className="lg:flex lg:justify-end lg:pr-32">
@@ -13,14 +13,16 @@ export const RegistartionsSection = () => {
         <NotFoundTemplate
           heading={t("heading")}
           title={t("title")}
-          description={t("description")}
-          children={
-            <Link
-              href={AppRoute.CALENDAR}
-              className="text-base font-medium text-orange-hot"
-            >
-              {t("calendar")}
-            </Link>
+          description={
+            <div className="flex flex-col items-center justify-center gap-1 lg:flex-row">
+              <span className="text-grey">{t("description")}</span>
+              <Link
+                href={AppRoute.CALENDAR}
+                className="text-base font-medium text-orange-hot"
+              >
+                {t("calendar")}
+              </Link>
+            </div>
           }
           isSmall={true}
         />

@@ -13,15 +13,14 @@ export const FavoriteEventSection = () => {
         <NotFoundFavorites
           title={t("message")}
           description={t("calendarMessage")}
-          children={
-            <Link
-              href={AppRoute.CALENDAR}
-              className="text-base font-medium leading-7 text-orange-hot"
-            >
-              {t("calendar")}
-            </Link>
-          }
-        />
+        >
+          <Link
+            href={AppRoute.CALENDAR}
+            className="text-base font-medium leading-7 text-orange-hot"
+          >
+            {t("calendar")}
+          </Link>
+        </NotFoundFavorites>
       </div>
     </div>
   );

@@ -4,12 +4,13 @@ import { NextPage } from "next";
 import Image from "next/image";
 import NotFoundImage from "~/images/not-found.webp";
 import clsx from "clsx";
+import { ReactNode } from "react";
 
 interface NotFoundTemplateProps {
   heading: string;
   children?: React.ReactNode;
   title: string;
-  description: string;
+  description: string | ReactNode;
   isLage?: boolean;
   isSmall?: boolean;
 }

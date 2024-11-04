@@ -7,8 +7,13 @@ import { ProfileCardButton } from "../../buttons/ProfileCardButton";
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ProfileButtons } from "./ProfileButtonsData";
+import { UserProfile } from "@/libs/api-client";
 
-export const ProfileCard = () => {
+type Props = {
+  user: UserProfile;
+};
+
+export const ProfileCard: React.FC<Props> = ({ user }) => {
   const t = useTranslations("profileCard");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -19,6 +24,8 @@ export const ProfileCard = () => {
     params.set("profileSection", value);
     router.push(`?${params.toString()}`);
   };
+
+
   return (
     <div className="relative flex w-full flex-col justify-center rounded-3xl bg-dark px-4 py-4 lg:w-[clamp(320px,10vw+200px,390px)]">
       <Icon
@@ -36,10 +43,16 @@ export const ProfileCard = () => {
           />
         </div>
 
-        {/*//Todo change name to real user data */}
-        <p className="text-2xl font-semibold text-white">
-          Колодяженський Андрій
-        </p>
+        <div className="flex flex-col items-center justify-center">
+          {user.first_name && (
+            <p className="text-2xl font-semibold text-white">
+              {`${user.first_name} ${user.last_name}`}
+            </p>
+          )}
+          {user.last_name && (
+            <p className="text-base font-normal text-grey-light-dark">{`${user.first_name_eng} ${user.last_name_eng}`}</p>
+          )}
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center gap-2">
