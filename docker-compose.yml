@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
+    container_name: probihy_front_container 
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - app_build:/var/www/app/.next
+      # - ./frontend/src:/var/www/app/.next
+    networks:
+      - app-network
+
+
+volumes:
+  app_build:
+
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge

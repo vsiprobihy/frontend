@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { EventCard, EventCardProps } from "./EventCard";
-import { CarouselButton } from "~/components"; // The aspect ratio of component is always 14:17
+import { CarouselButton, EventCard, EventCardProps } from "~/components"; // The aspect ratio of component is always 14:17
 
 // The aspect ratio of component is always 14:17
 
@@ -35,27 +34,25 @@ export const UpcomingEventsCarousel: React.FC<CarouselProps> = (props) => {
   }, [emblaApi]);
 
   return (
-    <div>
+    <>
       <div className="relative overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
           {props.elements.map((slide, index) => (
             <div
-              className={`mx-1 h-full flex-[0_0_90%] overflow-hidden rounded-2xl bg-white`}
+              className="mx-1 h-full flex-[0_0_100%] overflow-hidden rounded-2xl bg-white"
               key={index}
             >
-              <EventCard {...slide.event} key={index} />
+              <EventCard {...slide.event} />
             </div>
           ))}
         </div>
       </div>
-      <div className={`mt-3 flex flex-row justify-center`}>
-        <div
-          className={`flex flex-row items-center justify-center gap-2 md:gap-3`}
-        >
-          <CarouselButton direction={"left"} onClick={scrollPrev} />
-          <CarouselButton direction={"right"} onClick={scrollNext} />
+      <div className="mt-3 flex flex-row justify-center">
+        <div className="flex flex-row items-center justify-center gap-2 md:gap-3">
+          <CarouselButton direction="left" onClick={scrollPrev} />
+          <CarouselButton direction="right" onClick={scrollNext} />
         </div>
       </div>
-    </div>
+    </>
   );
 };

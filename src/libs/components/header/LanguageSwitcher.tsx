@@ -1,21 +1,35 @@
+"use client";
+
 import clsx from "clsx";
+import { useState, useTransition } from "react";
+import { useLocale } from "next-intl";
+import { Locale } from "@/i18n/config";
+import { setUserLocale } from "~/locale";
 
 export enum Language {
-  UA = "UA",
-  EN = "EN",
+  UA = "uk",
+  EN = "en",
 }
 
 interface LanguageSwitcherProps {
-  language: Language;
-  toggleLanguage: () => void;
   isLightVariant?: boolean;
 }
 
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
-  language,
-  toggleLanguage,
   isLightVariant,
 }) => {
+  const locale = useLocale();
+  const [isPending, startTransition] = useTransition();
+  const [language, setLanguage] = useState<Language>(locale as Language);
+
+  const handleToggleLanguage = () => {
+    const newLanguage = language === Language.UA ? Language.EN : Language.UA;
+    startTransition(() => {
+      setUserLocale(newLanguage as Locale);
+    });
+    setLanguage(newLanguage);
+  };
+
   return (
     <div
       className={clsx(
@@ -29,20 +43,19 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
           className={clsx(
             "duration-600 flex h-8 w-1/2 items-center justify-center rounded-full outline-none transition-all",
             isLightVariant
-              ? {
-                  "bg-dark text-white": language === lang,
-                  "bg-white": language !== lang,
-                }
-              : {
-                  "bg-white text-dark": language === lang,
-                  "bg-black bg-opacity-20": language !== lang,
-                }
+              ? language === lang
+                ? "bg-dark text-white"
+                : "bg-white"
+              : language === lang
+                ? "bg-white text-dark"
+                : "bg-black bg-opacity-20"
           )}
-          onClick={toggleLanguage}
+          onClick={handleToggleLanguage}
           aria-label={`Switch to ${lang}`}
           aria-pressed={language === lang}
+          disabled={isPending}
         >
-          {lang}
+          {lang === Language.UA ? "UA" : "EN"}
         </button>
       ))}
     </div>

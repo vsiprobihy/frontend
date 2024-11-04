@@ -53,7 +53,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
   );
 };
 
-export const linkValues = [
-  { name: "Календар", url: AppRoute.CALENDAR },
-  { name: "Про нас", url: AppRoute.ABOUT },
+export const getLinkValues = (t: (key: string) => string) => [
+  { name: t("calendar"), url: AppRoute.CALENDAR },
+  { name: t("about"), url: AppRoute.ABOUT },
 ];

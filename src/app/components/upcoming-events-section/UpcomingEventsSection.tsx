@@ -1,37 +1,22 @@
 "use client";
 
 import { UpcomingEventsCarousel } from "./carousel/UpcomingEventsCarousel";
+import { CustomLink, EventCard } from "~/components";
 import PlaceholderImage from "~/images/placeholder.webp";
-import { EventCard } from "./carousel/EventCard";
-import { CustomLink } from "~/components";
 import { useQuery } from "@tanstack/react-query";
 import { upcomingEventsList } from "~/api-client/services.gen";
-
-const titleText = `Найближчі заходи`;
-const linkText = { full: `Дивитися всі забіги`, short: `Всі` };
-
-// because of the lack of backend types, we need to define the Event type
-type Event = {
-  photos: string;
-  name: string;
-  competition_type: string;
-  place: string;
-  date_from: string;
-  date_to: string;
-  distances: { name: string }[];
-};
-
-type UpcomingEventsListResponse = {
-  events: Event[];
-};
+import clsx from "clsx";
+import { AppRoute } from "~/enums";
+import { useTranslations } from "next-intl";
+import { UpcomingEventsListResponse } from "~/api-client/types.gen";
 
 export const UpcomingEventsSection: React.FC = () => {
+  const t = useTranslations("UpcomingEventsSection");
   const { data } = useQuery<UpcomingEventsListResponse>({
     queryKey: ["mainList", {}],
     queryFn: async (): Promise<UpcomingEventsListResponse> => {
       const response = await upcomingEventsList();
       if (response.data && response.response.status === 200) {
-        // @ts-expect-error lack of backend types
         return response.data;
       } else {
         throw new Error(response.response.statusText);
@@ -39,42 +24,54 @@ export const UpcomingEventsSection: React.FC = () => {
     },
   });
 
+  const renderCustomLink = (text: string, display: string) => (
+    <div className={clsx(display)}>
+      <CustomLink href={AppRoute.CALENDAR}>{text}</CustomLink>
+    </div>
+  );
+
   const events =
-    data?.events.map((event) => ({
-      photos: { src: event.photos || PlaceholderImage, alt: event.name },
+    data?.events?.map((event) => ({
+      id: event.id,
       name: event.name,
       dateFrom: event.date_from,
       dateTo: event.date_to,
-      competitionType: event.competition_type,
       place: event.place,
+      competitionType: event.competition_type,
+      photos: { src: event.photos || PlaceholderImage, alt: event.name || "" },
       distances: event.distances,
     })) || [];
 
+  const renderEventCards = () =>
+    events.map((event, i) => (
+      <li
+        key={i}
+        className={clsx(
+          "min-w-96 flex-1 md:w-[49%] xl:w-[32.4%] xl:flex-none",
+          i == events.length - 1 && "lg:hidden xl:block xl:flex-1"
+        )}
+      >
+        <EventCard {...event} isLiked={i == events.length - 2} />
+      </li>
+    ));
+
   return (
-    <div className={`px-2.5 py-12 lg:px-16 lg:py-20 xl:py-32`}>
-      <div className={`mx-auto flex w-full max-w-content-limit flex-col gap-4`}>
-        <div className={`flex flex-row items-center justify-between gap-4`}>
-          <h2 className={`h2`}>{titleText}</h2>
-          <div className={`block md:hidden`}>
-            <CustomLink href={`/`}>{linkText.short}</CustomLink>
-          </div>
-          <div className={`hidden md:block`}>
-            <CustomLink href={`/`}>{linkText.full}</CustomLink>
-          </div>
+    <div className="fluid-px py-12 lg:py-20 xl:py-32">
+      <div className="mx-auto flex w-full max-w-content-limit flex-col gap-4">
+        <div className="flex flex-row items-center justify-between gap-4">
+          <h2 className="h2">{t("title")}</h2>
+          {renderCustomLink(t("link.short"), "block md:hidden")}
+          {renderCustomLink(t("link.full"), "hidden md:block")}
         </div>
-        <div className={`md:hidden`}>
+        <div className="lg:hidden">
           <UpcomingEventsCarousel
             elements={events.map((event) => ({ event }))}
           />
         </div>
-        <div className={`hidden md:block`}>
-          <div className={`flex flex-row gap-4`}>
-            {events.map((event, i) => (
-              <div key={i} className={`flex-1`}>
-                <EventCard {...event} />
-              </div>
-            ))}
-          </div>
+        <div className="hidden lg:block">
+          <ul className="flex flex-row flex-wrap gap-4">
+            {renderEventCards()}
+          </ul>
         </div>
       </div>
     </div>

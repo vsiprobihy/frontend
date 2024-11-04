@@ -3,14 +3,14 @@ import { Icon, Logo } from "~/components";
 import { IconType } from "~/enums";
 
 const About: NextPage = () => (
-  <main className="p-40 text-center text-3xl text-dark">
+  <main className="py-40 text-center text-3xl text-dark lg:px-40">
     <Logo isLarge />
     <p className="pt-10">місце зустрічі всіх бігунів.</p>
 
     {/* TODO: Remove this after usage example */}
 
     <div
-      className={`flex h-48 w-full flex-col items-center justify-center bg-dark text-center text-white`}
+      className={`mt-40 flex h-48 w-full flex-col items-center justify-center bg-dark text-center text-white`}
     >
       <h2 className="mb-4 text-lg">Example of icon usage</h2>
 

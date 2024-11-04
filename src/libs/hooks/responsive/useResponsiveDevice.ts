@@ -5,7 +5,7 @@ export const useResponsiveDevice = () => {
 
   const handleResize = useCallback(() => {
     const isSmallScreen = window.innerWidth <= 768;
-    const isMediumScreen = window.innerWidth > 768 && window.innerWidth <= 1024;
+    const isMediumScreen = window.innerWidth > 768 && window.innerWidth < 1024;
     const isTouchDevice =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
     setIsResponsiveDevice(isSmallScreen || (isTouchDevice && isMediumScreen));
