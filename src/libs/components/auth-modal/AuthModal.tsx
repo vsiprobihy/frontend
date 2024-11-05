@@ -155,7 +155,6 @@ export const AuthModal: React.FC = () => {
         />
 
         <DialogContent
-          aria-describedby={undefined}
           className={clsx(
             "fixed inset-0 z-50 mx-auto mt-5 flex items-center justify-between rounded-lg bg-white p-6 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:transform",
             value === "register"
