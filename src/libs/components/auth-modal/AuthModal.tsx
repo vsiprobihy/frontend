@@ -8,20 +8,20 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogContent,
   DialogClose,
+  DialogContent,
+  DialogOverlay,
+  DialogPortal,
   DialogTitle,
 } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   authLoginCreate,
-  authRegisterCreate,
-  Register,
   AuthLoginCreateResponse,
-  Login,
+  authRegisterCreate,
   AuthRegisterCreateResponse,
+  Login,
+  Register,
 } from "~/api-client";
 import { CloseButton } from "~/components";
 import { useIsMobile } from "~/hooks";
@@ -29,7 +29,7 @@ import LoginForm from "./form/LoginForm";
 import RegisterForm from "./form/RegisterForm";
 import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
-import { useAuth } from "~/context";
+import { useAuthContext } from "~/context";
 import { useTranslations } from "next-intl";
 
 export const AuthModal: React.FC = () => {
@@ -44,7 +44,7 @@ export const AuthModal: React.FC = () => {
 
   const showAuthModal = !!searchParams.get("showAuthModal");
 
-  const { setIsAuthenticatedUser } = useAuth();
+  const { setIsAuthenticatedUser } = useAuthContext();
 
   const handleTabChange = (newValue: "register" | "login") => {
     setValue(newValue);
