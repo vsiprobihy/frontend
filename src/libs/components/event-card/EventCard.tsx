@@ -37,26 +37,10 @@ export const EventCard: React.FC<EventCardProps & EventCardAdditionalProps> = ({
   isLiked = false,
   ...props
 }) => {
-  dayjs.locale("uk");
-
-  const formatDateRange = (
-    dateFrom: Date,
-    dateTo: Date,
-    locale: string
-  ): string => {
-    dayjs.locale(locale);
-
+  const formatDateRange = (dateFrom: Date, dateTo: Date): string => {
     const startDate = dayjs(dateFrom).format("D");
     const endDay = dayjs(dateTo).format("D");
-    let month = dayjs(dateFrom).format("MMMM");
-    if (locale === "uk") {
-      month = month.replace(/(ень|ий|д)$/, (match) => {
-        if (match === "ень") return "ня";
-        if (match === "ий") return "ого";
-        if (match === "д") return "да";
-        return match;
-      });
-    }
+    const month = dayjs(dateFrom).format("MMMM");
     const year = dayjs(dateFrom).format("YYYY");
 
     const result =
@@ -67,7 +51,7 @@ export const EventCard: React.FC<EventCardProps & EventCardAdditionalProps> = ({
     return result;
   };
 
-  const formattedDate = formatDateRange(props.dateFrom, props.dateTo, "uk");
+  const formattedDate = formatDateRange(props.dateFrom, props.dateTo);
 
   return (
     <Link href={`${AppRoute.EVENT}/${props.id}`} passHref>

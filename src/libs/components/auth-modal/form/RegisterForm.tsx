@@ -29,7 +29,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
       .string()
       .min(6, t("invalidPassword"))
       .matches(/[A-Z]/, t("passwordUppercase"))
-      .matches(/[!@#$%^&*(),.?":{}|<>]/, t("passwordSpecial"))
+      .matches(/[!@#$%^&*(),.?":{}|<>]/, t("passwordSpecialCharacters"))
       .required(t("requiredPassword")),
     password2: yup
       .string()
