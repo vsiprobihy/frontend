@@ -28,6 +28,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
     password: yup
       .string()
       .min(6, t("invalidPassword"))
+      .matches(/[A-Z]/, t("passwordUppercase"))
+      .matches(/[!@#$%^&*(),.?":{}|<>]/, t("passwordSpecialCharacters"))
       .required(t("requiredPassword")),
     password2: yup
       .string()
@@ -125,8 +127,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSubmit }) => {
       </p>
       <div className="mt-6 flex w-full flex-col items-center">
         <AuthSubmitButton>{t("registerButton")}</AuthSubmitButton>
-        <p className="mb-4 mt-4 text-center text-sm text-black">{t("or")}</p>
-        <AuthGoogleButton>Google</AuthGoogleButton>
+        {!Object.keys(errors).length && (
+          <>
+            <p className="mb-4 mt-4 text-center text-sm text-black">
+              {t("or")}
+            </p>
+            <AuthGoogleButton>Google</AuthGoogleButton>
+          </>
+        )}
       </div>
     </form>
   );

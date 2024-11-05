@@ -4,7 +4,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { Icon, ProfileMenu } from "~/components";
 import { IconType } from "~/enums";
-import { useAuth } from "~/context";
+import { useAuthContext } from "~/context";
 import { useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
@@ -25,7 +25,7 @@ export const ProfileButton: React.FC<ProfileButtonProps> = ({
   const t = useTranslations("ProfileButton");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { isAuthenticatedUser, setIsAuthenticatedUser } = useAuth();
+  const { isAuthenticatedUser, setIsAuthenticatedUser } = useAuthContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const translatedText = isAuthenticatedUser ? t("profile") : t("login");
