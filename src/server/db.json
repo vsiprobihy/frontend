@@ -1,0 +1,60 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "name": "Competition Name",
+      "competition_type": [
+        {
+          "name": "Running",
+          "description": "Description of competition type"
+        }
+      ],
+      "date_from": "2024-11-13T00:00:00Z",
+      "date_to": "2024-11-14T00:00:00Z",
+      "place": "Central Park",
+      "place_region": "New York",
+      "photos": [
+        "http://example.com/photo1.jpg",
+        "http://example.com/photo2.jpg"
+      ],
+      "description": "This is the main description of the event",
+      "registration_link": "http://example.com/register",
+      "hide_participants": false,
+      "schedule_pdf": "http://example.com/schedule.pdf",
+      "organizer": {
+        "id": 1,
+        "users": ["user1", "user2"],
+        "name": "Event Organizer",
+        "site_url": "http://example.com",
+        "phone_number": "+123456789",
+        "email": "organizer@example.com",
+        "instagram_url": "http://instagram.com/organizer",
+        "facebook_url": "http://facebook.com/organizer",
+        "telegram_url": "http://t.me/organizer"
+      },
+      "organizer_id": 1,
+      "distances": [
+        {
+          "id": 1,
+          "name": "5K",
+          "competition_type": "Running",
+          "category": "Open",
+          "allow_registration": true,
+          "length": 5,
+          "start_number_from": 1,
+          "start_number_to": 1000,
+          "age_from": 18,
+          "age_to": 40,
+          "cost": 20,
+          "is_free": false,
+          "promo_only_registration": false,
+          "show_name_on_number": true,
+          "show_start_number": true,
+          "event": "Running Event",
+          "additional_options": ["Water stations", "Finish line medal"]
+        }
+      ],
+      "extended_description": "This is an extended description of the event, containing more detailed information."
+    }
+  ]
+}
