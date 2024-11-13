@@ -8,19 +8,20 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogContent,
   DialogClose,
+  DialogContent,
+  DialogOverlay,
+  DialogPortal,
   DialogTitle,
 } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
-  authTokenCreate,
+  authLoginCreate,
+  AuthLoginCreateResponse,
   authRegisterCreate,
-  TokenObtainPair,
+  AuthRegisterCreateResponse,
+  Login,
   Register,
-  TokenRefresh,
 } from "~/api-client";
 import { CloseButton } from "~/components";
 import { useIsMobile } from "~/hooks";
@@ -28,7 +29,7 @@ import LoginForm from "./form/LoginForm";
 import RegisterForm from "./form/RegisterForm";
 import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
-import { useAuth } from "~/context";
+import { useAuthContext } from "~/context";
 import { useTranslations } from "next-intl";
 
 export const AuthModal: React.FC = () => {
@@ -43,7 +44,7 @@ export const AuthModal: React.FC = () => {
 
   const showAuthModal = !!searchParams.get("showAuthModal");
 
-  const { setIsAuthenticatedUser } = useAuth();
+  const { setIsAuthenticatedUser } = useAuthContext();
 
   const handleTabChange = (newValue: "register" | "login") => {
     setValue(newValue);
@@ -72,13 +73,13 @@ export const AuthModal: React.FC = () => {
   }, [handleKeyDown]);
 
   const { mutate: mutateLogin } = useMutation<
-    { data?: TokenRefresh },
+    { data?: AuthLoginCreateResponse },
     Error,
-    TokenObtainPair
+    Login
   >({
-    mutationFn: async (tokenObtainPair: TokenObtainPair) => {
-      const response = await authTokenCreate({
-        body: tokenObtainPair,
+    mutationFn: async (login: Login) => {
+      const response = await authLoginCreate({
+        body: login,
       });
 
       if (response.response.status === 200) {
@@ -87,10 +88,17 @@ export const AuthModal: React.FC = () => {
         throw new Error(response.response.statusText);
       }
     },
-    onSuccess: (data: { data?: TokenRefresh }) => {
+    onSuccess: (data: { data?: AuthLoginCreateResponse }) => {
       const token = data.data?.access;
-      if (token) {
+      const refreshToken = data.data?.refresh;
+
+      if (token && refreshToken) {
         Cookies.set("authToken", token, {
+          expires: rememberMe ? 7 : 1,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
+        });
+        Cookies.set("refreshToken", refreshToken, {
           expires: rememberMe ? 7 : 1,
           secure: process.env.NODE_ENV === "production",
           sameSite: "Strict",
@@ -104,11 +112,15 @@ export const AuthModal: React.FC = () => {
     },
   });
 
-  const onSubmitLogin = (data: TokenObtainPair) => {
+  const onSubmitLogin = (data: Login) => {
     mutateLogin(data);
   };
 
-  const { mutate: mutateRegister } = useMutation<unknown, Error, Register>({
+  const { mutate: mutateRegister } = useMutation<
+    unknown,
+    Error,
+    AuthRegisterCreateResponse
+  >({
     mutationFn: async (data: Register) => {
       const response = await authRegisterCreate({ body: data });
 
@@ -130,8 +142,6 @@ export const AuthModal: React.FC = () => {
     },
   });
 
-  // const token = Cookies.get("authToken");
-
   const onSubmitRegister = (data: Register) => {
     mutateRegister(data);
   };
@@ -145,11 +155,10 @@ export const AuthModal: React.FC = () => {
         />
 
         <DialogContent
-          aria-describedby={undefined}
           className={clsx(
             "fixed inset-0 z-50 mx-auto mt-5 flex items-center justify-between rounded-lg bg-white p-6 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:transform",
             value === "register"
-              ? "max-h-[675px] w-[340px] md:min-h-[760px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"
+              ? "w-[340px] md:min-h-[760px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"
               : "h-[675px] w-[340px] py-6 md:min-h-[693px] md:w-[854px] md:py-0 md:pl-0 md:pr-8"
           )}
         >
@@ -184,7 +193,7 @@ export const AuthModal: React.FC = () => {
                 <Tabs.Trigger
                   value="login"
                   onClick={() => handleTabChange("login")}
-                  className="rounded-[50px] text-xl font-semibold uppercase data-[state=active]:absolute data-[state=active]:left-1 data-[state=active]:top-1 data-[state=active]:h-[40px] data-[state=inactive]:h-[48px] data-[state=active]:w-[83px] data-[state=inactive]:w-[254px] data-[state=active]:bg-dark data-[state=inactive]:bg-grey-light data-[state=active]:px-5 data-[state=inactive]:pl-6 data-[state=inactive]:text-start data-[state=active]:text-white data-[state=inactive]:text-dark md:text-2xl md:data-[state=active]:h-[45px] md:data-[state=inactive]:h-[53px] md:data-[state=active]:w-[118px] md:data-[state=inactive]:w-[301px] md:data-[state=active]:px-6 md:data-[state=inactive]:px-6"
+                  className="rounded-[50px] text-xl font-semibold uppercase data-[state=active]:absolute data-[state=active]:left-1 data-[state=active]:top-1 data-[state=active]:h-[40px] data-[state=inactive]:h-[48px] data-[state=active]:w-[83px] data-[state=inactive]:w-[254px] data-[state=active]:bg-dark data-[state=inactive]:bg-grey-light data-[state=inactive]:pl-6 data-[state=inactive]:text-start data-[state=active]:text-white data-[state=inactive]:text-dark md:text-2xl md:data-[state=active]:h-[45px] md:data-[state=inactive]:h-[53px] md:data-[state=active]:w-[118px] md:data-[state=inactive]:w-[301px] md:data-[state=active]:px-6 md:data-[state=inactive]:px-6"
                 >
                   {t("loginTab")}
                 </Tabs.Trigger>
@@ -199,7 +208,7 @@ export const AuthModal: React.FC = () => {
 
               <Tabs.Content
                 value="login"
-                className="flex flex-grow items-center justify-center"
+                className="flex items-center justify-center"
               >
                 <LoginForm
                   onSubmit={onSubmitLogin}
@@ -208,7 +217,7 @@ export const AuthModal: React.FC = () => {
               </Tabs.Content>
               <Tabs.Content
                 value="register"
-                className="flex flex-grow items-center justify-center"
+                className="flex items-center justify-center"
               >
                 <RegisterForm onSubmit={onSubmitRegister} />
               </Tabs.Content>

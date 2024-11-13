@@ -1,34 +1,46 @@
 "use client";
 
 import { UpcomingEventsCarousel } from "./carousel/UpcomingEventsCarousel";
-import dayjs from "dayjs";
-import { CustomLink, EventCard, EventCardProps } from "~/components";
+import { CustomLink, EventCard } from "~/components";
+import PlaceholderImage from "~/images/placeholder.webp";
+import { useQuery } from "@tanstack/react-query";
+import { upcomingEventsList } from "~/api-client/services.gen";
 import clsx from "clsx";
 import { AppRoute } from "~/enums";
 import { useTranslations } from "next-intl";
+import { UpcomingEventsListResponse } from "~/api-client/types.gen";
 
 export const UpcomingEventsSection: React.FC = () => {
   const t = useTranslations("UpcomingEventsSection");
-
-  const createEvent = (id: string): EventCardProps => ({
-    id,
-    image: { src: "", alt: "Event" },
-    title: "Event",
-    date: dayjs("2022-01-01", "YYYY-MM-DD"),
-    category: "Category",
-    location: "Lorem ipsum dolor sit amet",
-    distanceTitles: ["5 km", "10 km", "21 km", "42 km"],
+  const { data } = useQuery<UpcomingEventsListResponse>({
+    queryKey: ["mainList", {}],
+    queryFn: async (): Promise<UpcomingEventsListResponse> => {
+      const response = await upcomingEventsList();
+      if (response.data && response.response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error(response.response.statusText);
+      }
+    },
   });
-
-  const events = Array(3)
-    .fill(null)
-    .map((_, index) => createEvent((index + 1).toString()));
 
   const renderCustomLink = (text: string, display: string) => (
     <div className={clsx(display)}>
       <CustomLink href={AppRoute.CALENDAR}>{text}</CustomLink>
     </div>
   );
+
+  const events =
+    data?.events?.map((event) => ({
+      id: event.id,
+      name: event.name,
+      dateFrom: event.date_from,
+      dateTo: event.date_to,
+      place: event.place,
+      competitionType: event.competition_type,
+      photos: { src: event.photos || PlaceholderImage, alt: event.name || "" },
+      distances: event.distances,
+    })) || [];
 
   const renderEventCards = () =>
     events.map((event, i) => (
