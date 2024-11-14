@@ -15,7 +15,7 @@ export const EventHeader = () => {
           {title}
         </p>
 
-        <h2 className="mb-4 text-center font-semibold leading-[1.2] text-dark ~text-2xl/[3.25rem] ~max-w-[19rem]/[58rem]">
+        <h2 className="mb-4 text-center font-semibold leading-tight text-dark ~text-2xl/[3.25rem] ~max-w-[19rem]/[58rem]">
           {text}
         </h2>
       </div>

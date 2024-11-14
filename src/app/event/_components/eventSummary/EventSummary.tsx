@@ -28,7 +28,7 @@ export const EventSummary = () => {
           onSelectDistance={handleDistanceSelection}
         />
       </div>
-      <div className="text-center font-semibold leading-[1.2] text-dark ~text-2xl/4xl ~mb-4/6">
+      <div className="text-center font-semibold leading-tight text-dark ~text-2xl/4xl ~mb-4/6">
         <p className="mb-6">Дистанція - {formatDistanceLabel()}</p>
         <p className="text-orange-hot">{selectedDistance.price}</p>
       </div>

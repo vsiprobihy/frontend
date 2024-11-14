@@ -11,11 +11,11 @@ type TextProps = {
 const Text: React.FC<TextProps> = ({ label, text, isCurrentUser }) => {
   return (
     <div>
-      <h3 className="mb-2 text-sm font-semibold uppercase leading-[1.2] text-grey">
+      <h3 className="mb-2 text-sm font-semibold uppercase leading-tight text-grey">
         {label}
       </h3>
       <p
-        className={clsx("font-medium leading-[1.4]", {
+        className={clsx("font-medium leading-snug", {
           "text-orange-hot": isCurrentUser,
         })}
       >

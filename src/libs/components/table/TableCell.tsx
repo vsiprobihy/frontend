@@ -14,7 +14,7 @@ export const TableCell: React.FC<Props> = ({
   return (
     <td
       className={clsx(
-        "px-4 py-3 font-medium leading-[1.4]",
+        "px-4 py-3 font-medium leading-snug",
         {
           "text-left": align === "left",
           "text-right": align === "right",

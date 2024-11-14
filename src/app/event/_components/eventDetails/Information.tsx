@@ -20,7 +20,7 @@ type InformationProps = {
 };
 
 const Description: React.FC<{ texts: string[] }> = ({ texts }) => (
-  <div className="~font-medium/semibold grid gap-4 rounded-2xl bg-white text-sm leading-[1.4] text-dark ~p-4/6">
+  <div className="~font-medium/semibold grid gap-4 rounded-2xl bg-white text-sm leading-snug text-dark ~p-4/6">
     {texts.map((text, index) => (
       <p key={index}>{text}</p>
     ))}
@@ -47,7 +47,7 @@ const Information: React.FC<InformationProps> = ({ organizerInfo }) => {
     <div className="grid ~gap-2/5 md:grid-flow-col md:items-start">
       <Description texts={description} />
 
-      <div className="grid justify-items-center rounded-2xl bg-white font-semibold leading-[1.2] text-dark ~p-4/6">
+      <div className="grid justify-items-center rounded-2xl bg-white font-semibold leading-tight text-dark ~p-4/6">
         <h3 className="mb-6 uppercase ~text-base/2xl">Організатор</h3>
 
         <div className="~mb-4/2 overflow-hidden rounded-full ~w-[5.625rem]/[7.375rem]">

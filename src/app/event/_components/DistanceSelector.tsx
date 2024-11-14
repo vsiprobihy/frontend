@@ -69,7 +69,7 @@ const DistanceSelector: React.FC<Props> = ({
       >
         <p
           className={clsx(
-            "rounded-full px-6 py-3 text-center text-base font-semibold uppercase leading-[1.2]",
+            "rounded-full px-6 py-3 text-center text-base font-semibold uppercase leading-tight",
             {
               "bg-yellow text-dark": theme === "yellow-dark",
               "bg-dark text-white": theme === "grey-dark",
@@ -106,7 +106,7 @@ const DistanceSelector: React.FC<Props> = ({
             >
               <p
                 className={clsx(
-                  `rounded-full px-6 py-3 text-center text-base font-semibold uppercase leading-[1.2]`,
+                  `rounded-full px-6 py-3 text-center text-base font-semibold uppercase leading-tight`,
                   {
                     "bg-grey-dark text-white hover:bg-grey active:bg-yellow active:text-dark":
                       theme === "yellow-dark",
@@ -138,7 +138,7 @@ const DistanceSelector: React.FC<Props> = ({
           className="cursor-pointer"
         >
           <p
-            className={`px-6 py-3 text-center text-base font-semibold uppercase leading-[1.4] ${selectedDistanceIndex === index && activeDistanceStyle}`}
+            className={`px-6 py-3 text-center text-base font-semibold uppercase leading-snug ${selectedDistanceIndex === index && activeDistanceStyle}`}
           >
             {formatDistanceLabel(index)}
           </p>

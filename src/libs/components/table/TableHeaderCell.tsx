@@ -15,7 +15,7 @@ export const TableHeaderCell: React.FC<Props> = ({
     <th
       style={{ textAlign: align }}
       className={clsx(
-        "px-4 py-3 text-sm font-semibold uppercase leading-[1.2] text-grey",
+        "px-4 py-3 text-sm font-semibold uppercase leading-tight text-grey",
         {
           "text-left": align === "left",
           "text-right": align === "right",

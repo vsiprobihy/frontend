@@ -27,7 +27,7 @@ const TabSelector: React.FC<TabSelectorProps> = ({ tabs, onSelect }) => {
           onClick={() => handleOnSelect(index)}
           key={index}
           className={clsx(
-            "rounded-full font-semibold uppercase leading-[1.2] ~text-sm/2xl ~py-2/6",
+            "rounded-full font-semibold uppercase leading-tight ~text-sm/2xl ~py-2/6",
             {
               "bg-dark text-white": index === activeTab,
             }
