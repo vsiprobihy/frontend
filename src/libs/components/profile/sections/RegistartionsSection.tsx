@@ -9,7 +9,7 @@ export const RegistartionsSection = () => {
 
   return (
     <div className="lg:flex lg:justify-end lg:pr-32">
-      <div className="lg:mt-18 mb-[165px] mt-28 lg:w-7/12">
+      <div className="lg:mt-18 mb-40 mt-28 lg:w-7/12">
         <NotFoundTemplate
           heading={t("heading")}
           title={t("title")}

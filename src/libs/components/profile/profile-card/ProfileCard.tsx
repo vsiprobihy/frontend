@@ -25,7 +25,6 @@ export const ProfileCard: React.FC<Props> = ({ user }) => {
     router.push(`?${params.toString()}`);
   };
 
-
   return (
     <div className="relative flex w-full flex-col justify-center rounded-3xl bg-dark px-4 py-4 lg:w-[clamp(320px,10vw+200px,390px)]">
       <Icon

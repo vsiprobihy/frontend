@@ -24,6 +24,7 @@ import { getSplittedDateOfBirth } from "@/libs/helpers/getSplittedDateOfBirth";
 import { useEffect } from "react";
 import clsx from "clsx";
 import LabelWithConditionalRequiredHighlight from "../../label/LabelWithConditionalRequiredHighlight";
+import { ProfileFormError } from "./ProfileFormError";
 
 type Props = {
   onSubmitProfileData: (profile: UserProfileFormValues) => void;
@@ -75,7 +76,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     clearErrors,
     getValues,
     setValue,
@@ -116,7 +117,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                     type: "text",
                     ...register("first_name"),
                     className: clsx(
-                      "bg-grey-light !h-[51px]  lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
                       {
                         "bg-white": !!getValues("first_name"),
                       }
@@ -133,18 +134,14 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                     condition={!!getValues("first_name")}
                   />
                 </CustomLabel>
-                {errors.first_name && (
-                  <p className="mb-4 block text-sm font-medium text-red">
-                    {errors.first_name.message}
-                  </p>
-                )}
+                <ProfileFormError message={errors.first_name?.message} />
               </div>
 
               <div className="mb-6">
                 <CustomLabel
                   inputProps={{
                     className: clsx(
-                      "bg-grey-light !h-[51px]  lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
                       {
                         "bg-white": !!getValues("last_name"),
                       }
@@ -165,11 +162,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                     condition={!!getValues("last_name")}
                   />
                 </CustomLabel>
-                {errors.last_name && (
-                  <p className="mb-4 block text-sm font-medium text-red">
-                    {errors.last_name.message}
-                  </p>
-                )}
+                <ProfileFormError message={errors.last_name?.message} />
               </div>
 
               <div className="mb-6">
@@ -219,20 +212,19 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 placeholder={t("profileForm.placeholders.size")}
                 items={tshirtSizesOptions}
                 control={control}
-                triggerClassName="w-[158px] !important"
+                triggerClassName="w-[158px]"
               />
             </div>
 
             <p className="mb-6 font-semibold uppercase leading-5 lg:text-[clamp(1rem,2.2vw+0.9rem,1.4rem)] lg:leading-7">
               {t("profileForm.dataTitle.contact")}
             </p>
-
             <div className="mb-8 mt-6">
               <div className="mb-6">
                 <CustomLabel
                   inputProps={{
                     className: clsx(
-                      "bg-grey-light !h-[51px]  lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
                       {
                         "bg-white": !!getValues("country"),
                       }
@@ -253,11 +245,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                     condition={!!getValues("country")}
                   />
                 </CustomLabel>
-                {errors.country && (
-                  <p className="mb-4 block text-sm font-medium text-red">
-                    {errors.country.message}
-                  </p>
-                )}
+                <ProfileFormError message={errors.country?.message} />
               </div>
 
               <div className="mb-6">
@@ -265,7 +253,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   <CustomLabel
                     inputProps={{
                       className: clsx(
-                        "bg-grey-light !h-[51px]  lg:w-[455px] xl:w-[481px]",
+                        "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
                         {
                           "bg-white": !!getValues("city"),
                         }
@@ -286,11 +274,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                       condition={!!getValues("city")}
                     />
                   </CustomLabel>
-                  {errors.city && (
-                    <p className="mb-4 block text-sm font-medium text-red">
-                      {errors.city.message}
-                    </p>
-                  )}
+                  <ProfileFormError message={errors.city?.message} />
                 </div>
               </div>
 
@@ -298,7 +282,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 <CustomLabel
                   inputProps={{
                     className: clsx(
-                      "bg-grey-light !h-[51px]  lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12 lg:w-[455px] xl:w-[481px]",
                       {
                         "bg-white": !!getValues("email"),
                       }
@@ -332,16 +316,12 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 className="h-[51px] w-full gap-2 lg:w-[455px] xl:w-[481px]"
                 numberInputProps={{
                   className: clsx(
-                    "py-[22px] lg:w-[338px] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-[51px] focus:outline-none rounded-xl border border-grey-light-dark",
+                    "py-[22px] lg:w-[338px] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-12 focus:outline-none rounded-xl border border-grey-light-dark",
                     { "bg-white": !!getValues("phone_number") }
                   ),
                 }}
               />
-              {errors.phone_number && (
-                <p className="mb-4 block text-sm font-medium text-red">
-                  {errors.phone_number.message}
-                </p>
-              )}
+              <ProfileFormError message={errors.phone_number?.message} />
             </div>
 
             <div className="mb-6 flex items-center gap-3">
@@ -358,7 +338,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
               <CustomLabel
                 inputProps={{
                   className: clsx(
-                    "bg-grey-light !h-[51px]  lg:w-[455px] xl:w-[481px]",
+                    "bg-grey-light !h-12 lg:w-[455px] xl:w-[481px]",
                     {
                       "bg-white": !!getValues("sports_club"),
                     }
@@ -379,11 +359,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   condition={!!getValues("sports_club")}
                 />
               </CustomLabel>
-              {errors.sports_club && (
-                <p className="mb-4 block text-sm font-medium text-red">
-                  {errors.sports_club.message}
-                </p>
-              )}
+              <ProfileFormError message={errors.sports_club?.message} />
             </div>
 
             <p className="mb-6 font-semibold uppercase leading-5 lg:text-[clamp(1rem,2.2vw+0.9rem,1.4rem)] lg:leading-7">
@@ -394,7 +370,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
               <CustomLabel
                 inputProps={{
                   className: clsx(
-                    "bg-grey-light !h-[51px]  lg:w-[455px] xl:w-[481px]",
+                    "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
                     {
                       "bg-white": !!getValues("emergency_contact_name"),
                     }
@@ -415,11 +391,9 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   condition={!!getValues("emergency_contact_name")}
                 />
               </CustomLabel>
-              {errors.emergency_contact_name && (
-                <p className="mb-4 block text-sm font-medium text-red">
-                  {errors.emergency_contact_name.message}
-                </p>
-              )}
+              <ProfileFormError
+                message={errors.emergency_contact_name?.message}
+              />
             </div>
 
             <p className="mb-2 text-[14px] font-medium leading-4 text-dark">
@@ -431,15 +405,12 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
               control={control}
               labels={phoneLabesLocal}
               defaultCountry="UA"
-              className={clsx(
-                "h-[51px] w-full gap-2 lg:w-[455px] xl:w-[481px]",
-                {
-                  "bg-white": !!getValues("emergency_contact_phone"),
-                }
-              )}
+              className={clsx("h-12 w-full gap-2 lg:w-[455px] xl:w-[481px]", {
+                "bg-white": !!getValues("emergency_contact_phone"),
+              })}
               numberInputProps={{
                 className: clsx(
-                  "py-[22px] lg:w-[338px] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-[51px] focus:outline-none rounded-xl border border-grey-light-dark",
+                  "py-[22px] lg:w-[338px] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-12 focus:outline-none rounded-xl border border-grey-light-dark",
                   { "bg-white": !!getValues("emergency_contact_phone") }
                 ),
               }}
@@ -449,7 +420,12 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
 
         <div className="fluid-px mt-8 lg:mt-6 lg:flex lg:justify-end lg:px-0">
           <div className="lg:w-96">
-            <Button type="submit" size={"middle"} fullWidth>
+            <Button
+              type="submit"
+              size={"middle"}
+              disabled={!isDirty || !isValid}
+              fullWidth
+            >
               {t("profileForm.button")}
             </Button>
           </div>

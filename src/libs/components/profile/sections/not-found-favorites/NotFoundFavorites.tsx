@@ -15,7 +15,7 @@ export const NotFoundFavorites: React.FC<Props> = ({
     
   return (
     <div className="flex flex-col items-center justify-center gap-8">
-      <div className="relative flex h-[91px] w-[91px] items-center justify-center rounded-full bg-white lg:h-40 lg:w-40">
+      <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white lg:h-40 lg:w-40">
         <Icon
           name={IconType.LIKE}
           className="absolute text-4xl text-grey-light-middle lg:text-7xl"
@@ -23,7 +23,7 @@ export const NotFoundFavorites: React.FC<Props> = ({
       </div>
 
       <div className="flex flex-col items-center justify-center gap-2">
-        <p className="whitespace-normal text-center text-2xl font-semibold uppercase leading-7 text-dark lg:text-[32px]">
+        <p className="whitespace-normal text-center text-2xl font-semibold uppercase leading-7 text-dark lg:text-3xl">
           {title}
         </p>
 
