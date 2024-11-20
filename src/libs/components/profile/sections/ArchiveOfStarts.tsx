@@ -14,7 +14,7 @@ export const ArchiveOfStarts = () => {
           heading={t("heading")}
           title={t("title")}
           description={
-            <div className="flex flex-col items-center justify-center gap-1 lg:flex-row">
+            <span className="flex flex-col items-center justify-center gap-1 lg:flex-row">
               <span className="text-grey">{t("description")}</span>
               <Link
                 href={AppRoute.CALENDAR}
@@ -22,7 +22,7 @@ export const ArchiveOfStarts = () => {
               >
                 {t("calendar")}
               </Link>
-            </div>
+            </span>
           }
           isSmall={true}
         />

@@ -32,7 +32,7 @@ export const CustomRadioGroup: React.FC<CustomRadioGroupProps> = ({
 }) => {
   return (
     <div>
-      <p className="mb-4 text-[14px] font-medium leading-4 text-dark">
+      <p className="mb-4 text-sm font-medium leading-4 text-dark">
         {label}
       </p>
       <RadioGroup.Root
@@ -46,7 +46,7 @@ export const CustomRadioGroup: React.FC<CustomRadioGroupProps> = ({
             <RadioGroup.Item
               value={option.value}
               className={clsx(
-                "flex h-[21px] w-[21px] items-center justify-center rounded-full bg-grey-light-dark hover:border-4 hover:border-grey-light-middle hover:bg-white focus:border-4 focus:border-dark focus:bg-white focus:outline-none",
+                "flex h-5 w-5 items-center justify-center rounded-full bg-grey-light-dark hover:border-4 hover:border-grey-light-middle hover:bg-white focus:border-4 focus:border-dark focus:bg-white focus:outline-none",
                 inputClassname,
                 value === option.value
                   ? "border-4 border-dark bg-white"
@@ -66,7 +66,7 @@ export const CustomRadioGroup: React.FC<CustomRadioGroupProps> = ({
             </RadioGroup.Item>
             <span
               className={clsx(
-                "pl-2 text-[14px] font-medium leading-4 text-dark",
+                "pl-2 text-sm font-medium leading-4 text-dark",
                 labelClassName
               )}
             >

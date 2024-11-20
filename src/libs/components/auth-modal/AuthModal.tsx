@@ -81,7 +81,7 @@ export const AuthModal: React.FC = () => {
       const response = await authLoginCreate({
         body: tokenObtainPair,
       });
-      console.log(response)
+
 
       if (response.response.status === 200) {
         return response;

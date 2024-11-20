@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { IconPhoto } from "../icon-photo/IconPhoto";
@@ -11,7 +12,7 @@ export const ProfileHeader = () => {
       <p className="fluid-px mb-1 text-[clamp(1.5rem,2.2vw+0.9rem,3.5rem)] font-bold uppercase lg:mb-10">
         {t("profile.title")}
       </p>
-      <div className="relative h-40 lg:h-[408px]">
+      <div className="relative h-40 lg:h-[25.5rem]">
         <Image
           src="/images/profile-header-banner.webp"
           className="w-full lg:rounded-3xl"

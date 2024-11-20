@@ -69,7 +69,7 @@ const CustomSelect = <T extends FieldValues>({
             <Select.Portal>
               <Select.Content
                 sideOffset={8}
-                className="mt-2 max-h-[242px] w-full overflow-auto rounded-lg bg-white shadow-md"
+                className="mt-2 max-h-60 w-full overflow-auto rounded-lg bg-white shadow-md"
               >
                 <ScrollArea.Root type="auto">
                   <Select.Viewport className="p-2">
@@ -83,7 +83,7 @@ const CustomSelect = <T extends FieldValues>({
                           >
                             <div className="flex w-full gap-2">
                               {isOpen && (
-                                <div className="group-hover:border-gray-400 flex h-[21px] w-[21px] items-center justify-center rounded-full bg-grey-light-dark hover:border-4 hover:border-grey-light-middle hover:bg-white focus:border-4 focus:border-dark focus:bg-white focus:outline-none" />
+                                <div className="group-hover:border-gray-400 flex h-5 w-5 items-center justify-center rounded-full bg-grey-light-dark hover:border-4 hover:border-grey-light-middle hover:bg-white focus:border-4 focus:border-dark focus:bg-white focus:outline-none" />
                               )}
                               <p className="text-sm font-medium">
                                 {item.label}

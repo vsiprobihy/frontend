@@ -1,10 +1,9 @@
-import { ProfileComponent } from "@/libs/components/profile/Profile";
+
+import { AppRoute, ProfileSections } from "@/libs/enums";
 import { NextPage } from "next";
+import { redirect } from "next/navigation";
 
-const Profile: NextPage = () => (
-  <main className="lg:mb-22 mb-20">
-    <ProfileComponent />
-  </main>
-);
-
+const Profile: NextPage = () => {
+  redirect(`${AppRoute.PROFILE}/${ProfileSections.DATA}`);
+};
 export default Profile;

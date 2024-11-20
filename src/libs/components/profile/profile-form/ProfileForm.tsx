@@ -19,38 +19,45 @@ import { CustomRadioGroup } from "../../radio-group/CustomRadioGroup";
 import CustomSelect from "../../select/CustomSelect";
 import uaLabels from "react-phone-number-input/locale/ua";
 import enLabels from "react-phone-number-input/locale/en";
-import { UserProfile } from "@/libs/api-client";
+import {
+  UserProfile,
+  authProfileList,
+  authProfilePartialUpdate,
+} from "@/libs/api-client";
 import { getSplittedDateOfBirth } from "@/libs/helpers/getSplittedDateOfBirth";
 import { useEffect } from "react";
 import clsx from "clsx";
 import LabelWithConditionalRequiredHighlight from "../../label/LabelWithConditionalRequiredHighlight";
 import { ProfileFormError } from "./ProfileFormError";
-
-type Props = {
-  onSubmitProfileData: (profile: UserProfileFormValues) => void;
-  user: UserProfile;
-};
+import {
+  SnakeToCamel,
+  snakeToCamelCase,
+} from "@/libs/helpers/snakeToCamelCase";
+import { camelToSnake } from "@/libs/helpers/camelToCase";
+import cyrillicToTranslit from "cyrillic-to-translit-js";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export type UserProfileFormValues = {
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   gender?: string | null;
   year?: string;
   day?: string;
   month?: string;
-  t_shirt_size?: string | null;
+  tShirtSize?: string | null;
   country: string;
   city: string;
-  phone_number?: string | null;
-  sports_club: string;
-  emergency_contact_name: string;
-  emergency_contact_phone?: string | null;
+  phoneNumber?: string | null;
+  sportsClub: string;
+  emergencyContactName: string;
+  emergencyContactPhone?: string | null;
   email: string;
 };
 
-export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
+export const ProfileForm = () => {
   const t = useTranslations();
   const locale = useLocale();
+  const queryClient = useQueryClient();
   const userProfileValidationSchema = createUserProfileValidationSchema(t);
   const genderOptions = createGenderOptions(t);
   const monthOptions = createMonthOptions(t);
@@ -58,25 +65,37 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
   const yearsOptions = createYearsOptions(1930, new Date().getFullYear());
   const phoneLabesLocal = locale === "en" ? enLabels : uaLabels;
 
+  const { data: user } = useQuery<SnakeToCamel<UserProfile>>({
+    queryKey: ["userProfile"],
+    queryFn: async (): Promise<UserProfile> => {
+      const response = await authProfileList();
+      if (response.data && response.response.status === 200) {
+        return snakeToCamelCase(response.data);
+      } else {
+        throw new Error(response.response.statusText);
+      }
+    },
+  });
+
   const defaultValues: UserProfileFormValues = {
-    first_name: user.first_name || "",
-    last_name: user.last_name || "",
-    gender: user.gender || null,
-    t_shirt_size: user.t_shirt_size || "",
-    country: user.country || "",
-    city: user.city || "",
-    phone_number: user.phone_number || "",
-    sports_club: user.sports_club || "",
-    emergency_contact_name: user.emergency_contact_name || "",
-    emergency_contact_phone: user.emergency_contact_phone || "",
-    ...getSplittedDateOfBirth(user?.date_of_birth),
-    email: user.email || "",
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    gender: user?.gender || null,
+    tShirtSize: user?.tShirtSize || "",
+    country: user?.country || "",
+    city: user?.city || "",
+    phoneNumber: user?.phoneNumber || "",
+    sportsClub: user?.sportsClub || "",
+    emergencyContactName: user?.emergencyContactName || "",
+    emergencyContactPhone: user?.emergencyContactPhone || "",
+    ...getSplittedDateOfBirth(user?.dateOfBirth),
+    email: user?.email || "",
   };
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isValid },
     clearErrors,
     getValues,
     setValue,
@@ -92,11 +111,56 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
     reset(defaultValues);
   }, [user]);
 
+  const { mutate: mutateProfileUpdate } = useMutation<
+    { data?: UserProfile },
+    Error,
+    UserProfile
+  >({
+    mutationFn: async (userProfileData: UserProfile) => {
+      const response = await authProfilePartialUpdate({
+        body: userProfileData,
+      });
+
+      if (response.response.status === 200) {
+        return response;
+      } else {
+        throw new Error(response.response.statusText);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["userProfile"] });
+    },
+    onError: (error) => {
+      alert(t("updateFailed", { error: error.message }));
+    },
+  });
+
+  const handleSubmitProfile = (formData: UserProfileFormValues) => {
+    const { year, month, day, lastName, firstName } = formData;
+    let dateOfBirth: Date | string | undefined;
+
+    if (year && month && day) {
+      const dob = new Date(Date.UTC(+year, +month - 1, +day));
+      dateOfBirth = dob.toISOString().split("T")[0];
+    }
+
+    const userData = {
+      date_of_birth: dateOfBirth,
+      first_name_eng: cyrillicToTranslit({ preset: "uk" }).transform(firstName),
+      last_name_eng: cyrillicToTranslit({ preset: "uk" }).transform(lastName),
+      ...formData,
+    };
+
+    const snakeCaseUserData = camelToSnake(userData);
+
+    mutateProfileUpdate(snakeCaseUserData);
+  };
+
   return (
     <div className="lg:pr-32">
       <form
-        onSubmit={handleSubmit(onSubmitProfileData)}
-        className="mx-auto w-full"
+        onSubmit={handleSubmit(handleSubmitProfile)}
+        className="mx-auto mb-20 w-full"
         noValidate
       >
         <div className="lg:flex lg:justify-end">
@@ -115,15 +179,15 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                     placeholder: t("profileForm.placeholders.name"),
                     id: "firstName",
                     type: "text",
-                    ...register("first_name"),
+                    ...register("firstName"),
                     className: clsx(
-                      "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12  lg:w-[28rem] xl:w-[30rem]",
                       {
-                        "bg-white": !!getValues("first_name"),
+                        "bg-white": !!getValues("firstName"),
                       }
                     ),
                     onChange: () => {
-                      clearErrors("first_name");
+                      clearErrors("firstName");
                     },
                   }}
                   labelProps={{ htmlFor: "firstName" }}
@@ -131,27 +195,27 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   <LabelWithConditionalRequiredHighlight
                     text={t("profileForm.labels.firstName")}
                     requiredField={true}
-                    condition={!!getValues("first_name")}
+                    condition={!!getValues("firstName")}
                   />
                 </CustomLabel>
-                <ProfileFormError message={errors.first_name?.message} />
+                <ProfileFormError message={errors.firstName?.message} />
               </div>
 
               <div className="mb-6">
                 <CustomLabel
                   inputProps={{
                     className: clsx(
-                      "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12 lg:w-[28rem] xl:w-[30rem]",
                       {
-                        "bg-white": !!getValues("last_name"),
+                        "bg-white": !!getValues("lastName"),
                       }
                     ),
                     placeholder: t("profileForm.placeholders.lastName"),
                     id: "lastName",
                     type: "text",
-                    ...register("last_name"),
+                    ...register("lastName"),
                     onChange: () => {
-                      clearErrors("last_name");
+                      clearErrors("lastName");
                     },
                   }}
                   labelProps={{ htmlFor: "lastName" }}
@@ -159,10 +223,10 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   <LabelWithConditionalRequiredHighlight
                     text={t("profileForm.labels.lastName")}
                     requiredField={true}
-                    condition={!!getValues("last_name")}
+                    condition={!!getValues("lastName")}
                   />
                 </CustomLabel>
-                <ProfileFormError message={errors.last_name?.message} />
+                <ProfileFormError message={errors.lastName?.message} />
               </div>
 
               <div className="mb-6">
@@ -170,13 +234,14 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   label={t("profileForm.labels.sex")}
                   options={genderOptions}
                   value={getValues("gender") as string}
-                  onChange={(value: string) => setValue("gender", value)}
+                  onChange={(value: string) => {
+                    setValue("gender", value, { shouldValidate: true });
+                  }}
                   error={errors.gender?.message}
-                  register={register("gender")}
                 />
               </div>
 
-              <p className="mb-2 text-[14px] font-medium leading-4 text-dark">
+              <p className="mb-2 text-sm font-medium leading-4 text-dark">
                 {t("profileForm.labels.birth")}
               </p>
               <div className="mb-6 flex flex-col gap-2 lg:flex-row">
@@ -185,7 +250,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   placeholder={t("profileForm.placeholders.day")}
                   items={daysOptions}
                   control={control}
-                  triggerClassName="w-[92px]"
+                  triggerClassName="w-24"
                   downIconClassname="opacity-0"
                 />
 
@@ -194,7 +259,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   placeholder={t("profileForm.placeholders.month")}
                   items={monthOptions}
                   control={control}
-                  triggerClassName="w-[157px]"
+                  triggerClassName="w-40"
                 />
 
                 <CustomSelect
@@ -202,17 +267,17 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   placeholder={t("profileForm.placeholders.year")}
                   items={yearsOptions}
                   control={control}
-                  triggerClassName="w-[157px]"
+                  triggerClassName="w-40"
                 />
               </div>
 
               <CustomSelect
-                name="t_shirt_size"
+                name="tShirtSize"
                 label={t("profileForm.labels.size")}
                 placeholder={t("profileForm.placeholders.size")}
                 items={tshirtSizesOptions}
                 control={control}
-                triggerClassName="w-[158px]"
+                triggerClassName="w-40"
               />
             </div>
 
@@ -224,7 +289,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 <CustomLabel
                   inputProps={{
                     className: clsx(
-                      "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12 lg:w-[28rem] xl:w-[30rem]",
                       {
                         "bg-white": !!getValues("country"),
                       }
@@ -253,7 +318,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                   <CustomLabel
                     inputProps={{
                       className: clsx(
-                        "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
+                        "bg-grey-light !h-12 lg:w-[28rem] xl:w-[30rem]",
                         {
                           "bg-white": !!getValues("city"),
                         }
@@ -282,7 +347,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 <CustomLabel
                   inputProps={{
                     className: clsx(
-                      "bg-grey-light !h-12 lg:w-[455px] xl:w-[481px]",
+                      "bg-grey-light !h-12 lg:w-[28rem] xl:w-[30rem]",
                       {
                         "bg-white": !!getValues("email"),
                       }
@@ -304,7 +369,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 </CustomLabel>
               </div>
 
-              <p className="mb-2 text-[14px] font-medium leading-4 text-dark">
+              <p className="mb-2 text-sm font-medium leading-4 text-dark">
                 {t("profileForm.labels.phone")}
               </p>
               <PhoneInputWithCountry
@@ -313,15 +378,15 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 control={control}
                 labels={phoneLabesLocal}
                 defaultCountry="UA"
-                className="h-[51px] w-full gap-2 lg:w-[455px] xl:w-[481px]"
+                className="h-12 w-full gap-2 lg:w-[28rem] xl:w-[30rem]"
                 numberInputProps={{
                   className: clsx(
-                    "py-[22px] lg:w-[338px] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-12 focus:outline-none rounded-xl border border-grey-light-dark",
-                    { "bg-white": !!getValues("phone_number") }
+                    "py-6 lg:w-[21rem] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-12 focus:outline-none rounded-xl border border-grey-light-dark",
+                    { "bg-white": !!getValues("phoneNumber") }
                   ),
                 }}
               />
-              <ProfileFormError message={errors.phone_number?.message} />
+              <ProfileFormError message={errors.phoneNumber?.message} />
             </div>
 
             <div className="mb-6 flex items-center gap-3">
@@ -330,7 +395,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
               </p>
               <Icon
                 name={IconType.HINT}
-                className="hidden py-[3px] lg:block lg:cursor-pointer lg:px-[3px] lg:text-lg lg:text-dark"
+                className="hidden py-1 lg:block lg:cursor-pointer lg:px-1 lg:text-lg lg:text-dark"
               />
             </div>
 
@@ -338,17 +403,17 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
               <CustomLabel
                 inputProps={{
                   className: clsx(
-                    "bg-grey-light !h-12 lg:w-[455px] xl:w-[481px]",
+                    "bg-grey-light !h-12 lg:w-[28rem] xl:w-[30rem]",
                     {
-                      "bg-white": !!getValues("sports_club"),
+                      "bg-white": !!getValues("sportsClub"),
                     }
                   ),
                   placeholder: t("profileForm.placeholders.name"),
                   id: "clubName",
                   type: "text",
-                  ...register("sports_club"),
+                  ...register("sportsClub"),
                   onChange: () => {
-                    clearErrors("sports_club");
+                    clearErrors("sportsClub");
                   },
                 }}
                 labelProps={{ htmlFor: "clubName" }}
@@ -356,10 +421,10 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 <LabelWithConditionalRequiredHighlight
                   text={t("profileForm.labels.clubName")}
                   requiredField={true}
-                  condition={!!getValues("sports_club")}
+                  condition={!!getValues("sportsClub")}
                 />
               </CustomLabel>
-              <ProfileFormError message={errors.sports_club?.message} />
+              <ProfileFormError message={errors.sportsClub?.message} />
             </div>
 
             <p className="mb-6 font-semibold uppercase leading-5 lg:text-[clamp(1rem,2.2vw+0.9rem,1.4rem)] lg:leading-7">
@@ -370,17 +435,17 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
               <CustomLabel
                 inputProps={{
                   className: clsx(
-                    "bg-grey-light !h-12  lg:w-[455px] xl:w-[481px]",
+                    "bg-grey-light !h-12 lg:w-[28rem] xl:w-[30rem]",
                     {
-                      "bg-white": !!getValues("emergency_contact_name"),
+                      "bg-white": !!getValues("emergencyContactName"),
                     }
                   ),
                   placeholder: t("profileForm.placeholders.name"),
                   id: "contactPerson",
                   type: "text",
-                  ...register("emergency_contact_name"),
+                  ...register("emergencyContactName"),
                   onChange: () => {
-                    clearErrors("emergency_contact_name");
+                    clearErrors("emergencyContactName");
                   },
                 }}
                 labelProps={{ htmlFor: "contactPerson" }}
@@ -388,15 +453,15 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
                 <LabelWithConditionalRequiredHighlight
                   text={t("profileForm.labels.firstName")}
                   requiredField={true}
-                  condition={!!getValues("emergency_contact_name")}
+                  condition={!!getValues("emergencyContactName")}
                 />
               </CustomLabel>
               <ProfileFormError
-                message={errors.emergency_contact_name?.message}
+                message={errors.emergencyContactName?.message}
               />
             </div>
 
-            <p className="mb-2 text-[14px] font-medium leading-4 text-dark">
+            <p className="mb-2 text-sm font-medium leading-4 text-dark">
               {t("profileForm.labels.phone")}
             </p>
             <PhoneInputWithCountry
@@ -405,13 +470,13 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
               control={control}
               labels={phoneLabesLocal}
               defaultCountry="UA"
-              className={clsx("h-12 w-full gap-2 lg:w-[455px] xl:w-[481px]", {
-                "bg-white": !!getValues("emergency_contact_phone"),
+              className={clsx("h-12 w-full gap-2 lg:w-[28rem] xl:w-[30rem]", {
+                "bg-white": !!getValues("emergencyContactPhone"),
               })}
               numberInputProps={{
                 className: clsx(
-                  "py-[22px] lg:w-[338px] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-12 focus:outline-none rounded-xl border border-grey-light-dark",
-                  { "bg-white": !!getValues("emergency_contact_phone") }
+                  "py-6 lg:w-[21rem] px-4 placeholder:text-grey-light-middle hover:border-grey-light-middle bg-grey-light !h-12 focus:outline-none rounded-xl border border-grey-light-dark",
+                  { "bg-white": !!getValues("emergencyContactPhone") }
                 ),
               }}
             />
@@ -420,12 +485,7 @@ export const ProfileForm: React.FC<Props> = ({ onSubmitProfileData, user }) => {
 
         <div className="fluid-px mt-8 lg:mt-6 lg:flex lg:justify-end lg:px-0">
           <div className="lg:w-96">
-            <Button
-              type="submit"
-              size={"middle"}
-              disabled={!isDirty || !isValid}
-              fullWidth
-            >
+            <Button type="submit" size={"middle"} disabled={!isValid} fullWidth>
               {t("profileForm.button")}
             </Button>
           </div>

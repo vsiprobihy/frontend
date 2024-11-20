@@ -1,32 +1,45 @@
 "use client";
+
 import clsx from "clsx";
 import Image from "next/image";
-import { IconType, ProfileSections } from "@/libs/enums";
+import { AppRoute, IconType, ProfileSections } from "@/libs/enums";
 import { Icon } from "../..";
 import { ProfileCardButton } from "../../buttons/ProfileCardButton";
 import { useTranslations } from "next-intl";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ProfileButtons } from "./ProfileButtonsData";
-import { UserProfile } from "@/libs/api-client";
+import { UserProfile, authProfileList } from "@/libs/api-client";
+import {
+  SnakeToCamel,
+  snakeToCamelCase,
+} from "@/libs/helpers/snakeToCamelCase";
+import { useQuery } from "@tanstack/react-query";
 
-type Props = {
-  user: UserProfile;
-};
-
-export const ProfileCard: React.FC<Props> = ({ user }) => {
+export const ProfileCard = () => {
   const t = useTranslations("profileCard");
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const currentSection = searchParams.get("profileSection");
+  const pathname = usePathname();
 
-  const handleOpenProfilePage = (value: ProfileSections) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("profileSection", value);
-    router.push(`?${params.toString()}`);
+  const currentSection = pathname.split("/").pop();
+
+  const handleOpenProfilePage = (section: ProfileSections) => {
+    router.push(`${AppRoute.PROFILE}/${section}`);
   };
 
+  const { data: user } = useQuery<SnakeToCamel<UserProfile>>({
+    queryKey: ["userProfile"],
+    queryFn: async (): Promise<UserProfile> => {
+      const response = await authProfileList();
+      if (response.data && response.response.status === 200) {
+        return snakeToCamelCase(response.data);
+      } else {
+        throw new Error(response.response.statusText);
+      }
+    },
+  });
+
   return (
-    <div className="relative flex w-full flex-col justify-center rounded-3xl bg-dark px-4 py-4 lg:w-[clamp(320px,10vw+200px,390px)]">
+    <div className="relative flex w-full flex-col justify-center rounded-3xl bg-dark px-4 py-4 lg:w-[clamp(20rem,10vw+12.5rem,24.3rem)]">
       <Icon
         name={IconType.EDIT}
         className="absolute right-5 top-5 cursor-pointer text-2xl text-white"
@@ -43,13 +56,13 @@ export const ProfileCard: React.FC<Props> = ({ user }) => {
         </div>
 
         <div className="flex flex-col items-center justify-center">
-          {user.first_name && (
+          {user?.firstName && user?.lastName && (
             <p className="text-2xl font-semibold text-white">
-              {`${user.first_name} ${user.last_name}`}
+              {`${user?.firstName} ${user?.lastName}`}
             </p>
           )}
-          {user.last_name && (
-            <p className="text-base font-normal text-grey-light-dark">{`${user.first_name_eng} ${user.last_name_eng}`}</p>
+          {user?.lastNameEng && (
+            <p className="text-base font-normal text-grey-light-dark">{`${user?.firstNameEng} ${user?.lastNameEng}`}</p>
           )}
         </div>
       </div>
