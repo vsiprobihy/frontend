@@ -16,6 +16,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
+          vercel-args: '--yes' # Add the --yes flag to bypass confirmation
       - name: preview-url
         run: |
           echo ${{ steps.vercel-deploy.outputs.preview-url }}
