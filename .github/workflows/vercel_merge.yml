@@ -14,17 +14,13 @@ jobs:
           projectName: vsiprobihy-frontend
           envVariableKeys: NEXT_PUBLIC_BASE_URL,BASE_URL
         env:
-          CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
-          TARGET_CLIENT_EMAIL: preview,development,production
-          TYPE_CLIENT_EMAIL: encrypted
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          TARGET_NEXT_PUBLIC_BASE_URL: preview,development,production
+          TYPE_NEXT_PUBLIC_BASE_URL: encrypted
 
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          TARGET_PRIVATE_KEY: preview,development,production
-          TYPE_PRIVATE_KEY: encrypted
-
-          SPREADSHEET_ID: ${{ secrets.EVENTS_APP_SPREADSHEET_ID }}
-          TARGET_SPREADSHEET_ID: preview,development,production
-          TYPE_SPREADSHEET_ID: encrypted
+          BASE_URL: ${{ secrets.BASE_URL }}
+          TARGET_BASE_URL: preview,development,production
+          TYPE_BASE_URL: encrypted
 
       - uses: amondnet/vercel-action@v20
         with:
