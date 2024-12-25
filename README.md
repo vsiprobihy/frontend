@@ -129,3 +129,7 @@ Use [DayJS](https://day.js.org/)
 ## API Calls
 
 ... TODO
+
+## Types
+
+Run `npm run openapi-ts` to generate types from backend API.
