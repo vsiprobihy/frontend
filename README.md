@@ -1,7 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [
-`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
+# Getting Started
 
 First, run the development server:
 
@@ -17,12 +14,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically
-optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
+## Next JS
 
 To learn more about Next.js, take a look at the following resources:
 
@@ -32,14 +24,11 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions
 are welcome!
 
-## Deploy on Vercel
+# Branch Naming
 
-The easiest way to deploy your Next.js app is to use
-the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for
-more details.
+* `feat/...` - default
+* `fix/...` - for bug fixes
+* `...` - for special cases
 
 # Icon Type
 
@@ -57,76 +46,76 @@ more details.
 
 - ### **_app_**
 
-  - **/404**
-    Contains template 404 error page for handling "page not found" errors.
+    - **/404**
+      Contains template 404 error page for handling "page not found" errors.
 
-  - **/about**
-  - **/calendar**
+    - **/about**
+    - **/calendar**
 
-    - **/fonts**
-      Directory for storing fonts used in the project.
+        - **/fonts**
+          Directory for storing fonts used in the project.
 
-    - **/components**
-      Contains components for main page:
+        - **/components**
+          Contains components for main page:
 
-      - `HeroSection.tsx` — Components for the hero section.
-      - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
+            - `HeroSection.tsx` — Components for the hero section.
+            - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
 
-    - **/styles**
-      Contains global styles and icon styles:
+        - **/styles**
+          Contains global styles and icon styles:
 
-      - `globals.css` — Global styles for the application.
-      - `icomoon.css` — Styles for Icomoon icons.
+            - `globals.css` — Global styles for the application.
+            - `icomoon.css` — Styles for Icomoon icons.
 
-    - **layout.tsx**
-      The main layout file of the application, defining shared structure across pages (header, footer, etc.).
+        - **layout.tsx**
+          The main layout file of the application, defining shared structure across pages (header, footer, etc.).
 
-    - **not-found.tsx**
-      This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
-      handling.
+        - **not-found.tsx**
+          This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
+          handling.
 
-    - **page.tsx**
-      The main or root page of the application.
+        - **page.tsx**
+          The main or root page of the application.
 
 - ### **_libs_**
 
-  - **/api-client**
+    - **/api-client**
 
-  - **/components**
-    Contains reusable components organized into subdirectories:
+    - **/components**
+      Contains reusable components organized into subdirectories:
 
-    - **/buttons**
+        - **/buttons**
 
-    - **/footer**
+        - **/footer**
 
-    - **/header**
+        - **/header**
 
-    - **/icon**
-      Contains components for handling icons (`Icon.tsx`).
+        - **/icon**
+          Contains components for handling icons (`Icon.tsx`).
 
-    - **/links**
-      Contains link-related components, such as:
+        - **/links**
+          Contains link-related components, such as:
 
-      - `CustomLink.tsx` — Component for custom links.
+            - `CustomLink.tsx` — Component for custom links.
 
-    - **/mobile-menu**
+        - **/mobile-menu**
 
-    - **/tags**
-      Contains components for activity and distance tags:
+        - **/tags**
+          Contains components for activity and distance tags:
 
-      - `ActivityTypeTag.tsx` — For activity type tags.
-      - `DistanceTag.tsx` — For distance tags.
+            - `ActivityTypeTag.tsx` — For activity type tags.
+            - `DistanceTag.tsx` — For distance tags.
 
-    - `components.ts` — Re-exports common components used in this section.
+        - `components.ts` — Re-exports common components used in this section.
 
-  - **/context**
-  - **/enums**
-    Directory for enum types used throughout the project.
-  - **/hooks**
-    Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
-  - **/locale**
-  - **/utils**
+    - **/context**
+    - **/enums**
+      Directory for enum types used throughout the project.
+    - **/hooks**
+      Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
+    - **/locale**
+    - **/utils**
 
 - ### **_i18_**
-  - **`config.ts`**
-  - **`request.ts`**
+    - **`config.ts`**
+    - **`request.ts`**
