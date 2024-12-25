@@ -2,24 +2,26 @@
 
 import Link from "next/link";
 import Image from "next/image";
-
 import clsx from "clsx";
 import {
   useColorVariant,
-  useUserInteraction,
   useResponsiveDevice,
+  useUserInteraction,
 } from "~/hooks";
 import {
+  AuthModal,
+  getLinkValues,
+  HeaderNotificationButton,
   Logo,
   NavigationLink,
-  HeaderNotificationButton,
   ProfileButton,
-  getLinkValues,
+  SuccessModal,
 } from "~/components";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { AppRoute } from "~/enums";
 
 import LogoSrOnlyImage from "~/images/logo.png";
+import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 
 export const Header: React.FC = () => {
@@ -95,6 +97,10 @@ export const Header: React.FC = () => {
           <LanguageSwitcher isLightVariant={isLightVariant} />
         </div>
       </div>
+      <Suspense>
+        <AuthModal />
+        <SuccessModal />
+      </Suspense>
     </header>
   );
 };

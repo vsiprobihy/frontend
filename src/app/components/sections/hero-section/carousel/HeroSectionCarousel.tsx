@@ -45,7 +45,6 @@ export const HeroSectionCarousel: React.FC<CarouselProps> = (props) => {
           <div className="flex h-full">
             {props.elements.map(({ image }, index) => (
               <div key={index} className="mx-1 h-full flex-full">
-                {/* TODO: Add alt attributes to all images for better accessibility */}
                 <Image
                   {...{
                     ...image,

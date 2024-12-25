@@ -6,358 +6,238 @@ import {
   type Options,
 } from "@hey-api/client-fetch";
 import type {
-  AuthGoogleAccountInfoListError,
-  AuthGoogleAccountInfoListResponse,
-  AuthLoginCreateData,
-  AuthLoginCreateError,
-  AuthLoginCreateResponse,
-  AuthProfileListError,
-  AuthProfileListResponse,
-  AuthProfileUpdateData,
-  AuthProfileUpdateError,
-  AuthProfileUpdateResponse,
-  AuthProfilePartialUpdateData,
-  AuthProfilePartialUpdateError,
-  AuthProfilePartialUpdateResponse,
-  AuthProfileAdditionalProfilesListError,
-  AuthProfileAdditionalProfilesListResponse,
-  AuthProfileAdditionalProfilesCreateData,
-  AuthProfileAdditionalProfilesCreateError,
-  AuthProfileAdditionalProfilesCreateResponse,
-  AuthProfileAdditionalProfilesReadData,
-  AuthProfileAdditionalProfilesReadError,
-  AuthProfileAdditionalProfilesReadResponse,
-  AuthProfileAdditionalProfilesUpdateData,
-  AuthProfileAdditionalProfilesUpdateError,
-  AuthProfileAdditionalProfilesUpdateResponse,
-  AuthProfileAdditionalProfilesDeleteData,
-  AuthProfileAdditionalProfilesDeleteError,
-  AuthProfileAdditionalProfilesDeleteResponse,
-  AuthProfileUploadAvatarUpdateData,
-  AuthProfileUploadAvatarUpdateError,
-  AuthProfileUploadAvatarUpdateResponse,
-  AuthProfileUploadAvatarPartialUpdateData,
-  AuthProfileUploadAvatarPartialUpdateError,
-  AuthProfileUploadAvatarPartialUpdateResponse,
-  AuthRegisterCreateData,
-  AuthRegisterCreateError,
-  AuthRegisterCreateResponse,
-  AuthTokenRefreshCreateData,
-  AuthTokenRefreshCreateError,
-  AuthTokenRefreshCreateResponse,
-  CalendarFilterListData,
-  CalendarFilterListError,
-  CalendarFilterListResponse,
-  EventEventsReadData,
-  EventEventsReadError,
-  EventEventsReadResponse,
-  OrganizerAdditionalItemsReadData,
-  OrganizerAdditionalItemsReadError,
-  OrganizerAdditionalItemsReadResponse,
-  OrganizerAdditionalItemsCreateData,
-  OrganizerAdditionalItemsCreateError,
-  OrganizerAdditionalItemsCreateResponse,
-  OrganizerAdditionalItemsUpdateData,
-  OrganizerAdditionalItemsUpdateError,
-  OrganizerAdditionalItemsUpdateResponse,
-  OrganizerAdditionalItemsPartialUpdateData,
-  OrganizerAdditionalItemsPartialUpdateError,
-  OrganizerAdditionalItemsPartialUpdateResponse,
-  OrganizerAdditionalItemsDeleteData,
-  OrganizerAdditionalItemsDeleteError,
-  OrganizerAdditionalItemsDeleteResponse,
-  OrganizerDistancesReadData,
-  OrganizerDistancesReadError,
-  OrganizerDistancesReadResponse,
-  OrganizerDistancesCreateData,
-  OrganizerDistancesCreateError,
-  OrganizerDistancesCreateResponse,
-  OrganizerDistancesUpdateData,
-  OrganizerDistancesUpdateError,
-  OrganizerDistancesUpdateResponse,
-  OrganizerDistancesPartialUpdateData,
-  OrganizerDistancesPartialUpdateError,
-  OrganizerDistancesPartialUpdateResponse,
-  OrganizerDistancesDeleteData,
-  OrganizerDistancesDeleteError,
-  OrganizerDistancesDeleteResponse,
-  OrganizerEventsCreateData,
-  OrganizerEventsCreateError,
-  OrganizerEventsCreateResponse,
-  OrganizerEventsReadData,
-  OrganizerEventsReadError,
-  OrganizerEventsReadResponse,
-  OrganizerEventsUpdateData,
-  OrganizerEventsUpdateError,
-  OrganizerEventsUpdateResponse,
-  OrganizerEventsPartialUpdateData,
-  OrganizerEventsPartialUpdateError,
-  OrganizerEventsPartialUpdateResponse,
-  OrganizerEventsDeleteData,
-  OrganizerEventsDeleteError,
-  OrganizerEventsDeleteResponse,
-  OrganizerInviteModeratorCreateData,
-  OrganizerInviteModeratorCreateError,
-  OrganizerInviteModeratorCreateResponse,
-  OrganizerOrganizerEventsListError,
-  OrganizerOrganizerEventsListResponse,
-  OrganizerOrganizerEventsCreateData,
-  OrganizerOrganizerEventsCreateError,
-  OrganizerOrganizerEventsCreateResponse,
-  OrganizerOrganizerEventsReadData,
-  OrganizerOrganizerEventsReadError,
-  OrganizerOrganizerEventsReadResponse,
-  OrganizerOrganizerEventsUpdateData,
-  OrganizerOrganizerEventsUpdateError,
-  OrganizerOrganizerEventsUpdateResponse,
-  OrganizerOrganizerEventsPartialUpdateData,
-  OrganizerOrganizerEventsPartialUpdateError,
-  OrganizerOrganizerEventsPartialUpdateResponse,
-  OrganizerOrganizerEventsDeleteData,
-  OrganizerOrganizerEventsDeleteError,
-  OrganizerOrganizerEventsDeleteResponse,
-  RegisterUserForEventData,
-  RegisterUserForEventError,
-  RegisterUserForEventResponse,
-  GetEventRegistrationData,
-  GetEventRegistrationError,
-  GetEventRegistrationResponse,
-  UpdateEventRegistrationData,
-  UpdateEventRegistrationError,
-  UpdateEventRegistrationResponse,
-  PartialUpdateEventRegistrationData,
-  PartialUpdateEventRegistrationError,
-  PartialUpdateEventRegistrationResponse,
-  DeleteEventRegistrationData,
-  DeleteEventRegistrationError,
-  DeleteEventRegistrationResponse,
-  UpcomingEventsListData,
-  UpcomingEventsListError,
-  UpcomingEventsListResponse,
-  UserUserInfoListError,
-  UserUserInfoListResponse,
+  AuthenticationActivateReadData,
+  AuthenticationActivateReadError,
+  AuthenticationActivateReadResponse,
+  AuthenticationGoogleAccountInfoListError,
+  AuthenticationGoogleAccountInfoListResponse,
+  AuthenticationLoginCreateData,
+  AuthenticationLoginCreateError,
+  AuthenticationLoginCreateResponse,
+  AuthenticationRegisterCreateData,
+  AuthenticationRegisterCreateError,
+  AuthenticationRegisterCreateResponse,
+  AuthenticationResetPasswordConfirmData,
+  AuthenticationResetPasswordConfirmError,
+  AuthenticationResetPasswordConfirmResponse,
+  AuthenticationResetPasswordData,
+  AuthenticationResetPasswordError,
+  AuthenticationResetPasswordResponse,
+  AuthenticationTokenRefreshCreateData,
+  AuthenticationTokenRefreshCreateError,
+  AuthenticationTokenRefreshCreateResponse,
+  CustomAdminCompetitionsTypeListError,
+  CustomAdminCompetitionsTypeListResponse,
+  CustomAdminCompetitionsTypeCreateData,
+  CustomAdminCompetitionsTypeCreateError,
+  CustomAdminCompetitionsTypeCreateResponse,
+  CustomAdminCompetitionsTypeReadData,
+  CustomAdminCompetitionsTypeReadError,
+  CustomAdminCompetitionsTypeReadResponse,
+  CustomAdminCompetitionsTypeUpdateData,
+  CustomAdminCompetitionsTypeUpdateError,
+  CustomAdminCompetitionsTypeUpdateResponse,
+  CustomAdminCompetitionsTypePartialUpdateData,
+  CustomAdminCompetitionsTypePartialUpdateError,
+  CustomAdminCompetitionsTypePartialUpdateResponse,
+  CustomAdminCompetitionsTypeDeleteData,
+  CustomAdminCompetitionsTypeDeleteError,
+  CustomAdminCompetitionsTypeDeleteResponse,
+  CustomAdminEventUpdateStatusCreateData,
+  CustomAdminEventUpdateStatusCreateError,
+  CustomAdminEventUpdateStatusCreateResponse,
+  CustomAdminEventsUpdateStatusRequestsListError,
+  CustomAdminEventsUpdateStatusRequestsListResponse,
+  CustomAdminOrganizerRequestsListError,
+  CustomAdminOrganizerRequestsListResponse,
+  CustomAdminUserApproveOrganizerCreateData,
+  CustomAdminUserApproveOrganizerCreateError,
+  CustomAdminUserApproveOrganizerCreateResponse,
+  OrganizationListError,
+  OrganizationListResponse,
+  OrganizationCreateData,
+  OrganizationCreateError,
+  OrganizationCreateResponse,
+  OrganizationReadData,
+  OrganizationReadError,
+  OrganizationReadResponse,
+  OrganizationUpdateData,
+  OrganizationUpdateError,
+  OrganizationUpdateResponse,
+  OrganizationPartialUpdateData,
+  OrganizationPartialUpdateError,
+  OrganizationPartialUpdateResponse,
+  OrganizationDeleteData,
+  OrganizationDeleteError,
+  OrganizationDeleteResponse,
+  OrganizationEventListData,
+  OrganizationEventListError,
+  OrganizationEventListResponse,
+  OrganizationEventCreateData,
+  OrganizationEventCreateError,
+  OrganizationEventCreateResponse,
+  OrganizationEventReadData,
+  OrganizationEventReadError,
+  OrganizationEventReadResponse,
+  OrganizationEventUpdateData,
+  OrganizationEventUpdateError,
+  OrganizationEventUpdateResponse,
+  OrganizationEventPartialUpdateData,
+  OrganizationEventPartialUpdateError,
+  OrganizationEventPartialUpdateResponse,
+  OrganizationEventDeleteData,
+  OrganizationEventDeleteError,
+  OrganizationEventDeleteResponse,
+  OrganizationInviteOrganizerCreateData,
+  OrganizationInviteOrganizerCreateError,
+  OrganizationInviteOrganizerCreateResponse,
+  UserDistanceRegisterCreateData,
+  UserDistanceRegisterCreateError,
+  UserDistanceRegisterCreateResponse,
+  UserEventsLikeCreateData,
+  UserEventsLikeCreateError,
+  UserEventsLikeCreateResponse,
+  UserEventsLikeDeleteData,
+  UserEventsLikeDeleteError,
+  UserEventsLikeDeleteResponse,
+  UserProfileListError,
+  UserProfileListResponse,
+  UserProfileUpdateData,
+  UserProfileUpdateError,
+  UserProfileUpdateResponse,
+  UserProfilePartialUpdateData,
+  UserProfilePartialUpdateError,
+  UserProfilePartialUpdateResponse,
+  UserProfileAdditionalProfilesListError,
+  UserProfileAdditionalProfilesListResponse,
+  UserProfileAdditionalProfilesCreateData,
+  UserProfileAdditionalProfilesCreateError,
+  UserProfileAdditionalProfilesCreateResponse,
+  UserProfileAdditionalProfilesReadData,
+  UserProfileAdditionalProfilesReadError,
+  UserProfileAdditionalProfilesReadResponse,
+  UserProfileAdditionalProfilesUpdateData,
+  UserProfileAdditionalProfilesUpdateError,
+  UserProfileAdditionalProfilesUpdateResponse,
+  UserProfileAdditionalProfilesDeleteData,
+  UserProfileAdditionalProfilesDeleteError,
+  UserProfileAdditionalProfilesDeleteResponse,
+  UserProfileEventsLikedListError,
+  UserProfileEventsLikedListResponse,
+  UserPublicEventListError,
+  UserPublicEventListResponse,
+  UserPublicEventFilterListData,
+  UserPublicEventFilterListError,
+  UserPublicEventFilterListResponse,
+  UserPublicEventReadData,
+  UserPublicEventReadError,
+  UserPublicEventReadResponse,
+  UserRequestOrganizerCreateError,
+  UserRequestOrganizerCreateResponse,
 } from "./types.gen";
 
 export const client = createClient(createConfig());
 
-export const authGoogleAccountInfoList = <ThrowOnError extends boolean = false>(
-  options?: Options<unknown, ThrowOnError>
+/**
+ * Activate user by email
+ */
+export const authenticationActivateRead = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<AuthenticationActivateReadData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    AuthGoogleAccountInfoListResponse,
-    AuthGoogleAccountInfoListError,
+    AuthenticationActivateReadResponse,
+    AuthenticationActivateReadError,
     ThrowOnError
   >({
     ...options,
-    url: "/auth/google-account-info/",
+    url: "/authentication/activate/{uid}/{token}/",
+  });
+};
+
+export const authenticationGoogleAccountInfoList = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    AuthenticationGoogleAccountInfoListResponse,
+    AuthenticationGoogleAccountInfoListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/authentication/google-account-info/",
   });
 };
 
 /**
  * Login with JWT token
  */
-export const authLoginCreate = <ThrowOnError extends boolean = false>(
-  options: Options<AuthLoginCreateData, ThrowOnError>
+export const authenticationLoginCreate = <ThrowOnError extends boolean = false>(
+  options: Options<AuthenticationLoginCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    AuthLoginCreateResponse,
-    AuthLoginCreateError,
+    AuthenticationLoginCreateResponse,
+    AuthenticationLoginCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/auth/login/",
+    url: "/authentication/login/",
   });
 };
 
 /**
- * Get user profile data
+ * Register user with email and password
  */
-export const authProfileList = <ThrowOnError extends boolean = false>(
-  options?: Options<unknown, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    AuthProfileListResponse,
-    AuthProfileListError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/",
-  });
-};
-
-/**
- * Update user profile data
- */
-export const authProfileUpdate = <ThrowOnError extends boolean = false>(
-  options: Options<AuthProfileUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).put<
-    AuthProfileUpdateResponse,
-    AuthProfileUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/",
-  });
-};
-
-/**
- * Partial update of user profile data
- */
-export const authProfilePartialUpdate = <ThrowOnError extends boolean = false>(
-  options: Options<AuthProfilePartialUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).patch<
-    AuthProfilePartialUpdateResponse,
-    AuthProfilePartialUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/",
-  });
-};
-
-/**
- * Get a list of additional profiles
- */
-export const authProfileAdditionalProfilesList = <
+export const authenticationRegisterCreate = <
   ThrowOnError extends boolean = false,
 >(
-  options?: Options<unknown, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    AuthProfileAdditionalProfilesListResponse,
-    AuthProfileAdditionalProfilesListError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/additional_profiles/",
-  });
-};
-
-/**
- * Create an additional profile
- */
-export const authProfileAdditionalProfilesCreate = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<AuthProfileAdditionalProfilesCreateData, ThrowOnError>
+  options: Options<AuthenticationRegisterCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    AuthProfileAdditionalProfilesCreateResponse,
-    AuthProfileAdditionalProfilesCreateError,
+    AuthenticationRegisterCreateResponse,
+    AuthenticationRegisterCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/auth/profile/additional_profiles/",
+    url: "/authentication/register/",
   });
 };
 
 /**
- * Get an additional profile
+ * Confirm and reset the user password.
  */
-export const authProfileAdditionalProfilesRead = <
+export const authenticationResetPasswordConfirm = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<AuthProfileAdditionalProfilesReadData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    AuthProfileAdditionalProfilesReadResponse,
-    AuthProfileAdditionalProfilesReadError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/additional_profiles/{profile_id}/",
-  });
-};
-
-/**
- * Update an additional profile
- */
-export const authProfileAdditionalProfilesUpdate = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<AuthProfileAdditionalProfilesUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).put<
-    AuthProfileAdditionalProfilesUpdateResponse,
-    AuthProfileAdditionalProfilesUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/additional_profiles/{profile_id}/",
-  });
-};
-
-/**
- * Delete an additional profile
- */
-export const authProfileAdditionalProfilesDelete = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<AuthProfileAdditionalProfilesDeleteData, ThrowOnError>
-) => {
-  return (options?.client ?? client).delete<
-    AuthProfileAdditionalProfilesDeleteResponse,
-    AuthProfileAdditionalProfilesDeleteError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/additional_profiles/{profile_id}/",
-  });
-};
-
-/**
- * Upload user avatar using PUT method.
- */
-export const authProfileUploadAvatarUpdate = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<AuthProfileUploadAvatarUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).put<
-    AuthProfileUploadAvatarUpdateResponse,
-    AuthProfileUploadAvatarUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/upload-avatar/",
-  });
-};
-
-/**
- * Upload user avatar using PATCH method.
- */
-export const authProfileUploadAvatarPartialUpdate = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<AuthProfileUploadAvatarPartialUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).patch<
-    AuthProfileUploadAvatarPartialUpdateResponse,
-    AuthProfileUploadAvatarPartialUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/auth/profile/upload-avatar/",
-  });
-};
-
-/**
- * API view for user registration.
- * This view allows new users to register and generates access and refresh tokens
- * upon successful registration.
- */
-export const authRegisterCreate = <ThrowOnError extends boolean = false>(
-  options: Options<AuthRegisterCreateData, ThrowOnError>
+  options: Options<AuthenticationResetPasswordConfirmData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    AuthRegisterCreateResponse,
-    AuthRegisterCreateError,
+    AuthenticationResetPasswordConfirmResponse,
+    AuthenticationResetPasswordConfirmError,
     ThrowOnError
   >({
     ...options,
-    url: "/auth/register/",
+    url: "/authentication/reset-password-confirm/",
+  });
+};
+
+/**
+ * Request a password reset email.
+ */
+export const authenticationResetPassword = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<AuthenticationResetPasswordData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    AuthenticationResetPasswordResponse,
+    AuthenticationResetPasswordError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/authentication/reset-password/",
   });
 };
 
@@ -365,543 +245,681 @@ export const authRegisterCreate = <ThrowOnError extends boolean = false>(
  * Takes a refresh type JSON web token and returns an access type JSON web
  * token if the refresh token is valid.
  */
-export const authTokenRefreshCreate = <ThrowOnError extends boolean = false>(
-  options: Options<AuthTokenRefreshCreateData, ThrowOnError>
+export const authenticationTokenRefreshCreate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<AuthenticationTokenRefreshCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    AuthTokenRefreshCreateResponse,
-    AuthTokenRefreshCreateError,
+    AuthenticationTokenRefreshCreateResponse,
+    AuthenticationTokenRefreshCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/auth/token/refresh/",
+    url: "/authentication/token/refresh/",
   });
 };
 
 /**
- * Filtering events by competition type, name, month, year, location, and distance
+ * Get an Competition Type
  */
-export const calendarFilterList = <ThrowOnError extends boolean = false>(
-  options?: Options<CalendarFilterListData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    CalendarFilterListResponse,
-    CalendarFilterListError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/calendar/filter/",
-  });
-};
-
-export const eventEventsRead = <ThrowOnError extends boolean = false>(
-  options: Options<EventEventsReadData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    EventEventsReadResponse,
-    EventEventsReadError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/event/events/{id}/",
-  });
-};
-
-/**
- * Retrieve details of additional items for an event by ID.
- */
-export const organizerAdditionalItemsRead = <
+export const customAdminCompetitionsTypeList = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerAdditionalItemsReadData, ThrowOnError>
+  options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    OrganizerAdditionalItemsReadResponse,
-    OrganizerAdditionalItemsReadError,
+    CustomAdminCompetitionsTypeListResponse,
+    CustomAdminCompetitionsTypeListError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/additional-items/{event_id}/",
+    url: "/custom-admin/competitions-type/",
   });
 };
 
 /**
- * Add additional items (e.g., T-shirt, Medal) for an event.
+ * Create a new Competition Type.
  */
-export const organizerAdditionalItemsCreate = <
+export const customAdminCompetitionsTypeCreate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerAdditionalItemsCreateData, ThrowOnError>
+  options: Options<CustomAdminCompetitionsTypeCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    OrganizerAdditionalItemsCreateResponse,
-    OrganizerAdditionalItemsCreateError,
+    CustomAdminCompetitionsTypeCreateResponse,
+    CustomAdminCompetitionsTypeCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/additional-items/{event_id}/",
+    url: "/custom-admin/competitions-type/",
   });
 };
 
 /**
- * Update additional items for an event by ID and Event_ID.
+ * Get an Competition Type
  */
-export const organizerAdditionalItemsUpdate = <
+export const customAdminCompetitionsTypeRead = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerAdditionalItemsUpdateData, ThrowOnError>
+  options: Options<CustomAdminCompetitionsTypeReadData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    CustomAdminCompetitionsTypeReadResponse,
+    CustomAdminCompetitionsTypeReadError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/custom-admin/competitions-type/{id}/",
+  });
+};
+
+/**
+ * Update Competition Type
+ */
+export const customAdminCompetitionsTypeUpdate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<CustomAdminCompetitionsTypeUpdateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).put<
-    OrganizerAdditionalItemsUpdateResponse,
-    OrganizerAdditionalItemsUpdateError,
+    CustomAdminCompetitionsTypeUpdateResponse,
+    CustomAdminCompetitionsTypeUpdateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/additional-items/{event_id}/",
+    url: "/custom-admin/competitions-type/{id}/",
   });
 };
 
 /**
- * Partial update of additional items for an event by ID.
+ * Partial update Competition Type
  */
-export const organizerAdditionalItemsPartialUpdate = <
+export const customAdminCompetitionsTypePartialUpdate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerAdditionalItemsPartialUpdateData, ThrowOnError>
+  options: Options<CustomAdminCompetitionsTypePartialUpdateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<
-    OrganizerAdditionalItemsPartialUpdateResponse,
-    OrganizerAdditionalItemsPartialUpdateError,
+    CustomAdminCompetitionsTypePartialUpdateResponse,
+    CustomAdminCompetitionsTypePartialUpdateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/additional-items/{event_id}/",
+    url: "/custom-admin/competitions-type/{id}/",
   });
 };
 
 /**
- *
- * Delete multiple additional items associated with a specific event identified by the `event_id` in the URL.
- * The `id` field is required to identify each additional item to be deleted.
- *
+ * Delete an additional profile
  */
-export const organizerAdditionalItemsDelete = <
+export const customAdminCompetitionsTypeDelete = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerAdditionalItemsDeleteData, ThrowOnError>
+  options: Options<CustomAdminCompetitionsTypeDeleteData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
-    OrganizerAdditionalItemsDeleteResponse,
-    OrganizerAdditionalItemsDeleteError,
+    CustomAdminCompetitionsTypeDeleteResponse,
+    CustomAdminCompetitionsTypeDeleteError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/additional-items/{event_id}/",
+    url: "/custom-admin/competitions-type/{id}/",
   });
 };
 
 /**
- * Retrieve a list of distances associated with a specific event identified by the event_id passed in the URL.
+ * Update the status of an event by its ID.
  */
-export const organizerDistancesRead = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerDistancesReadData, ThrowOnError>
+export const customAdminEventUpdateStatusCreate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<CustomAdminEventUpdateStatusCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    CustomAdminEventUpdateStatusCreateResponse,
+    CustomAdminEventUpdateStatusCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/custom-admin/event/{event_id}/update-status/",
+  });
+};
+
+/**
+ * Retrieve all events with status "pending".
+ */
+export const customAdminEventsUpdateStatusRequestsList = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    OrganizerDistancesReadResponse,
-    OrganizerDistancesReadError,
+    CustomAdminEventsUpdateStatusRequestsListResponse,
+    CustomAdminEventsUpdateStatusRequestsListError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/distances/{event_id}/",
+    url: "/custom-admin/events/update-status-requests/",
   });
 };
 
 /**
- * Create a new distance for an event. The event is identified by the event_id passed in the URL.
+ * Retrieve all pending organizer requests.
  */
-export const organizerDistancesCreate = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerDistancesCreateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).post<
-    OrganizerDistancesCreateResponse,
-    OrganizerDistancesCreateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/distances/{event_id}/",
-  });
-};
-
-/**
- *
- * Update one or more distances for a specific event. The `event_id` is passed through the URL, and each distance
- * should have a valid `id` to identify which distance is being updated. All fields will be fully replaced with the new data.
- *
- */
-export const organizerDistancesUpdate = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerDistancesUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).put<
-    OrganizerDistancesUpdateResponse,
-    OrganizerDistancesUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/distances/{event_id}/",
-  });
-};
-
-/**
- *
- * Partially update one or more distances associated with a specific event identified by the `event_id` in the URL.
- * You can update one or more fields of the distances. The `id` field is required to identify each distance to be updated.
- *
- */
-export const organizerDistancesPartialUpdate = <
+export const customAdminOrganizerRequestsList = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerDistancesPartialUpdateData, ThrowOnError>
+  options?: Options<unknown, ThrowOnError>
 ) => {
-  return (options?.client ?? client).patch<
-    OrganizerDistancesPartialUpdateResponse,
-    OrganizerDistancesPartialUpdateError,
+  return (options?.client ?? client).get<
+    CustomAdminOrganizerRequestsListResponse,
+    CustomAdminOrganizerRequestsListError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/distances/{event_id}/",
+    url: "/custom-admin/organizer-requests/",
   });
 };
 
 /**
- *
- * Delete multiple distances associated with a specific event identified by the `event_id` in the URL.
- * The `id` field is required to identify each distance to be deleted.
- *
+ * Approve Organizer
  */
-export const organizerDistancesDelete = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerDistancesDeleteData, ThrowOnError>
-) => {
-  return (options?.client ?? client).delete<
-    OrganizerDistancesDeleteResponse,
-    OrganizerDistancesDeleteError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/distances/{event_id}/",
-  });
-};
-
-/**
- * Create a new event with all related details including organizer, additional items, and distances.
- */
-export const organizerEventsCreate = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerEventsCreateData, ThrowOnError>
+export const customAdminUserApproveOrganizerCreate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<CustomAdminUserApproveOrganizerCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    OrganizerEventsCreateResponse,
-    OrganizerEventsCreateError,
+    CustomAdminUserApproveOrganizerCreateResponse,
+    CustomAdminUserApproveOrganizerCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/events/",
+    url: "/custom-admin/user/{user_id}/approve-organizer/",
+  });
+};
+
+/**
+ * Retrieve the details of an event organizer by event_id. The event_id is used to find the organizer associated with a specific event.
+ */
+export const organizationList = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    OrganizationListResponse,
+    OrganizationListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/",
+  });
+};
+
+/**
+ * Update the details of an event organizer by event_id. The event_id is used to find the organizer, and the request body contains the updated information about the organizer.
+ */
+export const organizationCreate = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    OrganizationCreateResponse,
+    OrganizationCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/",
+  });
+};
+
+/**
+ * Retrieve the details of an event organizer by event_id. The event_id is used to find the organizer associated with a specific event.
+ */
+export const organizationRead = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationReadData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    OrganizationReadResponse,
+    OrganizationReadError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/",
+  });
+};
+
+/**
+ * Update the details of an event organizer by event_id. The event_id is used to find the organizer, and the request body contains the updated information about the organizer.
+ */
+export const organizationUpdate = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).put<
+    OrganizationUpdateResponse,
+    OrganizationUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/",
+  });
+};
+
+/**
+ * Partially update an event organizer by event_id. Only the fields provided in the request body will be updated.
+ */
+export const organizationPartialUpdate = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationPartialUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<
+    OrganizationPartialUpdateResponse,
+    OrganizationPartialUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/",
+  });
+};
+
+/**
+ * Delete an event organizer by event_id. The event_id is used to find and delete the organizer associated with a specific event.
+ */
+export const organizationDelete = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationDeleteData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<
+    OrganizationDeleteResponse,
+    OrganizationDeleteError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/",
   });
 };
 
 /**
  * Retrieve event details by ID.
  */
-export const organizerEventsRead = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerEventsReadData, ThrowOnError>
+export const organizationEventList = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationEventListData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    OrganizerEventsReadResponse,
-    OrganizerEventsReadError,
+    OrganizationEventListResponse,
+    OrganizationEventListError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/events/{id}/",
+    url: "/organization/{organization_id}/event/",
+  });
+};
+
+/**
+ * Create a new event with all related details including organizer, additional items, and distances.
+ */
+export const organizationEventCreate = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationEventCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    OrganizationEventCreateResponse,
+    OrganizationEventCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/",
+  });
+};
+
+/**
+ * Retrieve event details by ID.
+ */
+export const organizationEventRead = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationEventReadData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    OrganizationEventReadResponse,
+    OrganizationEventReadError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/{event_id}/",
   });
 };
 
 /**
  * Update event details without organizer, additional_items, or distances fields.
  */
-export const organizerEventsUpdate = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerEventsUpdateData, ThrowOnError>
+export const organizationEventUpdate = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationEventUpdateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).put<
-    OrganizerEventsUpdateResponse,
-    OrganizerEventsUpdateError,
+    OrganizationEventUpdateResponse,
+    OrganizationEventUpdateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/events/{id}/",
+    url: "/organization/{organization_id}/event/{event_id}/",
   });
 };
 
 /**
  * Partially update event details without organizer, additional_items, or distances fields.
  */
-export const organizerEventsPartialUpdate = <
+export const organizationEventPartialUpdate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerEventsPartialUpdateData, ThrowOnError>
+  options: Options<OrganizationEventPartialUpdateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<
-    OrganizerEventsPartialUpdateResponse,
-    OrganizerEventsPartialUpdateError,
+    OrganizationEventPartialUpdateResponse,
+    OrganizationEventPartialUpdateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/events/{id}/",
+    url: "/organization/{organization_id}/event/{event_id}/",
   });
 };
 
 /**
  * Delete an event by ID.
  */
-export const organizerEventsDelete = <ThrowOnError extends boolean = false>(
-  options: Options<OrganizerEventsDeleteData, ThrowOnError>
+export const organizationEventDelete = <ThrowOnError extends boolean = false>(
+  options: Options<OrganizationEventDeleteData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
-    OrganizerEventsDeleteResponse,
-    OrganizerEventsDeleteError,
+    OrganizationEventDeleteResponse,
+    OrganizationEventDeleteError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/events/{id}/",
+    url: "/organization/{organization_id}/event/{event_id}/",
   });
 };
 
-export const organizerInviteModeratorCreate = <
+/**
+ * Update the details of an event organizer by event_id. The event_id is used to find the organizer, and the request body contains the updated information about the organizer.
+ */
+export const organizationInviteOrganizerCreate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerInviteModeratorCreateData, ThrowOnError>
+  options: Options<OrganizationInviteOrganizerCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    OrganizerInviteModeratorCreateResponse,
-    OrganizerInviteModeratorCreateError,
+    OrganizationInviteOrganizerCreateResponse,
+    OrganizationInviteOrganizerCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/invite-moderator/",
+    url: "/organization/{organization_id}/invite-organizer/",
   });
 };
 
-export const organizerOrganizerEventsList = <
+/**
+ * User Distance Registration
+ */
+export const userDistanceRegisterCreate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<UserDistanceRegisterCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    UserDistanceRegisterCreateResponse,
+    UserDistanceRegisterCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/distance/{distance_id}/register/",
+  });
+};
+
+/**
+ * Like an event by its ID
+ */
+export const userEventsLikeCreate = <ThrowOnError extends boolean = false>(
+  options: Options<UserEventsLikeCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    UserEventsLikeCreateResponse,
+    UserEventsLikeCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/events/{event_id}/like/",
+  });
+};
+
+/**
+ * Unlike an event by its ID
+ */
+export const userEventsLikeDelete = <ThrowOnError extends boolean = false>(
+  options: Options<UserEventsLikeDeleteData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<
+    UserEventsLikeDeleteResponse,
+    UserEventsLikeDeleteError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/events/{event_id}/like/",
+  });
+};
+
+/**
+ * Get user profile data
+ */
+export const userProfileList = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    UserProfileListResponse,
+    UserProfileListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/profile/",
+  });
+};
+
+/**
+ * Update user profile data
+ */
+export const userProfileUpdate = <ThrowOnError extends boolean = false>(
+  options: Options<UserProfileUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).put<
+    UserProfileUpdateResponse,
+    UserProfileUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/profile/",
+  });
+};
+
+/**
+ * Partial update of user profile data
+ */
+export const userProfilePartialUpdate = <ThrowOnError extends boolean = false>(
+  options: Options<UserProfilePartialUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<
+    UserProfilePartialUpdateResponse,
+    UserProfilePartialUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/profile/",
+  });
+};
+
+/**
+ * Get a list of additional profiles
+ */
+export const userProfileAdditionalProfilesList = <
   ThrowOnError extends boolean = false,
 >(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    OrganizerOrganizerEventsListResponse,
-    OrganizerOrganizerEventsListError,
+    UserProfileAdditionalProfilesListResponse,
+    UserProfileAdditionalProfilesListError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/organizer-events/",
+    url: "/user/profile/additional-profiles/",
   });
 };
 
-export const organizerOrganizerEventsCreate = <
+/**
+ * Create an additional profile
+ */
+export const userProfileAdditionalProfilesCreate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerOrganizerEventsCreateData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfilesCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    OrganizerOrganizerEventsCreateResponse,
-    OrganizerOrganizerEventsCreateError,
+    UserProfileAdditionalProfilesCreateResponse,
+    UserProfileAdditionalProfilesCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/organizer-events/",
+    url: "/user/profile/additional-profiles/",
   });
 };
 
-export const organizerOrganizerEventsRead = <
+/**
+ * Get an additional profile
+ */
+export const userProfileAdditionalProfilesRead = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerOrganizerEventsReadData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfilesReadData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    OrganizerOrganizerEventsReadResponse,
-    OrganizerOrganizerEventsReadError,
+    UserProfileAdditionalProfilesReadResponse,
+    UserProfileAdditionalProfilesReadError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/organizer-events/{id}/",
+    url: "/user/profile/additional-profiles/{id}/",
   });
 };
 
-export const organizerOrganizerEventsUpdate = <
+/**
+ * Update an additional profile
+ */
+export const userProfileAdditionalProfilesUpdate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerOrganizerEventsUpdateData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfilesUpdateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).put<
-    OrganizerOrganizerEventsUpdateResponse,
-    OrganizerOrganizerEventsUpdateError,
+    UserProfileAdditionalProfilesUpdateResponse,
+    UserProfileAdditionalProfilesUpdateError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/organizer-events/{id}/",
+    url: "/user/profile/additional-profiles/{id}/",
   });
 };
 
-export const organizerOrganizerEventsPartialUpdate = <
+/**
+ * Delete an additional profile
+ */
+export const userProfileAdditionalProfilesDelete = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<OrganizerOrganizerEventsPartialUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).patch<
-    OrganizerOrganizerEventsPartialUpdateResponse,
-    OrganizerOrganizerEventsPartialUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/organizer-events/{id}/",
-  });
-};
-
-export const organizerOrganizerEventsDelete = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<OrganizerOrganizerEventsDeleteData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfilesDeleteData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
-    OrganizerOrganizerEventsDeleteResponse,
-    OrganizerOrganizerEventsDeleteError,
+    UserProfileAdditionalProfilesDeleteResponse,
+    UserProfileAdditionalProfilesDeleteError,
     ThrowOnError
   >({
     ...options,
-    url: "/organizer/organizer-events/{id}/",
+    url: "/user/profile/additional-profiles/{id}/",
   });
 };
 
 /**
- *
- * Registers a user for an event. The user is authenticated via JWT, and the event is identified by its ID.
- * The request body should include the event ID, a list of distance IDs the user wants to participate in, and optionally, additional item IDs.
- * The response will include the event registration details, such as the event ID, selected distances, additional items, registration date, and confirmation status.
- *
+ * Retrieve a list of liked events
  */
-export const registerUserForEvent = <ThrowOnError extends boolean = false>(
-  options: Options<RegisterUserForEventData, ThrowOnError>
-) => {
-  return (options?.client ?? client).post<
-    RegisterUserForEventResponse,
-    RegisterUserForEventError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/registrations/",
-  });
-};
-
-/**
- *
- * Retrieves detailed information about a specific event registration, including user information, the selected event, distances, additional items, registration date, and whether the registration has been confirmed.
- *
- */
-export const getEventRegistration = <ThrowOnError extends boolean = false>(
-  options: Options<GetEventRegistrationData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    GetEventRegistrationResponse,
-    GetEventRegistrationError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/registrations/{id}/",
-  });
-};
-
-/**
- *
- * Updates the details of an existing event registration. You can change the distances the user is registered for, update additional items, or modify other registration details.
- * The event itself cannot be changed; only distances and additional items can be updated.
- *
- */
-export const updateEventRegistration = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateEventRegistrationData, ThrowOnError>
-) => {
-  return (options?.client ?? client).put<
-    UpdateEventRegistrationResponse,
-    UpdateEventRegistrationError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/registrations/{id}/",
-  });
-};
-
-/**
- *
- * Partially updates an existing event registration. This can include modifying the distances or additional items associated with the registration.
- * Only the fields provided in the request body will be updated.
- *
- */
-export const partialUpdateEventRegistration = <
+export const userProfileEventsLikedList = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<PartialUpdateEventRegistrationData, ThrowOnError>
-) => {
-  return (options?.client ?? client).patch<
-    PartialUpdateEventRegistrationResponse,
-    PartialUpdateEventRegistrationError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/registrations/{id}/",
-  });
-};
-
-/**
- *
- * Deletes a specific event registration by its ID. This operation cannot be undone.
- *
- */
-export const deleteEventRegistration = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteEventRegistrationData, ThrowOnError>
-) => {
-  return (options?.client ?? client).delete<
-    DeleteEventRegistrationResponse,
-    DeleteEventRegistrationError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/organizer/registrations/{id}/",
-  });
-};
-
-/**
- * Get upcoming events for the main page
- */
-export const upcomingEventsList = <ThrowOnError extends boolean = false>(
-  options?: Options<UpcomingEventsListData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    UpcomingEventsListResponse,
-    UpcomingEventsListError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/upcoming-events/",
-  });
-};
-
-/**
- * Get the first and last name of an authorized user or a stub for an unauthorized user, and their avatar URL if available
- */
-export const userUserInfoList = <ThrowOnError extends boolean = false>(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    UserUserInfoListResponse,
-    UserUserInfoListError,
+    UserProfileEventsLikedListResponse,
+    UserProfileEventsLikedListError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/user-info/",
+    url: "/user/profile/events/liked/",
+  });
+};
+
+/**
+ * Retrieve detailed information list event
+ */
+export const userPublicEventList = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    UserPublicEventListResponse,
+    UserPublicEventListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/public-event/",
+  });
+};
+
+/**
+ * Filtering events by competition type, name, location, distance, and date range
+ */
+export const userPublicEventFilterList = <ThrowOnError extends boolean = false>(
+  options?: Options<UserPublicEventFilterListData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    UserPublicEventFilterListResponse,
+    UserPublicEventFilterListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/public-event/filter/",
+  });
+};
+
+/**
+ * Retrieve detailed information about a specific event by its ID.
+ */
+export const userPublicEventRead = <ThrowOnError extends boolean = false>(
+  options: Options<UserPublicEventReadData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    UserPublicEventReadResponse,
+    UserPublicEventReadError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/public-event/{event_id}/",
+  });
+};
+
+/**
+ * Request Organizer
+ */
+export const userRequestOrganizerCreate = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    UserRequestOrganizerCreateResponse,
+    UserRequestOrganizerCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/request-organizer/",
   });
 };

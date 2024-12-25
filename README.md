@@ -30,16 +30,6 @@ are welcome!
 * `fix/...` - for bug fixes
 * `...` - for special cases
 
-# Icon Type
-
-![Icon Type](https://firebasestorage.googleapis.com/v0/b/dasboard-bb88c.appspot.com/o/icon-type.webp?alt=media&token=4e310b68-2b02-4773-bf7d-d7bde0fc7bbb)
-
-## Usage
-
-```tsx
-<Icon name={IconType.INFO} className="text-xl text-dark" />
-```
-
 # Project Structure
 
 ## src:
@@ -84,38 +74,62 @@ are welcome!
     - **/components**
       Contains reusable components organized into subdirectories:
 
-        - **/buttons**
+          - **/buttons**
 
-        - **/footer**
+          - **/footer**
 
-        - **/header**
+          - **/header**
 
-        - **/icon**
-          Contains components for handling icons (`Icon.tsx`).
+          - **/icon**
+            Contains components for handling icons (`Icon.tsx`).
 
-        - **/links**
-          Contains link-related components, such as:
+          - **/links**
+            Contains link-related components, such as:
 
-            - `CustomLink.tsx` — Component for custom links.
+              - `CustomLink.tsx` — Component for custom links.
 
-        - **/mobile-menu**
+          - **/mobile-menu**
 
-        - **/tags**
-          Contains components for activity and distance tags:
+          - **/tags**
+            Contains components for activity and distance tags:
 
-            - `ActivityTypeTag.tsx` — For activity type tags.
-            - `DistanceTag.tsx` — For distance tags.
+              - `ActivityTypeTag.tsx` — For activity type tags.
+              - `DistanceTag.tsx` — For distance tags.
 
-        - `components.ts` — Re-exports common components used in this section.
+          - `components.ts` — Re-exports common components used in this section.
 
-    - **/context**
+        - **/context**
     - **/enums**
       Directory for enum types used throughout the project.
-    - **/hooks**
-      Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
+        - **/hooks**
+          Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
     - **/locale**
     - **/utils**
 
 - ### **_i18_**
     - **`config.ts`**
     - **`request.ts`**
+
+# Basics
+
+## Icon Type
+
+![Icon Type](https://firebasestorage.googleapis.com/v0/b/dasboard-bb88c.appspot.com/o/icon-type.webp?alt=media&token=4e310b68-2b02-4773-bf7d-d7bde0fc7bbb)
+
+### Usage
+
+```tsx
+<Icon name={IconType.INFO} className="text-xl text-dark" />
+```
+
+## Dates
+
+Use [DayJS](https://day.js.org/)
+
+## API Calls
+
+... TODO
+
+## Types
+
+Run `npm run openapi-ts` to generate types from backend API.
