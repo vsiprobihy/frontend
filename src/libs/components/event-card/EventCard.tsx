@@ -28,6 +28,23 @@ export interface EventCardProps {
 }
 
 export const EventCard: React.FC<EventCardProps> = (props) => {
+  /*
+  const formatDateRange = (dateFrom: Date, dateTo: Date): string => {
+    const startDate = dayjs(dateFrom).format("D");
+    const endDay = dayjs(dateTo).format("D");
+    const month = dayjs(dateFrom).format("MMMM");
+    const year = dayjs(dateFrom).format("YYYY");
+
+    const result =
+      dateFrom === dateTo
+        ? `${startDate} ${month} ${year}`
+        : `${startDate}-${endDay} ${month} ${year}`;
+
+    return result;
+  };
+
+  const formattedDate = formatDateRange(props.dateFrom, props.dateTo);
+*/
   return (
     <>
       <Link

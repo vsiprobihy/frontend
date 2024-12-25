@@ -1,0 +1,31 @@
+name: Deploy to vercel on merge
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dkershner6/vercel-set-env-action@v1
+        with:
+          token: ${{ secrets.VERCEL_TOKEN }}
+          projectName: vsiprobihy-frontend
+          envVariableKeys: NEXT_PUBLIC_BASE_URL,BASE_URL
+        env:
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          TARGET_NEXT_PUBLIC_BASE_URL: preview,development,production
+          TYPE_NEXT_PUBLIC_BASE_URL: encrypted
+
+          BASE_URL: ${{ secrets.BASE_URL }}
+          TARGET_BASE_URL: preview,development,production
+          TYPE_BASE_URL: encrypted
+
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-args: '--prod --confirm'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}

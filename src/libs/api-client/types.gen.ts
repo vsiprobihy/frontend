@@ -441,8 +441,8 @@ export type OrganizerAdditionalItemsCreateData = {
     event_id: string;
     /**
      * Event ID
-     */
-    event_id: number;
+    //  */
+    // event_id: number;
   };
 };
 
@@ -1283,11 +1283,11 @@ export type UserUserInfoListResponse = {
   /**
    * User's full name or 'User' if not authenticated
    */
-  username?: string;
+  username: string;
   /**
    * Full URL of the user's avatar, or null if not authenticated or no avatar set
    */
-  avatar?: string;
+  avatar: string;
 };
 
 export type UserUserInfoListError = unknown;

@@ -875,7 +875,7 @@ export const deleteEventRegistration = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * API endpoint for receiving the next upcoming events.
+ * Get upcoming events for the main page
  */
 export const upcomingEventsList = <ThrowOnError extends boolean = false>(
   options?: Options<UpcomingEventsListData, ThrowOnError>
