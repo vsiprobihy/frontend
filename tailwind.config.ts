@@ -1,12 +1,16 @@
 import { Config } from "tailwindcss";
+import fluid, { extract, fontSize } from "fluid-tailwind";
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/libs/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: {
+    files: [
+      "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/app/components/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/libs/components/**/*.{js,ts,jsx,tsx,mdx}",
+      "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    extract,
+  },
   theme: {
     colors: {
       black: "#000000",
@@ -48,8 +52,12 @@ const config: Config = {
         helvetica: ["Helvetica", "Arial", "sans-serif"],
       },
     },
+    fluid: () => ({
+      defaultScreens: ["22.5rem", "120rem"],
+    }),
   },
-  plugins: [],
+  fontSize,
+  plugins: [fluid({ checkSC144: false })],
 };
 
 export default config;

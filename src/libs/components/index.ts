@@ -1,3 +1,4 @@
+import { stack } from './stack/Stack';
 export { NotFoundTemplate } from "./not-found-template/NotFoundTemplate";
 export { EventCard } from "./event-card/EventCard";
 export type { EventCardProps } from "./event-card/EventCard";
@@ -19,3 +20,14 @@ export { CloseButton } from "./buttons/CloseButton";
 export { CustomLabel } from "./label/CustomLabel";
 export { AuthModal } from "./auth-modal/AuthModal";
 export { SuccessModal } from "./success-modal/SuccessModal";
+export {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from "./table";
+export { Paper } from "./paper/Paper";
+export { Stack } from "./stack/Stack";
