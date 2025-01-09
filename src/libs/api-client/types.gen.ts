@@ -11,9 +11,11 @@ export type UserProfile = {
   last_name?: string | null;
   first_name_eng?: string | null;
   last_name_eng?: string | null;
-  gender?: string | null;
-  date_of_birth?: Date | string | null;
-  t_shirt_size?: string | null;
+  gender?: ("M" | "F") | null;
+  date_of_birth?: Date | null;
+  t_shirt_size?:
+    | ("XXS" | "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL")
+    | null;
   country?: string | null;
   city?: string | null;
   phone_number?: string | null;
@@ -22,21 +24,51 @@ export type UserProfile = {
   emergency_contact_phone?: string | null;
   readonly registered_events?: string;
   readonly avatar?: string | null;
-  email?: string;
+  readonly email?: string;
 };
 
 export type AdditionalProfile = {
   readonly id?: number;
-  email: string;
   first_name?: string | null;
   last_name?: string | null;
+  first_name_eng?: string | null;
+  last_name_eng?: string | null;
+  gender?: ("M" | "F") | null;
+  date_of_birth?: Date | null;
+  t_shirt_size?:
+    | ("XXS" | "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL")
+    | null;
+  country?: string | null;
+  city?: string | null;
+  phone_number?: string | null;
+  readonly avatar?: string | null;
+  sports_club?: string | null;
+  emergency_contact_name?: string | null;
+  emergency_contact_phone?: string | null;
+  email: string;
+  user: number;
 };
 
 export type AdditionalProfileDetail = {
   readonly id?: number;
-  email: string;
   first_name?: string | null;
   last_name?: string | null;
+  first_name_eng?: string | null;
+  last_name_eng?: string | null;
+  gender?: ("M" | "F") | null;
+  date_of_birth?: Date | null;
+  t_shirt_size?:
+    | ("XXS" | "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL")
+    | null;
+  country?: string | null;
+  city?: string | null;
+  phone_number?: string | null;
+  readonly avatar?: string | null;
+  sports_club?: string | null;
+  emergency_contact_name?: string | null;
+  emergency_contact_phone?: string | null;
+  email: string;
+  user: number;
 };
 
 export type UserAvatarUpload = {
@@ -127,6 +159,34 @@ export type Event = {
   date_from: Date;
   date_to: Date;
   place: string;
+  place_region:
+    | (
+        | "vinnytsia_region"
+        | "volyn_region"
+        | "dnipropetrovsk_region"
+        | "donetsk_region"
+        | "zhytomyr_region"
+        | "zakarpattia_region"
+        | "zaporizhzhia_region"
+        | "ivano-frankivsk_region"
+        | "kyiv_region"
+        | "kirovohrad_region"
+        | "luhansk_region"
+        | "lviv_region"
+        | "mykolaiv_region"
+        | "odesa_region"
+        | "poltava_region"
+        | "rivne_region"
+        | "sumy_region"
+        | "ternopil_region"
+        | "kharkiv_region"
+        | "kherson_region"
+        | "khmelnytskyi_region"
+        | "cherkasy_region"
+        | "chernihiv_region"
+        | "chernivtsi_region"
+      )
+    | null;
   readonly photos?: string | null;
   description?: string;
   registration_link?: string | null;
@@ -172,17 +232,11 @@ export type AuthLoginCreateResponse = {
   /**
    * JWT Refresh Token
    */
-  refresh_token: {
-    value: string;
-    expire: number;
-  };
+  refresh: string;
   /**
    * JWT Access Token
    */
-  access_token: {
-    value: string;
-    expire: number;
-  };
+  access: string;
 };
 
 export type AuthLoginCreateError = unknown;
@@ -289,7 +343,16 @@ export type CalendarFilterListData = {
     /**
      * Type of competition (running, trail, cycling)
      */
-    competition_type?: string;
+    competition_type?:
+      | "running"
+      | "trail"
+      | "ultramarathon"
+      | "cycling"
+      | "online"
+      | "walking"
+      | "ocr"
+      | "swimming"
+      | "triathlon";
     /**
      * Maximum distance (km)
      */
@@ -307,13 +370,37 @@ export type CalendarFilterListData = {
      */
     name?: string;
     /**
-     * Type number of page(Pagination)
+     * Type number of page (Pagination)
      */
     page?: string;
     /**
-     * Event location
+     * Event location (select from available regions)
      */
-    place?: string;
+    place?:
+      | "vinnytsia_region"
+      | "volyn_region"
+      | "dnipropetrovsk_region"
+      | "donetsk_region"
+      | "zhytomyr_region"
+      | "zakarpattia_region"
+      | "zaporizhzhia_region"
+      | "ivano-frankivsk_region"
+      | "kyiv_region"
+      | "kirovohrad_region"
+      | "luhansk_region"
+      | "lviv_region"
+      | "mykolaiv_region"
+      | "odesa_region"
+      | "poltava_region"
+      | "rivne_region"
+      | "sumy_region"
+      | "ternopil_region"
+      | "kharkiv_region"
+      | "kherson_region"
+      | "khmelnytskyi_region"
+      | "cherkasy_region"
+      | "chernihiv_region"
+      | "chernivtsi_region";
     /**
      * Event year
      */
@@ -354,7 +441,7 @@ export type OrganizerAdditionalItemsCreateData = {
     event_id: string;
     /**
      * Event ID
-     */
+    //  */
     // event_id: number;
   };
 };
@@ -757,6 +844,10 @@ export type OrganizerEventsCreateData = {
      */
     place: string;
     /**
+     * Location of the event
+     */
+    place_region: string;
+    /**
      * Event description
      */
     description: string;
@@ -890,6 +981,10 @@ export type OrganizerEventsUpdateData = {
      */
     place: string;
     /**
+     * Location of the event
+     */
+    place_region: string;
+    /**
      * Event description
      */
     description: string;
@@ -937,6 +1032,10 @@ export type OrganizerEventsPartialUpdateData = {
      * Location of the event
      */
     place?: string;
+    /**
+     * Location of the event
+     */
+    place_region?: string;
     /**
      * Event description
      */
@@ -1133,31 +1232,32 @@ export type UpcomingEventsListResponse = {
   /**
    * List of upcoming events
    */
-  events?: Array<{
+
+  events: Array<{
     /**
      * Event ID
      */
-    id?: number;
+    id: number;
     /**
      * Event name
      */
-    name?: string;
+    name: string;
     /**
      * Event start date
      */
-    date_from?: Date;
+    date_from: Date;
     /**
      * Event end date (optional)
      */
-    date_to?: Date;
+    date_to: Date;
     /**
      * Event place
      */
-    place?: string;
+    place: string;
     /**
      * Type of competition
      */
-    competition_type?: string;
+    competition_type: string;
     /**
      * URL of event photo (optional)
      */
@@ -1165,7 +1265,7 @@ export type UpcomingEventsListResponse = {
     /**
      * List of event distances
      */
-    distances?: Array<{
+    distances: Array<{
       /**
        * Distance name
        */
@@ -1184,11 +1284,12 @@ export type UserUserInfoListResponse = {
   /**
    * User's full name or 'User' if not authenticated
    */
-  username?: string;
+  username: string;
   /**
    * Full URL of the user's avatar, or null if not authenticated or no avatar set
    */
-  avatar?: string;
+  avatar: string;
+
 };
 
 export type UserUserInfoListError = unknown;

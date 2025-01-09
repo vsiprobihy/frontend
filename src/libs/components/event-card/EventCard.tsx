@@ -16,13 +16,17 @@ export const IconText: React.FC<{ icon: IconType; text: string }> = ({
 );
 
 export interface EventCardProps {
-  image: ImageProps;
-  title: string;
-  date: dayjs.Dayjs;
-  category: string;
-  location: string;
-  distanceTitles: string[];
-  id: string;
+  id: number;
+  name: string;
+  dateFrom: Date;
+  dateTo: Date;
+  place: string;
+  competitionType: string;
+  photos: ImageProps;
+  distances: Array<{
+    id?: number | undefined;
+    name?: string | undefined;
+  }>;
 }
 
 interface EventCardAdditionalProps {
@@ -32,53 +36,68 @@ interface EventCardAdditionalProps {
 export const EventCard: React.FC<EventCardProps & EventCardAdditionalProps> = ({
   isLiked = false,
   ...props
-}) => (
-  <Link href={`${AppRoute.EVENT}/${props.id}`} passHref>
-    <article
-      className={`flex flex-col overflow-hidden rounded-2xl bg-white p-4 transition-shadow hover:shadow-md active:shadow-md`}
-    >
-      <figure
-        className={`relative mb-4 h-0 w-full overflow-hidden rounded-2xl pb-[50%]`}
+}) => {
+  const formatDateRange = (dateFrom: Date, dateTo: Date): string => {
+    const startDate = dayjs(dateFrom).format("D");
+    const endDay = dayjs(dateTo).format("D");
+    const month = dayjs(dateFrom).format("MMMM");
+    const year = dayjs(dateFrom).format("YYYY");
+
+    const result =
+      dateFrom === dateTo
+        ? `${startDate} ${month} ${year}`
+        : `${startDate}-${endDay} ${month} ${year}`;
+
+    return result;
+  };
+
+  const formattedDate = formatDateRange(props.dateFrom, props.dateTo);
+
+  return (
+    <Link href={`${AppRoute.EVENT}/${props.id}`} passHref>
+      <article
+        className={`flex flex-col overflow-hidden rounded-2xl bg-white p-4 transition-shadow hover:shadow-md active:shadow-md`}
       >
-        <Image
-          {...props.image}
-          src={props.image.src || DefaultImage}
-          alt={props.title}
-          className={`absolute inset-0 h-full w-full`}
-        />
-        {isLiked && (
-          <figcaption className={`absolute bottom-2 right-2`}>
-            <Icon
-              name={IconType.LIKE}
-              className="flex size-10 items-center justify-center rounded-full bg-white text-xl text-orange-hot shadow-sm xl:size-12 xl:text-2xl"
-            />
-          </figcaption>
-        )}
-      </figure>
-      <section className={`flex flex-col gap-4`}>
-        <header>
-          <ActivityTypeTag>{props.category}</ActivityTypeTag>
-          <h4
-            className={`pt-4 text-2xl font-semibold text-dark lg:text-[2rem]`}
-          >
-            {props.title}
-          </h4>
-        </header>
+        <figure
+          className={`relative mb-4 h-0 w-full overflow-hidden rounded-2xl pb-[50%]`}
+        >
+          <Image
+            {...props.photos}
+            src={props.photos.src || DefaultImage}
+            alt={props.name}
+            className={`absolute inset-0 h-full w-full`}
+          />
+          {isLiked && (
+            <figcaption className={`absolute bottom-2 right-2`}>
+              <Icon
+                name={IconType.LIKE}
+                className="flex size-10 items-center justify-center rounded-full bg-white text-xl text-orange-hot shadow-sm xl:size-12 xl:text-2xl"
+              />
+            </figcaption>
+          )}
+        </figure>
         <section className={`flex flex-col gap-4`}>
-          <div className={`flex flex-col gap-2`}>
-            <IconText
-              icon={IconType.CALENDAR}
-              text={props.date.format("YYYY-MM-DD")}
-            />
-            <IconText icon={IconType.PIN} text={props.location} />
-          </div>
-          <footer className={`flex flex-row flex-wrap gap-2`}>
-            {props.distanceTitles.map((title, index) => (
-              <DistanceTag key={index}>{title}</DistanceTag>
-            ))}
-          </footer>
+          <header>
+            <ActivityTypeTag>{props.competitionType}</ActivityTypeTag>
+            <h4
+              className={`pt-4 text-2xl font-semibold text-dark lg:text-[2rem]`}
+            >
+              {props.name}
+            </h4>
+          </header>
+          <section className={`flex flex-col gap-4`}>
+            <div className={`flex flex-col gap-2`}>
+              <IconText icon={IconType.CALENDAR} text={formattedDate} />
+              <IconText icon={IconType.PIN} text={props.place} />
+            </div>
+            <footer className={`flex flex-row flex-wrap gap-2`}>
+              {props.distances.map((d, index) => (
+                <DistanceTag key={index}>{d.name}</DistanceTag>
+              ))}
+            </footer>
+          </section>
         </section>
-      </section>
-    </article>
-  </Link>
-);
+      </article>
+    </Link>
+  );
+};
