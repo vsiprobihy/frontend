@@ -83,6 +83,7 @@ export const UserProfileSchema = {
       title: "Phone number",
       type: "string",
       maxLength: 20,
+      minLength: 1,
       "x-nullable": true,
     },
     sports_club: {
@@ -196,7 +197,6 @@ export const AdditionalProfileSchema = {
       title: "Avatar",
       type: "string",
       readOnly: true,
-      "x-nullable": true,
       format: "uri",
     },
     sports_club: {

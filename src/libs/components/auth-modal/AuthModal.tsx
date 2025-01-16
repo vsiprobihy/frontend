@@ -31,6 +31,7 @@ import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
 import { useAuthContext } from "~/context";
 import { useTranslations } from "next-intl";
+import { AppRoute } from "@/libs/enums";
 
 export const AuthModal: React.FC = () => {
   const [value, setValue] = useState<"register" | "login">("login");
@@ -77,10 +78,12 @@ export const AuthModal: React.FC = () => {
     Error,
     Login
   >({
+
     mutationFn: async (login: Login) => {
       const response = await authLoginCreate({
         body: login,
       });
+
 
       if (response.response.status === 200) {
         return response;
@@ -89,10 +92,11 @@ export const AuthModal: React.FC = () => {
       }
     },
     onSuccess: (data: { data?: AuthLoginCreateResponse }) => {
+
       const token = data.data?.access;
       const refreshToken = data.data?.refresh;
-
       if (token && refreshToken) {
+
         Cookies.set("authToken", token, {
           expires: rememberMe ? 7 : 1,
           secure: process.env.NODE_ENV === "production",
@@ -105,6 +109,7 @@ export const AuthModal: React.FC = () => {
         });
         setIsAuthenticatedUser(true);
       }
+      
       handleClose();
     },
     onError: (error) => {
@@ -136,6 +141,7 @@ export const AuthModal: React.FC = () => {
       params.set("showSuccessModal", "true");
       router.push(`?${params.toString()}`);
       setIsAuthenticatedUser(true);
+      router.push(AppRoute.PROFILE);
     },
     onError: (error) => {
       alert(t("registrationFailed", { error: error.message }));

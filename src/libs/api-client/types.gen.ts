@@ -1232,6 +1232,7 @@ export type UpcomingEventsListResponse = {
   /**
    * List of upcoming events
    */
+
   events: Array<{
     /**
      * Event ID
@@ -1288,6 +1289,7 @@ export type UserUserInfoListResponse = {
    * Full URL of the user's avatar, or null if not authenticated or no avatar set
    */
   avatar: string;
+
 };
 
 export type UserUserInfoListError = unknown;

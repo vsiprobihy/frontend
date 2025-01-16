@@ -80,5 +80,97 @@
     "heading": "Empty",
     "title": "There are no events matching your filters",
     "description": "We recommend adjusting your filters or resetting them"
+  },
+  "profile": {
+    "title": "Runner profile"
+  },
+  "profileForm": {
+    "dataTitle": {
+      "title": "My data",
+      "personal": "Personal data",
+      "contact": "Contact date",
+      "club": "Sport club",
+      "contactPerson": "Emergency contact person"
+    },
+    "labels": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "sex": "Sex",
+      "birth": "Date of birth",
+      "size": "Size of T-shirt",
+      "country": "Country",
+      "city": "City or locality",
+      "email": "E-mail",
+      "phone": "Phone",
+      "clubName": "Club name",
+      "fullNameEmergencyPerson": "Full name"
+    },
+    "placeholders": {
+      "name": "Enter first name",
+      "lastName": "Enter last name",
+      "country": "Enter country",
+      "city": "Enter city",
+      "email": "Enter email",
+      "phone": "Enter phone",
+      "day": "day",
+      "month": "month",
+      "year": "year",
+      "size": "size"
+    },
+    "sex": {
+      "female": "female",
+      "male": "male"
+    },
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "countryRequired": "Country is required",
+      "cityRequired": "City or locality is required",
+      "phoneDigits": "Phone number must contain digits only",
+      "invalidEmail": "Invalid email format",
+      "emailRequired": " Email is required",
+      "clubNameRequired": "Club name is required",
+      "emergencyContactFullNameRequired": "Enter the full name of the contact person",
+      "emergencyContactPhoneDigits": "Phone number must contain digits only"
+    },
+    "button": "Save",
+    "updateFailed": "Cannot add profile information: {error}"
+  },
+  "profileCard": {
+    "data": "Participant data",
+    "registrations": "My registartions",
+    "archive": "Archive of starts",
+    "likes": "Favorites starts"
+  },
+  "NotFoundProfileFavorites": {
+    "message": "You currently have no favorites.",
+    "calendarMessage": "Add your favorite events here in our",
+    "calendar": "running calendar."
+  },
+  "notFoundProfileArchiveOfStarts": {
+    "heading": "Empty",
+    "title": "You currently have no archived registrations.",
+    "description": "Find a new challenge in our",
+    "calendar": "running calendar."
+  },
+  "notFoundProfileRegistration": {
+    "heading": "Empty",
+    "title": "You currently have no registrations.",
+    "description": "Find a new challenge in our",
+    "calendar": "running calendar."
+  },
+  "month": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
   }
 }
