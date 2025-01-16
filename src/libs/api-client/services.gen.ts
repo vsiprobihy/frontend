@@ -175,7 +175,6 @@ export const authLoginCreate = <ThrowOnError extends boolean = false>(
 export const authProfileList = <ThrowOnError extends boolean = false>(
   options?: Options<unknown, ThrowOnError>
 ) => {
-  const token = Cookies.get("authToken");
   return (options?.client ?? client).get<
     AuthProfileListResponse,
     AuthProfileListError,
@@ -183,10 +182,6 @@ export const authProfileList = <ThrowOnError extends boolean = false>(
   >({
     ...options,
     url: "/auth/profile/",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      ...options?.headers,
-    },
   });
 };
 
@@ -212,7 +207,6 @@ export const authProfileUpdate = <ThrowOnError extends boolean = false>(
 export const authProfilePartialUpdate = <ThrowOnError extends boolean = false>(
   options: Options<AuthProfilePartialUpdateData, ThrowOnError>
 ) => {
-  const token = Cookies.get("authToken");
   return (options?.client ?? client).patch<
     AuthProfilePartialUpdateResponse,
     AuthProfilePartialUpdateError,
@@ -220,10 +214,6 @@ export const authProfilePartialUpdate = <ThrowOnError extends boolean = false>(
   >({
     ...options,
     url: "/auth/profile/",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      ...options?.headers,
-    },
   });
 };
 
