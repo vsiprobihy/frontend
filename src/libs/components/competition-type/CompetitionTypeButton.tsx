@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Button } from "../buttons/Button";
+import { Button } from "~/components";
 
 export interface CompetitionTypeButtonProps {
   children: React.ReactNode;

@@ -10,9 +10,6 @@ import {
   UserPublicEventFilterListResponse,
 } from "~/api-client";
 
-const currentMonth = dayjs().month() + 1;
-const currentYear = dayjs().year();
-
 const EventsCalendarSection: React.FC = () => {
   const [events, setEvents] = useState<EventCardProps[]>([]);
   const [page, setPage] = useState(1);
