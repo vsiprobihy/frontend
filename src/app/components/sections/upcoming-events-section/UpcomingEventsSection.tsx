@@ -2,13 +2,13 @@
 
 import { UpcomingEventsCarousel } from "./carousel/UpcomingEventsCarousel";
 import { CustomLink, EventCard, EventCardProps } from "~/components";
-import { newEvent } from "~/placeholder-data/placeholderEvents";
 import { useTranslations } from "next-intl";
+import { dummyRunningEvent } from "~/placeholder-data/dummyRunningEvents";
 
 const events: [EventCardProps, EventCardProps, EventCardProps] = [
-  newEvent(),
-  newEvent(),
-  newEvent(),
+  dummyRunningEvent(),
+  dummyRunningEvent(),
+  dummyRunningEvent(),
 ];
 
 export const UpcomingEventsSection: React.FC = () => {

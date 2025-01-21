@@ -1,9 +1,9 @@
 "use client";
 
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { client } from "@/libs/api-client";
 
-import { BASE_URL } from "./constants";
+import { BASE_URL } from "~/constants/baseUrl";
 
 client.setConfig({
   baseUrl: BASE_URL,

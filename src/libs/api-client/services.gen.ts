@@ -9,8 +9,6 @@ import type {
   AuthenticationActivateReadData,
   AuthenticationActivateReadError,
   AuthenticationActivateReadResponse,
-  AuthenticationGoogleAccountInfoListError,
-  AuthenticationGoogleAccountInfoListResponse,
   AuthenticationLoginCreateData,
   AuthenticationLoginCreateError,
   AuthenticationLoginCreateResponse,
@@ -26,30 +24,28 @@ import type {
   AuthenticationTokenRefreshCreateData,
   AuthenticationTokenRefreshCreateError,
   AuthenticationTokenRefreshCreateResponse,
-  CustomAdminCompetitionsTypeListError,
-  CustomAdminCompetitionsTypeListResponse,
-  CustomAdminCompetitionsTypeCreateData,
-  CustomAdminCompetitionsTypeCreateError,
-  CustomAdminCompetitionsTypeCreateResponse,
-  CustomAdminCompetitionsTypeReadData,
-  CustomAdminCompetitionsTypeReadError,
-  CustomAdminCompetitionsTypeReadResponse,
-  CustomAdminCompetitionsTypeUpdateData,
-  CustomAdminCompetitionsTypeUpdateError,
-  CustomAdminCompetitionsTypeUpdateResponse,
-  CustomAdminCompetitionsTypePartialUpdateData,
-  CustomAdminCompetitionsTypePartialUpdateError,
-  CustomAdminCompetitionsTypePartialUpdateResponse,
-  CustomAdminCompetitionsTypeDeleteData,
-  CustomAdminCompetitionsTypeDeleteError,
-  CustomAdminCompetitionsTypeDeleteResponse,
+  CustomAdminCompetitionTypeListData,
+  CustomAdminCompetitionTypeListError,
+  CustomAdminCompetitionTypeListResponse,
+  CustomAdminCompetitionTypeCreateData,
+  CustomAdminCompetitionTypeCreateError,
+  CustomAdminCompetitionTypeCreateResponse,
+  CustomAdminCompetitionTypeReadData,
+  CustomAdminCompetitionTypeReadError,
+  CustomAdminCompetitionTypeReadResponse,
+  CustomAdminCompetitionTypeUpdateData,
+  CustomAdminCompetitionTypeUpdateError,
+  CustomAdminCompetitionTypeUpdateResponse,
+  CustomAdminCompetitionTypeDeleteData,
+  CustomAdminCompetitionTypeDeleteError,
+  CustomAdminCompetitionTypeDeleteResponse,
+  CustomAdminEventUpdateStatusListError,
+  CustomAdminEventUpdateStatusListResponse,
   CustomAdminEventUpdateStatusCreateData,
   CustomAdminEventUpdateStatusCreateError,
   CustomAdminEventUpdateStatusCreateResponse,
-  CustomAdminEventsUpdateStatusRequestsListError,
-  CustomAdminEventsUpdateStatusRequestsListResponse,
-  CustomAdminOrganizerRequestsListError,
-  CustomAdminOrganizerRequestsListResponse,
+  CustomAdminUserApproveOrganizerListError,
+  CustomAdminUserApproveOrganizerListResponse,
   CustomAdminUserApproveOrganizerCreateData,
   CustomAdminUserApproveOrganizerCreateError,
   CustomAdminUserApproveOrganizerCreateResponse,
@@ -88,18 +84,42 @@ import type {
   OrganizationEventDeleteData,
   OrganizationEventDeleteError,
   OrganizationEventDeleteResponse,
+  OrganizationEventDistanceUserListData,
+  OrganizationEventDistanceUserListError,
+  OrganizationEventDistanceUserListResponse,
+  OrganizationEventDistanceUserReadData,
+  OrganizationEventDistanceUserReadError,
+  OrganizationEventDistanceUserReadResponse,
+  OrganizationEventDistanceUserCreateData,
+  OrganizationEventDistanceUserCreateError,
+  OrganizationEventDistanceUserCreateResponse,
+  OrganizationEventDistanceUserUpdateData,
+  OrganizationEventDistanceUserUpdateError,
+  OrganizationEventDistanceUserUpdateResponse,
+  OrganizationEventDistanceUserPartialUpdateData,
+  OrganizationEventDistanceUserPartialUpdateError,
+  OrganizationEventDistanceUserPartialUpdateResponse,
+  OrganizationEventDistanceUserDeleteData,
+  OrganizationEventDistanceUserDeleteError,
+  OrganizationEventDistanceUserDeleteResponse,
   OrganizationInviteOrganizerCreateData,
   OrganizationInviteOrganizerCreateError,
   OrganizationInviteOrganizerCreateResponse,
+  UserDistanceRegisterListData,
+  UserDistanceRegisterListError,
+  UserDistanceRegisterListResponse,
   UserDistanceRegisterCreateData,
   UserDistanceRegisterCreateError,
   UserDistanceRegisterCreateResponse,
-  UserEventsLikeCreateData,
-  UserEventsLikeCreateError,
-  UserEventsLikeCreateResponse,
-  UserEventsLikeDeleteData,
-  UserEventsLikeDeleteError,
-  UserEventsLikeDeleteResponse,
+  UserEventLikeListData,
+  UserEventLikeListError,
+  UserEventLikeListResponse,
+  UserEventLikeCreateData,
+  UserEventLikeCreateError,
+  UserEventLikeCreateResponse,
+  UserEventLikeDeleteData,
+  UserEventLikeDeleteError,
+  UserEventLikeDeleteResponse,
   UserProfileListError,
   UserProfileListResponse,
   UserProfileUpdateData,
@@ -108,22 +128,23 @@ import type {
   UserProfilePartialUpdateData,
   UserProfilePartialUpdateError,
   UserProfilePartialUpdateResponse,
-  UserProfileAdditionalProfilesListError,
-  UserProfileAdditionalProfilesListResponse,
-  UserProfileAdditionalProfilesCreateData,
-  UserProfileAdditionalProfilesCreateError,
-  UserProfileAdditionalProfilesCreateResponse,
-  UserProfileAdditionalProfilesReadData,
-  UserProfileAdditionalProfilesReadError,
-  UserProfileAdditionalProfilesReadResponse,
-  UserProfileAdditionalProfilesUpdateData,
-  UserProfileAdditionalProfilesUpdateError,
-  UserProfileAdditionalProfilesUpdateResponse,
-  UserProfileAdditionalProfilesDeleteData,
-  UserProfileAdditionalProfilesDeleteError,
-  UserProfileAdditionalProfilesDeleteResponse,
-  UserProfileEventsLikedListError,
-  UserProfileEventsLikedListResponse,
+  UserProfileAdditionalProfileListError,
+  UserProfileAdditionalProfileListResponse,
+  UserProfileAdditionalProfileCreateData,
+  UserProfileAdditionalProfileCreateError,
+  UserProfileAdditionalProfileCreateResponse,
+  UserProfileAdditionalProfileReadData,
+  UserProfileAdditionalProfileReadError,
+  UserProfileAdditionalProfileReadResponse,
+  UserProfileAdditionalProfileUpdateData,
+  UserProfileAdditionalProfileUpdateError,
+  UserProfileAdditionalProfileUpdateResponse,
+  UserProfileAdditionalProfilePartialUpdateData,
+  UserProfileAdditionalProfilePartialUpdateError,
+  UserProfileAdditionalProfilePartialUpdateResponse,
+  UserProfileAdditionalProfileDeleteData,
+  UserProfileAdditionalProfileDeleteError,
+  UserProfileAdditionalProfileDeleteResponse,
   UserPublicEventListError,
   UserPublicEventListResponse,
   UserPublicEventFilterListData,
@@ -153,21 +174,6 @@ export const authenticationActivateRead = <
   >({
     ...options,
     url: "/authentication/activate/{uid}/{token}/",
-  });
-};
-
-export const authenticationGoogleAccountInfoList = <
-  ThrowOnError extends boolean = false,
->(
-  options?: Options<unknown, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    AuthenticationGoogleAccountInfoListResponse,
-    AuthenticationGoogleAccountInfoListError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/authentication/google-account-info/",
   });
 };
 
@@ -261,110 +267,110 @@ export const authenticationTokenRefreshCreate = <
 };
 
 /**
- * Get an Competition Type
+ * Get a Competition Type
  */
-export const customAdminCompetitionsTypeList = <
+export const customAdminCompetitionTypeList = <
   ThrowOnError extends boolean = false,
 >(
-  options?: Options<unknown, ThrowOnError>
+  options?: Options<CustomAdminCompetitionTypeListData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    CustomAdminCompetitionsTypeListResponse,
-    CustomAdminCompetitionsTypeListError,
+    CustomAdminCompetitionTypeListResponse,
+    CustomAdminCompetitionTypeListError,
     ThrowOnError
   >({
     ...options,
-    url: "/custom-admin/competitions-type/",
+    url: "/custom-admin/competition-type/",
   });
 };
 
 /**
  * Create a new Competition Type.
  */
-export const customAdminCompetitionsTypeCreate = <
+export const customAdminCompetitionTypeCreate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<CustomAdminCompetitionsTypeCreateData, ThrowOnError>
+  options: Options<CustomAdminCompetitionTypeCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    CustomAdminCompetitionsTypeCreateResponse,
-    CustomAdminCompetitionsTypeCreateError,
+    CustomAdminCompetitionTypeCreateResponse,
+    CustomAdminCompetitionTypeCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/custom-admin/competitions-type/",
+    url: "/custom-admin/competition-type/",
   });
 };
 
 /**
- * Get an Competition Type
+ * Get a Competition Type
  */
-export const customAdminCompetitionsTypeRead = <
+export const customAdminCompetitionTypeRead = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<CustomAdminCompetitionsTypeReadData, ThrowOnError>
+  options: Options<CustomAdminCompetitionTypeReadData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    CustomAdminCompetitionsTypeReadResponse,
-    CustomAdminCompetitionsTypeReadError,
+    CustomAdminCompetitionTypeReadResponse,
+    CustomAdminCompetitionTypeReadError,
     ThrowOnError
   >({
     ...options,
-    url: "/custom-admin/competitions-type/{id}/",
+    url: "/custom-admin/competition-type/{competition_type_id}/",
   });
 };
 
 /**
- * Update Competition Type
+ * Create a new Competition Type.
  */
-export const customAdminCompetitionsTypeUpdate = <
+export const customAdminCompetitionTypeUpdate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<CustomAdminCompetitionsTypeUpdateData, ThrowOnError>
+  options: Options<CustomAdminCompetitionTypeUpdateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).put<
-    CustomAdminCompetitionsTypeUpdateResponse,
-    CustomAdminCompetitionsTypeUpdateError,
+    CustomAdminCompetitionTypeUpdateResponse,
+    CustomAdminCompetitionTypeUpdateError,
     ThrowOnError
   >({
     ...options,
-    url: "/custom-admin/competitions-type/{id}/",
-  });
-};
-
-/**
- * Partial update Competition Type
- */
-export const customAdminCompetitionsTypePartialUpdate = <
-  ThrowOnError extends boolean = false,
->(
-  options: Options<CustomAdminCompetitionsTypePartialUpdateData, ThrowOnError>
-) => {
-  return (options?.client ?? client).patch<
-    CustomAdminCompetitionsTypePartialUpdateResponse,
-    CustomAdminCompetitionsTypePartialUpdateError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/custom-admin/competitions-type/{id}/",
+    url: "/custom-admin/competition-type/{competition_type_id}/",
   });
 };
 
 /**
  * Delete an additional profile
  */
-export const customAdminCompetitionsTypeDelete = <
+export const customAdminCompetitionTypeDelete = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<CustomAdminCompetitionsTypeDeleteData, ThrowOnError>
+  options: Options<CustomAdminCompetitionTypeDeleteData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
-    CustomAdminCompetitionsTypeDeleteResponse,
-    CustomAdminCompetitionsTypeDeleteError,
+    CustomAdminCompetitionTypeDeleteResponse,
+    CustomAdminCompetitionTypeDeleteError,
     ThrowOnError
   >({
     ...options,
-    url: "/custom-admin/competitions-type/{id}/",
+    url: "/custom-admin/competition-type/{competition_type_id}/",
+  });
+};
+
+/**
+ * Retrieve all events with status "pending".
+ */
+export const customAdminEventUpdateStatusList = <
+  ThrowOnError extends boolean = false,
+>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    CustomAdminEventUpdateStatusListResponse,
+    CustomAdminEventUpdateStatusListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/custom-admin/event/update-status/",
   });
 };
 
@@ -387,38 +393,20 @@ export const customAdminEventUpdateStatusCreate = <
 };
 
 /**
- * Retrieve all events with status "pending".
- */
-export const customAdminEventsUpdateStatusRequestsList = <
-  ThrowOnError extends boolean = false,
->(
-  options?: Options<unknown, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    CustomAdminEventsUpdateStatusRequestsListResponse,
-    CustomAdminEventsUpdateStatusRequestsListError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/custom-admin/events/update-status-requests/",
-  });
-};
-
-/**
  * Retrieve all pending organizer requests.
  */
-export const customAdminOrganizerRequestsList = <
+export const customAdminUserApproveOrganizerList = <
   ThrowOnError extends boolean = false,
 >(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    CustomAdminOrganizerRequestsListResponse,
-    CustomAdminOrganizerRequestsListError,
+    CustomAdminUserApproveOrganizerListResponse,
+    CustomAdminUserApproveOrganizerListError,
     ThrowOnError
   >({
     ...options,
-    url: "/custom-admin/organizer-requests/",
+    url: "/custom-admin/user/approve-organizer/",
   });
 };
 
@@ -441,7 +429,7 @@ export const customAdminUserApproveOrganizerCreate = <
 };
 
 /**
- * Retrieve the details of an event organizer by event_id. The event_id is used to find the organizer associated with a specific event.
+ * Retrieve a list of organizations with pagination.
  */
 export const organizationList = <ThrowOnError extends boolean = false>(
   options?: Options<unknown, ThrowOnError>
@@ -473,7 +461,7 @@ export const organizationCreate = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * Retrieve the details of an event organizer by event_id. The event_id is used to find the organizer associated with a specific event.
+ * Retrieve a list of organizations with pagination.
  */
 export const organizationRead = <ThrowOnError extends boolean = false>(
   options: Options<OrganizationReadData, ThrowOnError>
@@ -537,7 +525,7 @@ export const organizationDelete = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * Retrieve event details by ID.
+ * Retrieve event list with pagination and details.
  */
 export const organizationEventList = <ThrowOnError extends boolean = false>(
   options: Options<OrganizationEventListData, ThrowOnError>
@@ -635,7 +623,112 @@ export const organizationEventDelete = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * Update the details of an event organizer by event_id. The event_id is used to find the organizer, and the request body contains the updated information about the organizer.
+ * Retrieve the list of users
+ */
+export const organizationEventDistanceUserList = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<OrganizationEventDistanceUserListData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    OrganizationEventDistanceUserListResponse,
+    OrganizationEventDistanceUserListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/{event_id}/distance/{distance_id}/user/",
+  });
+};
+
+/**
+ * Retrieve the users
+ */
+export const organizationEventDistanceUserRead = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<OrganizationEventDistanceUserReadData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    OrganizationEventDistanceUserReadResponse,
+    OrganizationEventDistanceUserReadError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/{event_id}/distance/{distance_id}/user/{user_id}/",
+  });
+};
+
+export const organizationEventDistanceUserCreate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<OrganizationEventDistanceUserCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    OrganizationEventDistanceUserCreateResponse,
+    OrganizationEventDistanceUserCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/{event_id}/distance/{distance_id}/user/{user_id}/",
+  });
+};
+
+/**
+ * Update the details of user
+ */
+export const organizationEventDistanceUserUpdate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<OrganizationEventDistanceUserUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).put<
+    OrganizationEventDistanceUserUpdateResponse,
+    OrganizationEventDistanceUserUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/{event_id}/distance/{distance_id}/user/{user_id}/",
+  });
+};
+
+/**
+ * Partially update an user by user_id. Only the fields provided in the request body will be updated.
+ */
+export const organizationEventDistanceUserPartialUpdate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<OrganizationEventDistanceUserPartialUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<
+    OrganizationEventDistanceUserPartialUpdateResponse,
+    OrganizationEventDistanceUserPartialUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/{event_id}/distance/{distance_id}/user/{user_id}/",
+  });
+};
+
+/**
+ * Delete an event organizer by event_id. The event_id is used to find and delete the organizer associated with a specific event.
+ */
+export const organizationEventDistanceUserDelete = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<OrganizationEventDistanceUserDeleteData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<
+    OrganizationEventDistanceUserDeleteResponse,
+    OrganizationEventDistanceUserDeleteError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/organization/{organization_id}/event/{event_id}/distance/{distance_id}/user/{user_id}/",
+  });
+};
+
+/**
+ * Send an invitation to an organizer by email. The email address of the organizer is provided in the request body.
  */
 export const organizationInviteOrganizerCreate = <
   ThrowOnError extends boolean = false,
@@ -649,6 +742,24 @@ export const organizationInviteOrganizerCreate = <
   >({
     ...options,
     url: "/organization/{organization_id}/invite-organizer/",
+  });
+};
+
+/**
+ * Get all registrations of the authenticated user. Use "status" query parameter to filter:
+ * - "active" for active registrations
+ * - "archive" for archived registrations
+ */
+export const userDistanceRegisterList = <ThrowOnError extends boolean = false>(
+  options?: Options<UserDistanceRegisterListData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<
+    UserDistanceRegisterListResponse,
+    UserDistanceRegisterListError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/distance/register/",
   });
 };
 
@@ -671,34 +782,50 @@ export const userDistanceRegisterCreate = <
 };
 
 /**
- * Like an event by its ID
+ * Retrieve a list of liked events with pagination
  */
-export const userEventsLikeCreate = <ThrowOnError extends boolean = false>(
-  options: Options<UserEventsLikeCreateData, ThrowOnError>
+export const userEventLikeList = <ThrowOnError extends boolean = false>(
+  options?: Options<UserEventLikeListData, ThrowOnError>
 ) => {
-  return (options?.client ?? client).post<
-    UserEventsLikeCreateResponse,
-    UserEventsLikeCreateError,
+  return (options?.client ?? client).get<
+    UserEventLikeListResponse,
+    UserEventLikeListError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/events/{event_id}/like/",
+    url: "/user/event/like/",
+  });
+};
+
+/**
+ * Like an event by its ID
+ */
+export const userEventLikeCreate = <ThrowOnError extends boolean = false>(
+  options: Options<UserEventLikeCreateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    UserEventLikeCreateResponse,
+    UserEventLikeCreateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/event/{event_id}/like/",
   });
 };
 
 /**
  * Unlike an event by its ID
  */
-export const userEventsLikeDelete = <ThrowOnError extends boolean = false>(
-  options: Options<UserEventsLikeDeleteData, ThrowOnError>
+export const userEventLikeDelete = <ThrowOnError extends boolean = false>(
+  options: Options<UserEventLikeDeleteData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
-    UserEventsLikeDeleteResponse,
-    UserEventsLikeDeleteError,
+    UserEventLikeDeleteResponse,
+    UserEventLikeDeleteError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/events/{event_id}/like/",
+    url: "/user/event/{event_id}/like/",
   });
 };
 
@@ -753,113 +880,113 @@ export const userProfilePartialUpdate = <ThrowOnError extends boolean = false>(
 /**
  * Get a list of additional profiles
  */
-export const userProfileAdditionalProfilesList = <
+export const userProfileAdditionalProfileList = <
   ThrowOnError extends boolean = false,
 >(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    UserProfileAdditionalProfilesListResponse,
-    UserProfileAdditionalProfilesListError,
+    UserProfileAdditionalProfileListResponse,
+    UserProfileAdditionalProfileListError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/profile/additional-profiles/",
+    url: "/user/profile/additional-profile/",
   });
 };
 
 /**
  * Create an additional profile
  */
-export const userProfileAdditionalProfilesCreate = <
+export const userProfileAdditionalProfileCreate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<UserProfileAdditionalProfilesCreateData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfileCreateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
-    UserProfileAdditionalProfilesCreateResponse,
-    UserProfileAdditionalProfilesCreateError,
+    UserProfileAdditionalProfileCreateResponse,
+    UserProfileAdditionalProfileCreateError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/profile/additional-profiles/",
+    url: "/user/profile/additional-profile/",
   });
 };
 
 /**
  * Get an additional profile
  */
-export const userProfileAdditionalProfilesRead = <
+export const userProfileAdditionalProfileRead = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<UserProfileAdditionalProfilesReadData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfileReadData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
-    UserProfileAdditionalProfilesReadResponse,
-    UserProfileAdditionalProfilesReadError,
+    UserProfileAdditionalProfileReadResponse,
+    UserProfileAdditionalProfileReadError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/profile/additional-profiles/{id}/",
+    url: "/user/profile/additional-profile/{profile_id}/",
   });
 };
 
 /**
  * Update an additional profile
  */
-export const userProfileAdditionalProfilesUpdate = <
+export const userProfileAdditionalProfileUpdate = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<UserProfileAdditionalProfilesUpdateData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfileUpdateData, ThrowOnError>
 ) => {
   return (options?.client ?? client).put<
-    UserProfileAdditionalProfilesUpdateResponse,
-    UserProfileAdditionalProfilesUpdateError,
+    UserProfileAdditionalProfileUpdateResponse,
+    UserProfileAdditionalProfileUpdateError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/profile/additional-profiles/{id}/",
+    url: "/user/profile/additional-profile/{profile_id}/",
+  });
+};
+
+/**
+ * Partially update an additional profile
+ */
+export const userProfileAdditionalProfilePartialUpdate = <
+  ThrowOnError extends boolean = false,
+>(
+  options: Options<UserProfileAdditionalProfilePartialUpdateData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<
+    UserProfileAdditionalProfilePartialUpdateResponse,
+    UserProfileAdditionalProfilePartialUpdateError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/user/profile/additional-profile/{profile_id}/",
   });
 };
 
 /**
  * Delete an additional profile
  */
-export const userProfileAdditionalProfilesDelete = <
+export const userProfileAdditionalProfileDelete = <
   ThrowOnError extends boolean = false,
 >(
-  options: Options<UserProfileAdditionalProfilesDeleteData, ThrowOnError>
+  options: Options<UserProfileAdditionalProfileDeleteData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
-    UserProfileAdditionalProfilesDeleteResponse,
-    UserProfileAdditionalProfilesDeleteError,
+    UserProfileAdditionalProfileDeleteResponse,
+    UserProfileAdditionalProfileDeleteError,
     ThrowOnError
   >({
     ...options,
-    url: "/user/profile/additional-profiles/{id}/",
+    url: "/user/profile/additional-profile/{profile_id}/",
   });
 };
 
 /**
- * Retrieve a list of liked events
- */
-export const userProfileEventsLikedList = <
-  ThrowOnError extends boolean = false,
->(
-  options?: Options<unknown, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<
-    UserProfileEventsLikedListResponse,
-    UserProfileEventsLikedListError,
-    ThrowOnError
-  >({
-    ...options,
-    url: "/user/profile/events/liked/",
-  });
-};
-
-/**
- * Retrieve detailed information list event
+ * Retrieve a detailed list of events with pagination.
  */
 export const userPublicEventList = <ThrowOnError extends boolean = false>(
   options?: Options<unknown, ThrowOnError>

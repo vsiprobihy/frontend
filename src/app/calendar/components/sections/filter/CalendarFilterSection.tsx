@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "~/components";
 import {
-  CalendarFilterActivityType,
+  CalendarFilterCompetitionType,
   CalendarFilterDistance,
   CalendarFilterInputs,
   CalendarFilterResetButton,
@@ -37,7 +37,7 @@ export const CalendarFilterSection: React.FC = () => {
         >
           {/*  Filter Tags & Filter Inputs*/}
           <div className={`flex flex-col gap-6`}>
-            <CalendarFilterActivityType onChange={handleFilterChange} />
+            <CalendarFilterCompetitionType onChange={handleFilterChange} />
             <CalendarFilterDistance onChange={handleFilterChange} />
           </div>
           <div className={`lg:col-span-2`}>

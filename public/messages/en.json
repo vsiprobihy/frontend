@@ -80,5 +80,9 @@
     "heading": "Empty",
     "title": "There are no events matching your filters",
     "description": "We recommend adjusting your filters or resetting them"
+  },
+  "EventCard": {
+    "location": "Location",
+    "date": "Date"
   }
 }

@@ -90,12 +90,6 @@ are welcome!
 
           - **/mobile-menu**
 
-          - **/tags**
-            Contains components for activity and distance tags:
-
-              - `ActivityTypeTag.tsx` — For activity type tags.
-              - `DistanceTag.tsx` — For distance tags.
-
           - `components.ts` — Re-exports common components used in this section.
 
         - **/context**

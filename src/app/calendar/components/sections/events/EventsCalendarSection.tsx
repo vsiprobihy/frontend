@@ -1,50 +1,61 @@
 "use client";
 import { EventCard, EventCardProps } from "~/components/event-card/EventCard";
 import dayjs from "dayjs";
-import { useState } from "react";
-import { calendarFilterList, CalendarFilterListData } from "~/api-client";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { LoadingOrError, NotFoundTemplate } from "~/components";
+import { Button, LoadingOrError, NotFoundTemplate } from "~/components";
+import {
+  userPublicEventFilterList,
+  UserPublicEventFilterListData,
+  UserPublicEventFilterListResponse,
+} from "~/api-client";
 
 const currentMonth = dayjs().month() + 1;
 const currentYear = dayjs().year();
 
 const EventsCalendarSection: React.FC = () => {
-  const [queryFilters, setQueryFilters] = useState<
-    CalendarFilterListData["query"]
-  >({
+  const [events, setEvents] = useState<EventCardProps[]>([]);
+  const [page, setPage] = useState(1);
+
+  ///
+
+  const queryFilters: UserPublicEventFilterListData["query"] = {
     competition_type: undefined,
     distance_max: undefined,
     distance_min: undefined,
-    month: currentMonth,
-    year: currentYear,
+    dateFrom: undefined,
+    dateTo: undefined,
     name: undefined,
-    page: undefined,
+    page: `${page}`,
     place: undefined,
-  });
+  };
 
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["calendarFilteredEvents", queryFilters],
-    queryFn: async () => {
-      const response = await calendarFilterList({ query: queryFilters });
-      console.log(`queryFn`);
-      console.log(response.response);
-      if (response.data && response.response.status === 200) {
-        return response.data;
-      } else {
-        throw new Error(response.response.statusText);
-      }
-    },
-    enabled: Object.values(queryFilters ?? {}).some(
-      (value) => value !== "" && value !== undefined
-    ),
-  });
+  const { data, isError, isLoading } =
+    useQuery<UserPublicEventFilterListResponse>({
+      queryKey: ["userPublicEventFilter", queryFilters],
+      queryFn: async (): Promise<UserPublicEventFilterListResponse> => {
+        const response = await userPublicEventFilterList({
+          query: queryFilters,
+        });
+        if (response.data && response.response.status === 200) {
+          return response.data;
+        } else {
+          throw new Error(response.response.statusText);
+        }
+      },
 
-  if (isLoading || isError) {
-    return <LoadingOrError {...{ isError, isLoading }} />;
-  }
+      // the following line enables query only when at least one filter is set
+      // enabled: Object.values(queryFilters ?? {}).some(
+      //   (value) => value !== "" && value !== undefined
+      // ),
+    });
+  ///
 
-  const events: EventCardProps[] = [];
+  console.log(`data`, data);
+
+  // TODO remove the dummy events
+  // events.push(...dummyRunningEvents(100));
+  console.log(`events`, events);
 
   const eventsByMonths: {
     events: EventCardProps[];
@@ -58,8 +69,10 @@ const EventsCalendarSection: React.FC = () => {
     // if it does, add the event to the entry
     // if it doesn't, create a new entry for this month
 
-    const month = event.date.month();
-    const year = event.date.year();
+    const dateStart = event.dates[0];
+
+    const month = dateStart.month();
+    const year = dateStart.year();
     const eventsOfMonth = eventsByMonths.find((entry) => {
       return entry.monthNumber === month && entry.yearNumber === year;
     });
@@ -73,6 +86,58 @@ const EventsCalendarSection: React.FC = () => {
       });
     }
   });
+  // Sort events by month and year
+  eventsByMonths.sort((a, b) => {
+    if (a.yearNumber === b.yearNumber) {
+      return a.monthNumber - b.monthNumber;
+    }
+    return a.yearNumber - b.yearNumber;
+  });
+
+  // Pagination
+
+  const totalPages = data?.pagination.num_pages;
+  const currentPage = data?.pagination.current_page;
+  const hasMorePages =
+    typeof totalPages === "number" &&
+    typeof currentPage === "number" &&
+    currentPage < totalPages;
+
+  const handleLoadMore = () => {
+    console.log(`handleLoadMore`);
+    console.log(`totalPages`, totalPages);
+    console.log(`currentPage`, currentPage);
+    if (hasMorePages) {
+      setPage(currentPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (data?.items.length) {
+      const newEvents: EventCardProps[] = data.items.map((event) => ({
+        dates: [dayjs(event.dateFrom)],
+        competitionTypeIds: event.competitionType.map(
+          (competitionType) => competitionType.id + ""
+        ),
+        id: event.id + "",
+        image: undefined, // TODO pass image
+        title: event.name,
+        distanceTitles: event.distances.map((distance) => distance.name),
+        isLiked: Math.random() >= 0.5,
+        location: event.place,
+        organizer: {
+          name: event.organizer.organization,
+          image: undefined, // TODO pass image
+        },
+      }));
+      setEvents((prevEvents) => [...prevEvents, ...newEvents]);
+    }
+  }, [data]);
+
+  // TODO instead of replacing the content, wrap it over...
+  if (isLoading || isError) {
+    return <LoadingOrError {...{ isError, isLoading }} />;
+  }
 
   // TODO show placeholder if no events
 
@@ -113,6 +178,11 @@ const EventsCalendarSection: React.FC = () => {
                 </div>
               </div>
             ))}
+            {hasMorePages && (
+              <div className={`flex flex-col md:items-center`}>
+                <Button onClick={handleLoadMore}>Load More</Button>
+              </div>
+            )}
           </div>
         )}
       </div>

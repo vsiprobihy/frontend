@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import { Button } from "../buttons/Button";
 
-export interface ActivityTypeButtonProps {
+export interface CompetitionTypeButtonProps {
   children: React.ReactNode;
   id: string;
   selected?: boolean;
   onClick?: () => void;
 }
 
-export const ActivityTypeButton: React.FC<ActivityTypeButtonProps> = (
+export const CompetitionTypeButton: React.FC<CompetitionTypeButtonProps> = (
   props
 ) => {
   return (
