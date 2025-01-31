@@ -9,12 +9,14 @@ import {
   UserPublicEventFilterListData,
   UserPublicEventFilterListResponse,
 } from "~/api-client";
+// import { useCalendarFilterParams } from "@/libs/hooks/calendar-filters/useCalendarFilterParams";
 
 const EventsCalendarSection: React.FC = () => {
   const [events, setEvents] = useState<EventCardProps[]>([]);
   const [page, setPage] = useState(1);
 
-  ///
+  /// TODO use filterParams variable instead of queryFilters
+  // const { filterParams } = useCalendarFilterParams();
 
   const queryFilters: UserPublicEventFilterListData["query"] = {
     competition_type: undefined,

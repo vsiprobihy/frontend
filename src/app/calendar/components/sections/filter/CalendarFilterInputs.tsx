@@ -1,11 +1,13 @@
 import { Input, Select } from "~/components";
 import { IconType } from "~/enums/icon/icon.type";
-import { CalendarFilterListData } from "~/api-client/types.gen";
+import { UserPublicEventFilterListData } from "~/api-client/types.gen";
 import dayjs from "dayjs";
 import "dayjs/locale/uk";
 import "dayjs/locale/en";
 
 // TODO call API for regions
+
+//TODO use useCalendarFilterParams hook for inputs
 
 type RegionType = {
   title: string;
@@ -21,7 +23,9 @@ for (let i = 0; i < 5; i++) {
 }
 
 interface CalendarFilterInputsProps {
-  onChange: (newFilters: Partial<CalendarFilterListData["query"]>) => void;
+  onChange: (
+    newFilters: Partial<UserPublicEventFilterListData["query"]>
+  ) => void;
 }
 
 // TODO change month selector to a better date picker
@@ -47,9 +51,10 @@ export const CalendarFilterInputs: React.FC<CalendarFilterInputsProps> = ({
   onChange,
 }) => {
   const handleMonthChange = (value: string | null) => {
-    const monthNumber = value ? parseInt(value, 10) : null;
+    // const monthNumber = value ? parseInt(value, 10) : null;
     onChange({
-      month: monthNumber ?? undefined,
+      dateFrom: value as string, //TODO change it in correct type/logic
+      // month: monthNumber ?? undefined,   //type conflict due to update types(no more month)
     });
   };
 
