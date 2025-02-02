@@ -118,7 +118,7 @@ const EventsCalendarSection: React.FC = () => {
         competitionTypeIds: event.competitionType.map(
           (competitionType) => competitionType.id + ""
         ),
-        id: event.id + "",
+        id: event.id,
         image: undefined, // TODO pass image
         title: event.name,
         distanceTitles: event.distances.map((distance) => distance.name),

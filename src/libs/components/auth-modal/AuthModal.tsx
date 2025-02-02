@@ -16,17 +16,14 @@ import {
 } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
-  authLoginCreate,
-  AuthLoginCreateResponse,
-  authRegisterCreate,
-  AuthRegisterCreateResponse,
-  Login,
-  Register,
+  AuthenticationLoginCreateData,
+  AuthenticationLoginCreateResponse,
+  authenticationLoginCreate,
 } from "~/api-client";
 import { CloseButton } from "~/components";
 import { useIsMobile } from "~/hooks";
-import LoginForm from "./form/LoginForm";
-import RegisterForm from "./form/RegisterForm";
+import LoginForm, { ILoginFormFields } from "./form/LoginForm";
+// import RegisterForm, { IRegisterFormFields } from "./form/RegisterForm";
 import LoginImage from "~/images/login.webp";
 import RegisterImage from "~/images/registration.webp";
 import { useAuthContext } from "~/context";
@@ -73,14 +70,12 @@ export const AuthModal: React.FC = () => {
   }, [handleKeyDown]);
 
   const { mutate: mutateLogin } = useMutation<
-    { data?: AuthLoginCreateResponse },
+    { data?: AuthenticationLoginCreateResponse },
     Error,
-    Login
+    AuthenticationLoginCreateData
   >({
-    mutationFn: async (login: Login) => {
-      const response = await authLoginCreate({
-        body: login,
-      });
+    mutationFn: async (login: AuthenticationLoginCreateData) => {
+      const response = await authenticationLoginCreate(login);
 
       if (response.response.status === 200) {
         return response;
@@ -88,9 +83,9 @@ export const AuthModal: React.FC = () => {
         throw new Error(response.response.statusText);
       }
     },
-    onSuccess: (data: { data?: AuthLoginCreateResponse }) => {
-      const token = data.data?.access;
-      const refreshToken = data.data?.refresh;
+    onSuccess: (data: { data?: AuthenticationLoginCreateResponse }) => {
+      const token = data.data?.accessToken.value;
+      const refreshToken = data.data?.refresh_token?.value;
 
       if (token && refreshToken) {
         Cookies.set("authToken", token, {
@@ -112,39 +107,52 @@ export const AuthModal: React.FC = () => {
     },
   });
 
-  const onSubmitLogin = (data: Login) => {
-    mutateLogin(data);
+  const onSubmitLogin = (data: ILoginFormFields) => {
+    const loginData: AuthenticationLoginCreateData = {
+      body: {
+        email: data.email,
+        password: data.password,
+      },
+    };
+    mutateLogin(loginData);
   };
 
-  const { mutate: mutateRegister } = useMutation<
-    unknown,
-    Error,
-    AuthRegisterCreateResponse
-  >({
-    mutationFn: async (data: Register) => {
-      const response = await authRegisterCreate({ body: data });
+  //TODO remake registration with new fields
 
-      if (response.response.status === 201) {
-        return response;
-      } else {
-        throw new Error(response.response.statusText);
-      }
-    },
-    onSuccess: () => {
-      const params = new URLSearchParams(searchParams);
-      params.delete("showAuthModal");
-      params.set("showSuccessModal", "true");
-      router.push(`?${params.toString()}`);
-      setIsAuthenticatedUser(true);
-    },
-    onError: (error) => {
-      alert(t("registrationFailed", { error: error.message }));
-    },
-  });
+  // const { mutate: mutateRegister } = useMutation<
+  //   unknown,
+  //   Error,
+  //   AuthenticationRegisterCreateData
+  // >({
+  //   mutationFn: async (data: AuthenticationRegisterCreateData) => {
+  //     const response = await authenticationRegisterCreate(data);
 
-  const onSubmitRegister = (data: Register) => {
-    mutateRegister(data);
-  };
+  //     if (response.response.status === 201) {
+  //       return response;
+  //     } else {
+  //       throw new Error(response.response.statusText);
+  //     }
+  //   },
+  //   onSuccess: () => {
+  //     const params = new URLSearchParams(searchParams);
+  //     params.delete("showAuthModal");
+  //     params.set("showSuccessModal", "true");
+  //     router.push(`?${params.toString()}`);
+  //     setIsAuthenticatedUser(true);
+  //   },
+  //   onError: (error) => {
+  //     alert(t("registrationFailed", { error: error.message }));
+  //   },
+  // });
+
+  // const onSubmitRegister = (data: IRegisterFormFields) => {
+  //   const registerData: AuthenticationRegisterCreateData = {
+  //     body: {
+
+  //     },
+  //   };
+  //   mutateRegister(data);
+  // };
 
   return (
     <Dialog open={showAuthModal} onOpenChange={handleClose}>
@@ -219,7 +227,7 @@ export const AuthModal: React.FC = () => {
                 value="register"
                 className="flex items-center justify-center"
               >
-                <RegisterForm onSubmit={onSubmitRegister} />
+                {/* <RegisterForm onSubmit={onSubmitRegister} /> */}
               </Tabs.Content>
             </Tabs.Root>
           </div>

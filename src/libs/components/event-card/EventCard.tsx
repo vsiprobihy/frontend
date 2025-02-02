@@ -23,7 +23,7 @@ export interface EventCardProps {
   competitionTypeIds: string[];
   location: string;
   distanceTitles: string[];
-  id: string;
+  id: number;
   isLiked?: boolean;
   organizer?: {
     image?: ImageProps;
