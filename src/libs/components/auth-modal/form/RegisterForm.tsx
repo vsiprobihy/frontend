@@ -10,7 +10,8 @@ import AuthGoogleButton from "../AuthGoogleButton";
 import { CustomLabel } from "@/libs/components/label/CustomLabel";
 import { useTranslations } from "next-intl";
 
-interface IRegisterFormFields {
+//TODO remake registration with new fields
+export interface IRegisterFormFields {
   email: string;
   password: string;
   password2: string;

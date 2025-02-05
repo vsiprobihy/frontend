@@ -26,9 +26,9 @@ are welcome!
 
 # Branch Naming
 
-* `feat/...` - default
-* `fix/...` - for bug fixes
-* `...` - for special cases
+- `feat/...` - default
+- `fix/...` - for bug fixes
+- `...` - for special cases
 
 # Project Structure
 
@@ -36,73 +36,74 @@ are welcome!
 
 - ### **_app_**
 
-    - **/404**
-      Contains template 404 error page for handling "page not found" errors.
+  - **/404**
+    Contains template 404 error page for handling "page not found" errors.
 
-    - **/about**
-    - **/calendar**
+  - **/about**
+  - **/calendar**
 
-        - **/fonts**
-          Directory for storing fonts used in the project.
+    - **/fonts**
+      Directory for storing fonts used in the project.
 
-        - **/components**
-          Contains components for main page:
+    - **/components**
+      Contains components for main page:
 
-            - `HeroSection.tsx` — Components for the hero section.
-            - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
+      - `HeroSection.tsx` — Components for the hero section.
+      - `UpcomingEventsSection.tsx` — Components for the upcoming events section.
 
-        - **/styles**
-          Contains global styles and icon styles:
+    - **/styles**
+      Contains global styles and icon styles:
 
-            - `globals.css` — Global styles for the application.
-            - `icomoon.css` — Styles for Icomoon icons.
+      - `globals.css` — Global styles for the application.
+      - `icomoon.css` — Styles for Icomoon icons.
 
-        - **layout.tsx**
-          The main layout file of the application, defining shared structure across pages (header, footer, etc.).
+    - **layout.tsx**
+      The main layout file of the application, defining shared structure across pages (header, footer, etc.).
 
-        - **not-found.tsx**
-          This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
-          handling.
+    - **not-found.tsx**
+      This file redirects users to the `/404` page when a non-existent route is accessed, ensuring proper 404 error
+      handling.
 
-        - **page.tsx**
-          The main or root page of the application.
+    - **page.tsx**
+      The main or root page of the application.
 
 - ### **_libs_**
 
-    - **/api-client**
+  - **/api-client**
 
-    - **/components**
-      Contains reusable components organized into subdirectories:
+  - **/components**
+    Contains reusable components organized into subdirectories:
 
-          - **/buttons**
+        - **/buttons**
 
-          - **/footer**
+        - **/footer**
 
-          - **/header**
+        - **/header**
 
-          - **/icon**
-            Contains components for handling icons (`Icon.tsx`).
+        - **/icon**
+          Contains components for handling icons (`Icon.tsx`).
 
-          - **/links**
-            Contains link-related components, such as:
+        - **/links**
+          Contains link-related components, such as:
 
-              - `CustomLink.tsx` — Component for custom links.
+            - `CustomLink.tsx` — Component for custom links.
 
-          - **/mobile-menu**
+        - **/mobile-menu**
 
-          - `components.ts` — Re-exports common components used in this section.
+        - `components.ts` — Re-exports common components used in this section.
 
-        - **/context**
-    - **/enums**
-      Directory for enum types used throughout the project.
-        - **/hooks**
-          Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
-    - **/locale**
-    - **/utils**
+    - **/context**
+
+  - **/enums**
+    Directory for enum types used throughout the project.
+    - **/hooks**
+      Directory for custom hooks used to encapsulate and manage reusable logic throughout the project.
+  - **/locale**
+  - **/utils**
 
 - ### **_i18_**
-    - **`config.ts`**
-    - **`request.ts`**
+  - **`config.ts`**
+  - **`request.ts`**
 
 # Basics
 

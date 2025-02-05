@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   const buttonEl = (
     <button
       className={clsx(
-        `border-transparent block rounded-full border text-center font-semibold uppercase leading-none`,
+        `block rounded-full border border-transparent text-center font-semibold uppercase leading-none`,
         fullWidth && "w-full",
         size === "large"
           ? "p-6 px-8 text-[1.125rem]"

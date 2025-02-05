@@ -12,7 +12,7 @@ import AuthSubmitButton from "../AuthSubmitButton";
 import AuthGoogleButton from "../AuthGoogleButton";
 import { useTranslations } from "next-intl";
 
-interface ILoginFormFields {
+export interface ILoginFormFields {
   email: string;
   password: string;
 }
