@@ -1,13 +1,10 @@
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 import {
   CALENDAR_FILTER_KEYS,
   CalendarFilterKey,
-} from "@/libs/constants/calendarFiltersKeys";
-import { useCallback } from "react";
-
-export type CalendarFilterParams = {
-  [key in (typeof CALENDAR_FILTER_KEYS)[CalendarFilterKey]]?: string | string[];
-};
+  CalendarFilterParams,
+} from "~/constants/calendarFiltersKeys";
 
 export const useCalendarFilterParams = () => {
   const router = useRouter();
@@ -18,14 +15,16 @@ export const useCalendarFilterParams = () => {
     const params: CalendarFilterParams = {};
 
     searchParams.forEach((value, key) => {
-      const existingParam = params[key as keyof CalendarFilterParams];
-
-      if (existingParam) {
-        params[key as keyof CalendarFilterParams] = Array.isArray(existingParam)
-          ? [...(existingParam as string[]), value]
-          : [existingParam as string, value];
-      } else {
-        params[key as keyof CalendarFilterParams] = value;
+      if (key in CALENDAR_FILTER_KEYS) {
+        const filterParamKey = key as CalendarFilterKey;
+        const existingParam = params[filterParamKey];
+        if (existingParam) {
+          params[filterParamKey] = Array.isArray(existingParam)
+            ? [...existingParam, value]
+            : [existingParam, value];
+        } else {
+          params[filterParamKey] = value;
+        }
       }
     });
 
@@ -33,21 +32,23 @@ export const useCalendarFilterParams = () => {
   }, [searchParams]);
 
   const setCalendarFilterParams = useCallback(
-    (update: (prevState: CalendarFilterParams) => CalendarFilterParams) => {
+    (
+      updateState: (prevState: CalendarFilterParams) => CalendarFilterParams
+    ) => {
       const prevState = getFilterParams();
-      const updatedParams = update(prevState);
+      const updatedParams = updateState(prevState);
 
-      const searchParams = new URLSearchParams();
+      const newSearchParams = new URLSearchParams();
 
       Object.entries(updatedParams).forEach(([key, value]) => {
         if (Array.isArray(value)) {
-          value.forEach((v) => searchParams.append(key, v));
+          value.forEach((v) => newSearchParams.append(key, v));
         } else if (value) {
-          searchParams.append(key, value);
+          newSearchParams.append(key, value);
         }
       });
 
-      router.push(`${pathname}?${searchParams.toString()}`);
+      router.replace(`${pathname}?${newSearchParams.toString()}`);
     },
     [router, pathname, getFilterParams]
   );
