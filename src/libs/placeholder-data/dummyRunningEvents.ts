@@ -45,7 +45,7 @@ export const dummyRunningEvent = (): EventCardProps => {
       `${faker.number.int({ min: 5, max: 42 })} km`,
       `${faker.number.int({ min: 1, max: 50 })} mi`,
     ],
-    id: faker.string.uuid(),
+    id: Math.floor(Math.random() * 90000000) + 10000000,
     isLiked: Math.random() > 0.5 ? faker.datatype.boolean() : undefined,
     organizer: hasOrganizer
       ? {

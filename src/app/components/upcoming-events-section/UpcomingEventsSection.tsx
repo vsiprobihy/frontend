@@ -1,21 +1,22 @@
 "use client";
 
-import { UpcomingEventsCarousel } from "./carousel/UpcomingEventsCarousel";
 import { CustomLink, EventCard } from "~/components";
 import PlaceholderImage from "~/images/placeholder.webp";
 import { useQuery } from "@tanstack/react-query";
-import { upcomingEventsList } from "~/api-client/services.gen";
+import { userPublicEventList } from "~/api-client/services.gen";
 import clsx from "clsx";
 import { AppRoute } from "~/enums";
 import { useTranslations } from "next-intl";
-import { UpcomingEventsListResponse } from "~/api-client/types.gen";
+import { UserPublicEventListResponse } from "~/api-client/types.gen";
+import { UpcomingEventsCarousel } from "../sections/upcoming-events-section/carousel/UpcomingEventsCarousel";
+import dayjs from "dayjs";
 
 export const UpcomingEventsSection: React.FC = () => {
   const t = useTranslations("UpcomingEventsSection");
-  const { data } = useQuery<UpcomingEventsListResponse>({
+  const { data } = useQuery<UserPublicEventListResponse>({
     queryKey: ["mainList", {}],
-    queryFn: async (): Promise<UpcomingEventsListResponse> => {
-      const response = await upcomingEventsList();
+    queryFn: async (): Promise<UserPublicEventListResponse> => {
+      const response = await userPublicEventList();
       if (response.data && response.response.status === 200) {
         return response.data;
       } else {
@@ -31,15 +32,22 @@ export const UpcomingEventsSection: React.FC = () => {
   );
 
   const events =
-    data?.events?.map((event) => ({
+    data?.items?.map((event) => ({
       id: event.id,
-      name: event.name,
-      dateFrom: event.date_from,
-      dateTo: event.date_to,
-      place: event.place,
-      competitionType: event.competition_type,
+      title: event.name,
+      location: event.place,
+      dates: event.dateTo
+        ? ([dayjs(event.dateFrom), dayjs(event.dateTo)] as [
+            dayjs.Dayjs,
+            dayjs.Dayjs,
+          ])
+        : ([dayjs(event.dateFrom)] as [dayjs.Dayjs]),
+
+      competitionTypeIds:
+        event.competitionType?.map((competititon) => String(competititon.id)) ||
+        [],
       photos: { src: event.photos || PlaceholderImage, alt: event.name || "" },
-      distances: event.distances,
+      distanceTitles: event.distances.map((distance) => distance.name),
     })) || [];
 
   const renderEventCards = () =>

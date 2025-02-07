@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import Cookies from "js-cookie";
 import {
-  authTokenRefreshCreate,
+  authenticationTokenRefreshCreate,
   client,
   TokenRefresh,
 } from "@/libs/api-client";
@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<{
 
   const { mutate } = useMutation<{ data?: TokenRefresh }, Error, TokenRefresh>({
     mutationFn: async (refreshToken: { refresh: string }) => {
-      const response = await authTokenRefreshCreate({
+      const response = await authenticationTokenRefreshCreate({
         body: refreshToken,
       });
       if (response.response.status === 200) {

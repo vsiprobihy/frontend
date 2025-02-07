@@ -1,13 +1,12 @@
-version: '3.8'
+version: "3.8"
 
 services:
-
   frontend:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
     image: ghcr.io/${FRONTEND_REPOSITORY}/frontend:${FRONTEND_SHA}
-    container_name: probihy_front_container 
+    container_name: probihy_front_container
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -17,10 +16,8 @@ services:
     networks:
       - app-network
 
-
 volumes:
   app_build:
-
 
 networks:
   app-network:

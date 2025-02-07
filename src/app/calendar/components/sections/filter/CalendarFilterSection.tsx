@@ -38,7 +38,7 @@ export const CalendarFilterSection: React.FC = () => {
           {/*  Filter Tags & Filter Inputs*/}
           <div className={`flex flex-col gap-6`}>
             <CalendarFilterCompetitionType onChange={handleFilterChange} />
-            <CalendarFilterDistance onChange={handleFilterChange} />
+            <CalendarFilterDistance />
           </div>
           <div className={`lg:col-span-2`}>
             <CalendarFilterInputs onChange={handleFilterChange} />

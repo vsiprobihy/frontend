@@ -1,33 +1,28 @@
 "use client";
 import * as Slider from "@radix-ui/react-slider";
-import { useState } from "react";
 import { Input } from "~/components";
-import { CalendarFilterListData } from "~/api-client/types.gen";
-
-interface CalendarFilterDistanceProps {
-  onChange: (newFilters: Partial<CalendarFilterListData["query"]>) => void;
-}
+import { useCalendarFilterParams } from "@/libs/hooks/calendar-filters/useCalendarFilterParams";
 
 const formatNumber = (value: string) => {
   const newValue = value.length ? parseInt(value) : 0;
   return isNaN(newValue) ? 0 : newValue;
 };
 
-export const CalendarFilterDistance: React.FC<CalendarFilterDistanceProps> = ({
-  onChange,
-}) => {
+export const CalendarFilterDistance: React.FC = () => {
   // TODO call API for max value
   const maxValue = 42;
   const minValue = 0;
 
-  const valueWithinRange = (value: number) => {
-    return Math.min(Math.max(value, minValue), maxValue);
-  };
+  const { filterParams, setCalendarFilterParams } = useCalendarFilterParams();
 
-  const [sliderValue, setSliderValue] = useState<number[]>([
-    minValue,
-    maxValue,
-  ]);
+  const distanceMin =
+    typeof filterParams.distance_min === "string"
+      ? formatNumber(filterParams.distance_min)
+      : minValue;
+  const distanceMax =
+    typeof filterParams.distance_max === "string"
+      ? formatNumber(filterParams.distance_max)
+      : maxValue;
 
   const sliderThumbElement = (
     <Slider.Thumb
@@ -39,31 +34,29 @@ export const CalendarFilterDistance: React.FC<CalendarFilterDistanceProps> = ({
   const commonInputProps = {
     className: `max-w-24`,
     type: "number",
-    // centerText: true,
   };
 
   const handleSliderChange = (newValues: number[]) => {
-    setSliderValue(newValues);
-
-    onChange({
-      distance_min: newValues[0],
-      distance_max: newValues[1],
-    });
+    // TODO update the search params when user releases the slider, not during the drag
+    setCalendarFilterParams((prevState) => ({
+      ...prevState,
+      distance_min: String(newValues[0]),
+      distance_max: String(newValues[1]),
+    }));
   };
 
-  const handleInputChange = (value: string, index: number) => {
-    const numberValue = formatNumber(value);
+  const handleMaxInputChange = (value: string) => {
+    setCalendarFilterParams((prevState) => ({
+      ...prevState,
+      distance_max: value,
+    }));
+  };
 
-    setSliderValue((prevValue) => {
-      const newValue = [...prevValue];
-      newValue[index] = valueWithinRange(numberValue);
-      return newValue;
-    });
-
-    onChange({
-      distance_min: sliderValue[0],
-      distance_max: sliderValue[1],
-    });
+  const handleMinInputChange = (value: string) => {
+    setCalendarFilterParams((prevState) => ({
+      ...prevState,
+      distance_min: value,
+    }));
   };
 
   return (
@@ -73,13 +66,13 @@ export const CalendarFilterDistance: React.FC<CalendarFilterDistanceProps> = ({
       </p>
       <div className={`flex w-full flex-row items-center gap-2`}>
         <Input
-          value={sliderValue[0] + ``}
-          onValueChange={(newValue) => handleInputChange(newValue, 0)}
+          value={distanceMin + ``}
+          onValueChange={handleMinInputChange}
           {...commonInputProps}
         />
         <Slider.Root
           className="relative flex h-7 w-full flex-1 cursor-pointer touch-none select-none items-center"
-          value={sliderValue}
+          value={[distanceMin, distanceMax]}
           onValueChange={handleSliderChange}
           max={maxValue}
           min={minValue}
@@ -92,8 +85,8 @@ export const CalendarFilterDistance: React.FC<CalendarFilterDistanceProps> = ({
           {sliderThumbElement}
         </Slider.Root>
         <Input
-          value={sliderValue[1] + ``}
-          onValueChange={(newValue) => handleInputChange(newValue, 1)}
+          value={distanceMax + ``}
+          onValueChange={handleMaxInputChange}
           {...commonInputProps}
         />
       </div>

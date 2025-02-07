@@ -9,6 +9,8 @@ interface CalendarFilterCompetitionTypeProps {
   onChange: (competitionTypeId?: string) => void;
 }
 
+//TODO use useCalendarFilterParams hook for inputs
+
 export const CalendarFilterCompetitionType: React.FC<
   CalendarFilterCompetitionTypeProps
 > = (props) => {
